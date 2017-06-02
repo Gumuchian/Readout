@@ -34,9 +34,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/BBFB.h" />
 		<Unit filename="include/DDS.h" />
+		<Unit filename="include/Pixel.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/BBFB.cpp" />
 		<Unit filename="src/DDS.cpp" />
+		<Unit filename="src/Pixel.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
