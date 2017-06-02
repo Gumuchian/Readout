@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1496396995 source:c:\users\paul\documents\c++\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<DDS.h>
+
+1496397116 source:c:\users\paul\documents\c++\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+
+1496396347 c:\users\paul\documents\c++\readout_chain\include\dds.h
+
+1496399789 source:c:\users\paul\documents\c++\readout_chain\src\pixel.cpp
+	"Pixel.h"
+
+1496399833 c:\users\paul\documents\c++\readout_chain\include\pixel.h
+
+1496416112 source:c:\users\paul\documents\c++\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+
+1496401220 c:\users\paul\documents\c++\readout_chain\include\bbfb.h
+

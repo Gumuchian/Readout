@@ -1,0 +1,11 @@
+16:42:27 **** Rebuild of configuration Debug for project Readout_chain ****
+Info: Internal Builder is used for build
+cl /c /EHs /MD /Zi /nologo "/Foreadout\\pixel.obj" "..\\readout\\pixel.cpp" 
+Cannot run program "cl": Launching failed
+
+Error: Program "cl" not found in PATH
+PATH=[C:/Users/Paul/Downloads/jre1.8.0_121/bin/server;C:/Users/Paul/Downloads/jre1.8.0_121/bin;C:/Users/Paul/Downloads/jre1.8.0_121/lib/amd64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\MATLAB\R2009b\runtime\win64;C:\Program Files\MATLAB\R2009b\bin;C:\Program Files\PuTTY\;C:\Users\Paul\Anaconda3;C:\Users\Paul\Anaconda3\Scripts;C:\Users\Paul\Anaconda3\Library\bin;C:\Users\Paul\AppData\Local\Microsoft\WindowsApps;;C:\Modeltech_pe_edu_10.4a\win32pe_edu;C:\Users\Paul\Desktop;]
+
+
+16:42:27 Build Finished (took 193ms)
+
