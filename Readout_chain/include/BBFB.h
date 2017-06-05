@@ -5,6 +5,7 @@
 class BBFB
 {
     public:
+        BBFB();
         BBFB(int gain);
         void compute_feedback(int c, int s, int input);
         int getfeedback();

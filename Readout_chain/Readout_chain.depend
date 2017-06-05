@@ -20,3 +20,34 @@
 
 1496401220 c:\users\paul\documents\c++\readout_chain\include\bbfb.h
 
+1496613127 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<DDS.h>
+	<Pixel.h>
+
+1496591520 c:\users\paul\documents\projetc++\c++\readout_chain\include\dds.h
+
+1496592276 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+
+1496592277 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
+
+1496393518 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+
+1496671214 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
+	"Pixel.h"
+	"BBFB.h"
+
+1496686060 c:\users\paul\documents\projetc++\c++\readout_chain\include\pixel.h
+	"BBFB.h"
+
+1496662859 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\channel.cpp
+	"Channel.h"
+
+1496617476 c:\users\paul\documents\projetc++\c++\readout_chain\include\channel.h
+	<vector>
+	"Pixel.h"
+

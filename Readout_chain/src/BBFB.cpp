@@ -1,10 +1,13 @@
 #include "BBFB.h"
 
-BBFB::BBFB(int gain)
+BBFB::BBFB()
 {
-    I = 0;
-    Q = 0;
-    gain = gain;
+
+}
+
+BBFB::BBFB(int gain):I(0),Q(0),gain(gain)
+{
+
 }
 
 void BBFB::compute_feedback(int c, int s, int input)
