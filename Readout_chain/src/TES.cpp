@@ -45,7 +45,7 @@ float TES::RK4(ptrm f, float dt, float y0, float y1, float y2)
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
 
-void TES::computeLCTES(float fe)
+float TES::computeLCTES(float fe)
 {
     float Ccp=130*pow(10,-12),
     Ccar=13*pow(10,-9),
@@ -64,9 +64,10 @@ void TES::computeLCTES(float fe)
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
+    return biasm[2]*I;
 }
 
-void TES::getbias(float biass)
+void TES::setbias(float biass)
 {
     bias[2]=biass;
 }

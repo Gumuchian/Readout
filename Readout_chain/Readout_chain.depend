@@ -20,36 +20,41 @@
 
 1496401220 c:\users\paul\documents\c++\readout_chain\include\bbfb.h
 
-1496704626 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
+1496789491 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
 	<iostream>
 	<math.h>
-	<DDS.h>
-	<Pixel.h>
+	<Channel.h>
 
-1496591520 c:\users\paul\documents\projetc++\c++\readout_chain\include\dds.h
+1496769694 c:\users\paul\documents\projetc++\c++\readout_chain\include\dds.h
 
-1496592276 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\bbfb.cpp
+1496784589 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\bbfb.cpp
 	"BBFB.h"
 
-1496592277 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
+1496784600 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
 
-1496393518 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
+1496769694 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
 	"DDS.h"
 	<math.h>
 
-1496671214 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
+1496789437 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
 	"Pixel.h"
 	"BBFB.h"
+	"TES.h"
+	<math.h>
 
-1496707855 c:\users\paul\documents\projetc++\c++\readout_chain\include\pixel.h
+1496788515 c:\users\paul\documents\projetc++\c++\readout_chain\include\pixel.h
 	"BBFB.h"
+	"TES.h"
 
-1496662859 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\channel.cpp
+1496789508 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\channel.cpp
 	"Channel.h"
+	"DDS.h"
+	<math.h>
 
-1496617476 c:\users\paul\documents\projetc++\c++\readout_chain\include\channel.h
+1496789313 c:\users\paul\documents\projetc++\c++\readout_chain\include\channel.h
 	<vector>
 	"Pixel.h"
+	"DDS.h"
 
 1496759171 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
@@ -92,4 +97,10 @@
 	<math.h>
 
 1496759620 c:\users\paul\documents\github\readout\readout_chain\include\tes.h
+
+1496788460 c:\users\paul\documents\projetc++\c++\readout_chain\include\tes.h
+
+1496784746 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\tes.cpp
+	"TES.h"
+	<math.h>
 

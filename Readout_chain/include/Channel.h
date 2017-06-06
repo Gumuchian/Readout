@@ -9,13 +9,14 @@ class Channel
     public:
         Channel();
         Channel(int taille, int precision, int interp);
-        float sumPolar();
-        float setBias();
-        void computeSQUID();
+        void sumPolar();
+        void computeLC_TES();
+        void computeBBFB();
     protected:
     private:
         std::vector<Pixel> ch;
         DDS dds;
+        float input;
 };
 
 #endif // CHANNEL_H

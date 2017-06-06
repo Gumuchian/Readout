@@ -11,8 +11,10 @@ class Pixel
         int getfeedback();
         int getmodule();
         int getfrequency();
+        void setinputLC(float input);
         void setinput_adc(float input);
-        void computePixel();
+        float computeLC();
+        void computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input);
         int getcount();
 
     protected:
@@ -26,6 +28,7 @@ class Pixel
         int pas;
         int input_adc;
         int feedback;
+        float input_LC;
         BBFB bbfb;
         TES tes;
 };

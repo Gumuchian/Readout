@@ -7,7 +7,7 @@ class BBFB
     public:
         BBFB();
         BBFB(int gain);
-        void compute_feedback(int c, int s, int input);
+        void compute_feedback(int demoduI, int remoduI, int demoduQ, int remoduQ, int input);
         int getfeedback();
         int module();
 

@@ -24,10 +24,14 @@ int Pixel::getmodule()
     return bbfb.module();
 }
 
-void Pixel::computePixel()
+float Pixel::computeLC()
 {
-    tes.computeLCTES(1);
-    bbfb.compute_feedback(1,1,1);
+    return tes.computeLCTES(20000000);
+}
+
+void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input)
+{
+    bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);
     compteur=compteur+pas;
 }
 
@@ -38,5 +42,10 @@ int Pixel::getcount()
 
 void Pixel::setinput_adc(float input)
 {
-    input_dac=round(input*pow(2,12));
+    input_adc=input*pow(2,12);
+}
+
+void Pixel::setinputLC(float input)
+{
+    input_LC=input;
 }
