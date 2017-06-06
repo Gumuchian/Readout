@@ -51,3 +51,35 @@
 	<vector>
 	"Pixel.h"
 
+1496741332 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<DDS.h>
+	<Pixel.h>
+
+1496741332 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
+
+1496748294 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
+	"BBFB.h"
+
+1496741332 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
+
+1496741332 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+
+1496741332 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+	"Channel.h"
+
+1496741332 c:\users\paul\documents\github\readout\readout_chain\include\channel.h
+	<vector>
+	"Pixel.h"
+
+1496741332 source:c:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+
+1496748251 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
+	"Pixel.h"
+	"BBFB.h"
+	<math.h>
+
