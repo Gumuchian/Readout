@@ -35,3 +35,8 @@ int Pixel::getcount()
 {
     return compteur;
 }
+
+void Pixel::setinput_adc(float input)
+{
+    input_dac=round(input*pow(2,12));
+}

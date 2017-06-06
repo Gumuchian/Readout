@@ -38,11 +38,13 @@
 		<Unit filename="include/Channel.h" />
 		<Unit filename="include/DDS.h" />
 		<Unit filename="include/Pixel.h" />
+		<Unit filename="include/TES.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BBFB.cpp" />
 		<Unit filename="src/Channel.cpp" />
 		<Unit filename="src/DDS.cpp" />
 		<Unit filename="src/Pixel.cpp" />
+		<Unit filename="src/TES.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

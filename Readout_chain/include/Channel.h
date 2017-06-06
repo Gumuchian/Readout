@@ -10,6 +10,8 @@ class Channel
         Channel();
         Channel(int taille, int precision, int interp);
         float sumPolar();
+        float setBias();
+        void computeSQUID();
     protected:
     private:
         std::vector<Pixel> ch;

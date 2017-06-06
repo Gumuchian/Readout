@@ -23,3 +23,24 @@ float Channel::sumPolar()
     }
     return sum;
 }
+
+float Channel::setBias()
+{
+    int i;
+    float sum;
+    for (i=0;i<(int)ch.size();i++){
+        sum=sum+dds.getvalue(ch[i].getcount());
+    }
+    return sum;
+}
+
+void Channel::computeSQUID()
+{
+    int i;
+    float dac;
+    dac=0.5*80*0.0017/(5.8*pow(10,-6))*(input-feedback);
+    for (i=0;i<(int)ch.size();i++){
+        ch[i].);
+    }
+}
+

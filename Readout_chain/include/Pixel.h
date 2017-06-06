@@ -11,6 +11,7 @@ class Pixel
         int getfeedback();
         int getmodule();
         int getfrequency();
+        void setinput_adc(float input);
         void computePixel();
         int getcount();
 
@@ -23,6 +24,8 @@ class Pixel
         int amplitude;
         int compteur;
         int pas;
+        int input_adc;
+        int feedback;
         BBFB bbfb;
         TES tes;
 };
