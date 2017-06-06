@@ -12,6 +12,7 @@ class TES
         static float dI(float I, float V, float R);
         float RK4(ptrm f, float dt, float y0, float y1, float y2);
         void computeLCTES(float fe);
+        void getbias(float biass);
     protected:
 
     private:

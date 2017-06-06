@@ -19,6 +19,7 @@ class Pixel
         int phase_retard;
         int amplitude;
         BBFB bbfb;
+        TES tes;
 };
 
 #endif // PIXEL_H

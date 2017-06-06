@@ -66,3 +66,7 @@ void TES::computeLCTES(float fe)
     bias[1]=bias[2];
 }
 
+void TES::getbias(float biass)
+{
+    bias[2]=biass;
+}
