@@ -9,11 +9,10 @@ class Pixel
         Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain);
         int getfeedback();
         int getmodule();
-        float dTes(float Tes, float Pj, float Po);
-        float dI(float I, float V, float R);
-        float RK4(void (*ptr)(double,double,double), float dt, float y0, float y1, float y2);
+        static float dTes(float Tes, float Pj, float Po);
+        static float dI(float I, float V, float R);
+        float RK4(float (*ptr)(float,float,float), float dt, float y0, float y1, float y2);
         float computeLCTES(float dt);
-
 
     protected:
 
