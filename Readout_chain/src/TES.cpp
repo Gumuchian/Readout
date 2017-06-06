@@ -45,15 +45,24 @@ float TES::RK4(ptrm f, float dt, float y0, float y1, float y2)
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
 
-float TES::computeLCTES(float dt)
+void TES::computeLCTES(float fe)
 {
+    float Ccp=130*pow(10,-12),
+    Ccar=13*pow(10,-9),
+    L=2*pow(10,-6),
+    A=Ccp,
+    B=R0*(Ccar+Ccp),
+    C=L*(Ccar+Ccp);
     ptrm ptr;
     ptr=&TES::dTes;
     Pj=pow(51.5*pow(10,-9),2)/R;
-    I=RK4(ptr,dt,I,V,R);
-    Tes=RK4(ptr,dt,Tes,Pj,Po);
+    I=RK4(ptr,1/fe,I,V,R);
+    Tes=RK4(ptr,1/fe,Tes,Pj,Po);
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);
-
-    //biasm(k)=(-(2-8*C*fe^2)*biasm(k-1)-(1-2*fe*B+4*fe^2*C)*biasm(k-2)+2*fe*A*(bias(k)-bias(k-2)))/(2*fe*B+1+4*C*fe^2);
+    biasm[2]=-(2-8*C*pow(fe,2)*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
+    biasm[0]=biasm[1];
+    biasm[1]=biasm[2];
+    bias[0]=bias[1];
+    bias[1]=bias[2];
 }
 
