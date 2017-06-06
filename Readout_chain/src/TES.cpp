@@ -1,9 +1,21 @@
 #include "TES.h"
 #include <math.h>
 
+typedef float (*ptrm) (float,float,float);
+
 TES::TES()
 {
-    //ctor
+    R0=0.001;
+    T0=0.09;
+    I0=51.5*pow(10,-6);
+    Tes=T0;
+    Po=0;
+    R=R0;
+    I=I0;
+    V=51.5*pow(10,-9);
+    alpha=75;
+    beta=1.25;
+    biasm[0]=0;biasm[1]=0;biasm[2]=0;
 }
 
 float TES::dTes(float Tes, float Pj, float Po)
@@ -23,7 +35,7 @@ float TES::dI(float I, float V, float R)
 }
 
 
-float TES::RK4(ptrf f, float dt, float y0, float y1, float y2)
+float TES::RK4(ptrm f, float dt, float y0, float y1, float y2)
 {
     float k1,k2,k3,k4;
     k1=f(y0,y1,y2);
@@ -35,10 +47,13 @@ float TES::RK4(ptrf f, float dt, float y0, float y1, float y2)
 
 float TES::computeLCTES(float dt)
 {
+    ptrm ptr;
+    ptr=&TES::dTes;
     Pj=pow(51.5*pow(10,-9),2)/R;
-    I=RK4((Pixel::dI),dt,I,V,R);
-    Tes=RK4(Pixel::dTes,dt,Tes,Pj,Po);
+    I=RK4(ptr,dt,I,V,R);
+    Tes=RK4(ptr,dt,Tes,Pj,Po);
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);
+
     //biasm(k)=(-(2-8*C*fe^2)*biasm(k-1)-(1-2*fe*B+4*fe^2*C)*biasm(k-2)+2*fe*A*(bias(k)-bias(k-2)))/(2*fe*B+1+4*C*fe^2);
 }
 
