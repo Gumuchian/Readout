@@ -1,6 +1,11 @@
 #include "DDS.h"
 #include <math.h>
 
+DDS::DDS()
+{
+
+}
+
 DDS::DDS(int taille, int precision, int interp)
 {
     taille = taille;

@@ -12,7 +12,7 @@ int main()
     for (i=0;i<pow(2,10);i++){
         cout << dds.getvalue(i) << endl;
     }*/
-    Pixel pixel(1,0,0,1,1);
+    Pixel pixel(1,0,0,1,1,1,1);
     cout << pixel.getmodule() << endl;
     return 0;
 }
