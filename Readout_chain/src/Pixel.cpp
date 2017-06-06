@@ -2,7 +2,7 @@
 #include "BBFB.h"
 #include <math.h>
 
-typedef float(*Fonction)(float,float,float);
+typedef float(Pixel::*Fonction)(float,float,float);
 
 Pixel::Pixel(){
 
@@ -42,10 +42,10 @@ static float dI(float I, float V, float R)
 float RK4(Fonction ptr, float dt, float y0, float y1, float y2)
 {
     float k1,k2,k3,k4;
-    k1=(*ptr)(y0,y1,y2);
-    k2=(*ptr)(y0+dt/2*k1,y1,y2);
-    k3=(*ptr)(y0+dt/2*k2,y1,y2);
-    k4=(*ptr)(y0+dt*k3,y1,y2);
+    k1=ptr(y0,y1,y2);
+    k2=ptr(y0+dt/2*k1,y1,y2);
+    k3=ptr(y0+dt/2*k2,y1,y2);
+    k4=ptr(y0+dt*k3,y1,y2);
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
 
