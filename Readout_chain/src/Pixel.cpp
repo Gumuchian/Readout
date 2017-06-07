@@ -47,5 +47,5 @@ void Pixel::setinput_adc(double input)
 
 void Pixel::setinputLC(double input)
 {
-    input_LC=input;
+    tes.setbias(input);
 }

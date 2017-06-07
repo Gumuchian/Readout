@@ -26,9 +26,7 @@ class Pixel
         int amplitude;
         int compteur;
         int pas;
-        int input_adc;
-        int feedback;
-        double input_LC;
+        double input_adc;
         BBFB bbfb;
         TES tes;
 };

@@ -56,16 +56,17 @@
 	"Pixel.h"
 	"DDS.h"
 
-1496832754 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1496838253 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
 	<fstream>
 	<string>
+	<Pixel.h>
 
 1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
-1496832606 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
+1496839405 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
 	"BBFB.h"
 	"TES.h"
 
@@ -88,13 +89,13 @@
 	"DDS.h"
 	<math.h>
 
-1496832626 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
+1496839362 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
 	"Pixel.h"
 	"BBFB.h"
 	"TES.h"
 	<math.h>
 
-1496832432 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
+1496832857 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
 	"TES.h"
 	<math.h>
 
