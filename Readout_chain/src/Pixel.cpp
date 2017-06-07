@@ -13,7 +13,7 @@ Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude,
     comptR_Q=N/4;
     comptD_I=N-((N*retard)*frequence/fe)%N;
     comptD_Q=(comptD_I+N/4)%N;
-    pas=trunc(N*frequence/fe);
+    pas=(N*frequence)/fe;
     feedback=new int[retard+1];
     int i;
     for (i=0;i<retard;i++){

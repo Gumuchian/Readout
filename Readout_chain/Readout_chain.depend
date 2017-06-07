@@ -20,7 +20,7 @@
 
 1496401220 c:\users\paul\documents\c++\readout_chain\include\bbfb.h
 
-1496874391 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
+1496877904 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -36,11 +36,11 @@
 
 1496819966 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
 
-1496819966 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
+1496879647 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
 	"DDS.h"
 	<math.h>
 
-1496873940 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
+1496877077 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
 	"Pixel.h"
 	"BBFB.h"
 	"TES.h"
