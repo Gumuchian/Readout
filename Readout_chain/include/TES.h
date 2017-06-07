@@ -13,6 +13,8 @@ class TES
         float RK4(ptrm f, float dt, float y0, float y1, float y2);
         float computeLCTES(float fe);
         void setbias(float biass);
+        float getI();
+        void setPo(float P);
     protected:
 
     private:

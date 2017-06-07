@@ -16,11 +16,12 @@ TES::TES()
     alpha=75;
     beta=1.25;
     biasm[0]=0;biasm[1]=0;biasm[2]=0;
+    bias[0]=0;bias[1]=0;bias[2]=0;
 }
 
 float TES::dTes(float Tes, float Pj, float Po)
 {
-    float G=115*pow(10,-12);
+    float G=115.0*pow(10,-12);
     float K=G/(3*pow(Tes,2));
     float C=0.8*pow(10,-12);
     float Tbath=0.055;
@@ -53,11 +54,12 @@ float TES::computeLCTES(float fe)
     A=Ccp,
     B=R0*(Ccar+Ccp),
     C=L*(Ccar+Ccp);
-    ptrm ptr;
-    ptr=&TES::dTes;
+    ptrm ptrdT,ptrdI;
+    ptrdT=&TES::dTes;
+    ptrdI=&TES::dI;
     Pj=pow(51.5*pow(10,-9),2)/R;
-    I=RK4(ptr,1/fe,I,V,R);
-    Tes=RK4(ptr,1/fe,Tes,Pj,Po);
+    I=RK4(ptrdI,1.0/fe,I,V,R);
+    Tes=RK4(ptrdT,1.0/fe,Tes,Pj,Po);
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);
     biasm[2]=-(2-8*C*pow(fe,2)*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
@@ -70,4 +72,14 @@ float TES::computeLCTES(float fe)
 void TES::setbias(float biass)
 {
     bias[2]=biass;
+}
+
+float TES::getI()
+{
+    return I;
+}
+
+void TES::setPo(float P)
+{
+    Po=P;
 }
