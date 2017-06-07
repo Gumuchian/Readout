@@ -54,3 +54,8 @@ double Pixel::getbiasm()
 {
     return tes.getbiasm();
 }
+
+void Pixel::setPo(double P)
+{
+    tes.setPo(P);
+}
