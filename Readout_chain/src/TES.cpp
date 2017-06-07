@@ -66,7 +66,7 @@ double TES::computeLCTES(double fe)
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
-    return biasm[2]*I;
+    return biasm[2]/(6.7565*pow(10,-5))*I;
 }
 
 void TES::setbias(double biass)
@@ -82,4 +82,9 @@ double TES::getI()
 void TES::setPo(double P)
 {
     Po=P;
+}
+
+double TES::getbiasm()
+{
+    return biasm[2];
 }

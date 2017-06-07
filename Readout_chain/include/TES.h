@@ -14,6 +14,7 @@ class TES
         double computeLCTES(double fe);
         void setbias(double biass);
         double getI();
+        double getbiasm();
         void setPo(double P);
     protected:
 

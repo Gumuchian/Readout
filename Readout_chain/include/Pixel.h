@@ -16,6 +16,7 @@ class Pixel
         double computeLC();
         void computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input);
         int getcount();
+        double getbiasm();
 
     protected:
 

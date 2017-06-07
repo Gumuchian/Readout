@@ -49,3 +49,8 @@ void Pixel::setinputLC(double input)
 {
     tes.setbias(input);
 }
+
+double Pixel::getbiasm()
+{
+    return tes.getbiasm();
+}

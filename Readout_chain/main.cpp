@@ -23,19 +23,11 @@ int main()
     ofstream fichier("test.txt", ios::out);
     if(fichier)
     {
-        for (i=0;i<100000;i++){
-            /*tes.setbias(cos(2*M_PI*1.0/20.0*i));
-            if (i==500000){
-                tes.setPo(pow(10,-10));
-            }
-            else{
-                tes.setPo(pow(10,-15));
-            }
-            fichier << tes.computeLCTES(20000000) << endl;*/
+        for (i=0;i<1000000;i++){
             pix.setinputLC(cos(2*M_PI*1.0/20.0*i));
             dac=0.5*80*0.0017/(5.8*pow(10,-6))*(pix.computeLC()-0.5*0.1/pow(2,15)*Gf*((pix.getfeedback())>>19));
             pix.computeBBFB(pow(2,18)*cos(2*M_PI*1.0/20.0*i),pow(2,18)*cos(2*M_PI*1.0/20.0*i),pow(2,18)*sin(2*M_PI*1.0/20.0*i),pow(2,18)*sin(2*M_PI*1.0/20.0*i),round(pow(2,12)*dac));
-            fichier << pix.getfeedback() << endl;
+            fichier << pix.getbiasm() << endl;
         }
         fichier.close();
     }
