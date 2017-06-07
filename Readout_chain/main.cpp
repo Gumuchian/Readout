@@ -19,7 +19,7 @@ int main()
     Pixel pix(1000000,0,0,1,20,20000000,1000000);
     //TES tes;
     int i;
-    double dac,Gf=512,LC;
+    double dac,Gf=100000,LC;
     ofstream fichier("test.txt", ios::out);
     if(fichier)
     {
