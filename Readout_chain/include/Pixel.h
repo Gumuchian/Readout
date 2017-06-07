@@ -33,6 +33,8 @@ class Pixel
         int comptD_Q;
         int comptR_Q;
         int pas;
+        int *feedback;
+        int retard;
         double input_adc;
         BBFB bbfb;
         TES tes;

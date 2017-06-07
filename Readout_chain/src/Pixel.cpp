@@ -7,18 +7,23 @@ Pixel::Pixel(){
 
 }
 
-Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain)
+Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),retard(retard),bbfb(gain)
 {
     comptR_I=0;
     comptR_Q=N/4;
     comptD_I=N-((N*retard)*frequence/fe)%N;
     comptD_Q=(comptD_I+N/4)%N;
-    pas=round(N*frequence/fe);
+    pas=trunc(N*frequence/fe);
+    feedback=new int[retard+1];
+    int i;
+    for (i=0;i<retard;i++){
+        feedback[i]=0;
+    }
 }
 
 int Pixel::getfeedback()
 {
-    return bbfb.getfeedback();
+    return feedback[retard-1];
 }
 
 int Pixel::getmodule()
@@ -38,6 +43,11 @@ void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int 
     comptD_I=(comptD_I+pas)%N;
     comptR_Q=(comptR_Q+pas)%N;
     comptD_Q=(comptD_Q+pas)%N;
+    int i;
+    for (i=retard-1;i>0;i++){
+        feedback[i]=feedback[i-1];
+    }
+    feedback[0]=bbfb.getfeedback();
 }
 
 int Pixel::getcomptD_I()
