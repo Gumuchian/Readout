@@ -16,8 +16,7 @@ int main()
         ch0.computeLC_TES();
         ch0.computeBBFB();
     }*/
-    Pixel pix(1000000,0,0,1,200,20000000,1000000);
-    //TES tes;
+    Pixel pix(1000000,0,0,1,20,20000000,1000000);
     int i;
     double dac,Gf=10000,LC,fbck;
     ofstream fichier("test.txt", ios::out);

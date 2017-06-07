@@ -12,7 +12,6 @@ class Pixel
         int getmodule();
         int getfrequency();
         void setinputLC(double input);
-        void setinput_adc(double input);
         double computeLC();
         void computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input);
         int getcount();

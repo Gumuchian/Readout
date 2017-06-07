@@ -39,11 +39,6 @@ int Pixel::getcount()
     return compteur;
 }
 
-void Pixel::setinput_adc(double input)
-{
-    input_adc=input*pow(2,12);
-}
-
 void Pixel::setinputLC(double input)
 {
     tes.setbias(input);
