@@ -5,7 +5,7 @@ BBFB::BBFB()
 
 }
 
-BBFB::BBFB(int gain):I(0),Q(0),gain(gain)
+BBFB::BBFB(int gain):I(0),Q(0),feedback(0),gain(gain)
 {
 
 }
