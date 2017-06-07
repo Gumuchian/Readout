@@ -47,7 +47,7 @@ void Channel::computeBBFB()
     }
     dac=0.5*80*0.0017/(5.8*pow(10,-6))*(input-feedback);
     for (i=0;i<(int)ch.size();i++){
-        ch[i].computeBBFB(ch[i].getcount(),ch[i].getcount(),ch[i].getcount()+taille/4,ch[i].getcount()+taille/4,dac);
+        ch[i].computeBBFB(ch[i].getcount(),ch[i].getcount(),ch[i].getcount()+taille/4,ch[i].getcount()+taille/4,dac,1000000);
     }
 }
 

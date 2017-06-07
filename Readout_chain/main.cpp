@@ -33,7 +33,7 @@ int main()
             LC=pix.computeLC();
             fbck=0.5*0.01/pow(2,15)*Gf*((pix.getfeedback())>>5);
             dac=0.5*80*0.0017/(5.8*pow(10,-6))*(LC-0.1*fbck);
-            pix.computeBBFB(trunc(pow(2,18)*cos(2*M_PI*1.0/20.0*i)),trunc(pow(2,18)*cos(2*M_PI*1.0/20.0*i)),trunc(pow(2,18)*sin(2*M_PI*1.0/20.0*i)),trunc(pow(2,18)*sin(2*M_PI*1.0/20.0*i)),trunc(pow(2,12)*dac));
+            pix.computeBBFB(trunc(pow(2,18)*cos(2*M_PI*1.0/20.0*i)),trunc(pow(2,18)*cos(2*M_PI*1.0/20.0*i)),trunc(pow(2,18)*sin(2*M_PI*1.0/20.0*i)),trunc(pow(2,18)*sin(2*M_PI*1.0/20.0*i)),trunc(pow(2,12)*dac),1000000);
             fichier << dac << endl;
         }
         fichier.close();

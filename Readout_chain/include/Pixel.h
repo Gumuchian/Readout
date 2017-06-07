@@ -13,7 +13,7 @@ class Pixel
         int getfrequency();
         void setinputLC(double input);
         double computeLC();
-        void computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input);
+        void computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input, int N);
         int getcount();
         double getbiasm();
         void setPo(double P);

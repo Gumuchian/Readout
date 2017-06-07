@@ -28,10 +28,10 @@ double Pixel::computeLC()
     return tes.computeLCTES(20000000);
 }
 
-void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input)
+void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input, int N)
 {
     bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);
-    compteur=compteur+pas;
+    compteur=(compteur+pas)%N;
 }
 
 int Pixel::getcount()
