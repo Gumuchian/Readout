@@ -7,9 +7,12 @@ Pixel::Pixel(){
 
 }
 
-Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain)
+Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain)
 {
-    compteur=0;
+    comptR_I=0;
+    comptR_Q=N/4;
+    comptD_I=N-((N*retard)*frequence/fe)%N;
+    comptD_Q=(comptD_I+N/4)%N;
     pas=round(N*frequence/fe);
 }
 
@@ -31,12 +34,30 @@ double Pixel::computeLC()
 void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input, int N)
 {
     bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);
-    compteur=(compteur+pas)%N;
+    comptR_I=(comptR_I+pas)%N;
+    comptD_I=(comptD_I+pas)%N;
+    comptR_Q=(comptR_Q+pas)%N;
+    comptD_Q=(comptD_Q+pas)%N;
 }
 
-int Pixel::getcount()
+int Pixel::getcomptD_I()
 {
-    return compteur;
+    return comptD_I;
+}
+
+int Pixel::getcomptD_Q()
+{
+    return comptD_Q;
+}
+
+int Pixel::getcomptR_I()
+{
+    return comptR_I;
+}
+
+int Pixel::getcomptR_Q()
+{
+    return comptR_Q;
 }
 
 void Pixel::setinputLC(double input)

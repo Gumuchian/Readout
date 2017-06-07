@@ -8,7 +8,7 @@ class Channel
 {
     public:
         Channel();
-        Channel(int taille, int precision, int interp);
+        Channel(int taille, int precision, int interp, int retard);
         void sumPolar();
         void computeLC_TES();
         void computeBBFB();
