@@ -3,14 +3,13 @@
 #include "TES.h"
 #include <math.h>
 
-typedef float (*ptrf)(float,float,float);
-
 Pixel::Pixel(){
 
 }
 
-Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),compteur(0)
+Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain)
 {
+    compteur=0;
     pas=round(N*frequence/fe);
 }
 

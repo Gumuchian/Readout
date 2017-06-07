@@ -1,4 +1,5 @@
 #include "BBFB.h"
+#include <math.h>
 
 BBFB::BBFB()
 {
@@ -12,8 +13,8 @@ BBFB::BBFB(int gain):I(0),Q(0),feedback(0),gain(gain)
 
 void BBFB::compute_feedback(int demoduI, int remoduI, int demoduQ, int remoduQ, int input)
 {
-    I+=gain*(demoduI*input)>>(17+8);
-    Q+=gain*(demoduQ*input)>>(17+8);
+    I+=(gain*demoduI*input)>>(17+8);
+    Q+=(gain*demoduQ*input)>>(17+8);
     feedback = ((remoduI*I)>>20)+((remoduQ*Q)>>20);
 }
 
@@ -24,7 +25,7 @@ int BBFB::getfeedback()
 
 int BBFB::module()
 {
-    int i,sigma;
+    /*int i,sigma;
     int u0[2]={I,Q};
     int u1[2];
     if (u0[0]*u1[0]<0){
@@ -41,6 +42,7 @@ int BBFB::module()
         }
         u0[0]=u1[0];
         u0[1]=u1[1];
-    }
-    return 0.60725*u1[1];
+    }*/
+    //return 0.60725*u1[1];
+    return sqrt(pow(I,2)+pow(Q,2));
 }
