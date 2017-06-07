@@ -22,14 +22,13 @@ int main()
     {
         for (i=0;i<1000000;i++){
             tes.setbias(cos(2*M_PI*1.0/20.0*i));
-            tes.computeLCTES(20000000);
             if (i==500000){
                 tes.setPo(pow(10,-10));
             }
             else{
                 tes.setPo(pow(10,-15));
             }
-            fichier << tes.getI() << endl;
+            fichier << tes.computeLCTES(20000000) << endl;
         }
         fichier.close();
     }

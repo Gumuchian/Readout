@@ -61,7 +61,7 @@ double TES::computeLCTES(double fe)
     I=RK4(ptrdI,1.0/fe,I,V,R);
     Tes=RK4(ptrdT,1.0/fe,Tes,Pj,Po);
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);
-    biasm[2]=-(2-8*C*pow(fe,2)*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
+    biasm[2]=(-(2-8*C*pow(fe,2))*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
     biasm[1]=biasm[2];
     bias[0]=bias[1];
