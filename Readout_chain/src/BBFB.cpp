@@ -13,8 +13,8 @@ BBFB::BBFB(int gain):I(0),Q(0),feedback(0),gain(gain)
 
 void BBFB::compute_feedback(int demoduI, int remoduI, int demoduQ, int remoduQ, int input)
 {
-    I+=(gain*demoduI*input)>>(17+8);
-    Q+=(gain*demoduQ*input)>>(17+8);
+    I+=(gain*demoduI*input)>>(17+7);
+    Q+=(gain*demoduQ*input)>>(17+7);
     feedback = ((remoduI*I)>>20)+((remoduQ*Q)>>20);
 }
 
