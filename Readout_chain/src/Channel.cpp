@@ -18,7 +18,7 @@ Channel::Channel(int taille, int precision, int interp):dds(taille,precision,int
 void Channel::sumPolar()
 {
     int i;
-    float sum=0;
+    double sum=0;
     for (i=0;i<(int)ch.size();i++){
         sum=sum+dds.getvalue(ch[i].getcount());
     }
@@ -30,7 +30,7 @@ void Channel::sumPolar()
 void Channel::computeLC_TES()
 {
     int i;
-    float sum=0;
+    double sum=0;
     for (i=0;i<(int)ch.size();i++){
         sum=sum+ch[i].computeLC();
     }
@@ -40,7 +40,7 @@ void Channel::computeLC_TES()
 void Channel::computeBBFB()
 {
     int i;
-    float dac,feedback=0;
+    double dac,feedback=0;
     int taille=pow(2,10);
     for (i=0;i<(int)ch.size();i++){
         feedback=feedback+ch[i].getfeedback();

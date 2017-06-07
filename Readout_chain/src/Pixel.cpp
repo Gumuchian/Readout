@@ -24,7 +24,7 @@ int Pixel::getmodule()
     return bbfb.module();
 }
 
-float Pixel::computeLC()
+double Pixel::computeLC()
 {
     return tes.computeLCTES(20000000);
 }
@@ -40,12 +40,12 @@ int Pixel::getcount()
     return compteur;
 }
 
-void Pixel::setinput_adc(float input)
+void Pixel::setinput_adc(double input)
 {
     input_adc=input*pow(2,12);
 }
 
-void Pixel::setinputLC(float input)
+void Pixel::setinputLC(double input)
 {
     input_LC=input;
 }

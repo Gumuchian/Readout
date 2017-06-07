@@ -1,36 +1,36 @@
 #ifndef TES_H
 #define TES_H
 
-typedef float (*ptrm) (float,float,float);
+typedef double (*ptrm) (double,double,double);
 
 
 class TES
 {
     public:
         TES();
-        static float dTes(float Tes, float Pj, float Po);
-        static float dI(float I, float V, float R);
-        float RK4(ptrm f, float dt, float y0, float y1, float y2);
-        float computeLCTES(float fe);
-        void setbias(float biass);
-        float getI();
-        void setPo(float P);
+        static double dTes(double Tes, double Pj, double Po);
+        static double dI(double I, double V, double R);
+        double RK4(ptrm f, double dt, double y0, double y1, double y2);
+        double computeLCTES(double fe);
+        void setbias(double biass);
+        double getI();
+        void setPo(double P);
     protected:
 
     private:
-        float Tes;
-        float Pj;
-        float Po;
-        float R;
-        float I;
-        float V;
-        float R0;
-        float T0;
-        float I0;
-        float alpha;
-        float beta;
-        float biasm[3];
-        float bias[3];
+        double Tes;
+        double Pj;
+        double Po;
+        double R;
+        double I;
+        double V;
+        double R0;
+        double T0;
+        double I0;
+        double alpha;
+        double beta;
+        double biasm[3];
+        double bias[3];
 };
 
 #endif // TES_H

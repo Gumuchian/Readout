@@ -27,7 +27,7 @@ int main()
                 tes.setPo(pow(10,-10));
             }
             else{
-                tes.setPo(0.0);
+                tes.setPo(pow(10,-15));
             }
             fichier << tes.getI() << endl;
         }

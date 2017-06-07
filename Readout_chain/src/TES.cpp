@@ -1,7 +1,7 @@
 #include "TES.h"
 #include <math.h>
 
-typedef float (*ptrm) (float,float,float);
+typedef double (*ptrm) (double,double,double);
 
 TES::TES()
 {
@@ -19,26 +19,26 @@ TES::TES()
     bias[0]=0;bias[1]=0;bias[2]=0;
 }
 
-float TES::dTes(float Tes, float Pj, float Po)
+double TES::dTes(double Tes, double Pj, double Po)
 {
-    float G=115.0*pow(10,-12);
-    float K=G/(3*pow(Tes,2));
-    float C=0.8*pow(10,-12);
-    float Tbath=0.055;
+    double G=115.0*pow(10,-12);
+    double K=G/(3*pow(Tes,2));
+    double C=0.8*pow(10,-12);
+    double Tbath=0.055;
     return (Po+Pj-K*(pow(Tes,3)-pow(Tbath,3)))/C;
 }
 
-float TES::dI(float I, float V, float R)
+double TES::dI(double I, double V, double R)
 {
-    float L=121*pow(10,-9);
-    float Rl=60*pow(10,-6);
+    double L=121*pow(10,-9);
+    double Rl=60*pow(10,-6);
     return (V-I*Rl-I*R)/L;
 }
 
 
-float TES::RK4(ptrm f, float dt, float y0, float y1, float y2)
+double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
 {
-    float k1,k2,k3,k4;
+    double k1,k2,k3,k4;
     k1=f(y0,y1,y2);
     k2=f(y0+dt/2*k1,y1,y2);
     k3=f(y0+dt/2*k2,y1,y2);
@@ -46,9 +46,9 @@ float TES::RK4(ptrm f, float dt, float y0, float y1, float y2)
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
 
-float TES::computeLCTES(float fe)
+double TES::computeLCTES(double fe)
 {
-    float Ccp=130*pow(10,-12),
+    double Ccp=130*pow(10,-12),
     Ccar=13*pow(10,-9),
     L=2*pow(10,-6),
     A=Ccp,
@@ -69,17 +69,17 @@ float TES::computeLCTES(float fe)
     return biasm[2]*I;
 }
 
-void TES::setbias(float biass)
+void TES::setbias(double biass)
 {
     bias[2]=biass;
 }
 
-float TES::getI()
+double TES::getI()
 {
     return I;
 }
 
-void TES::setPo(float P)
+void TES::setPo(double P)
 {
     Po=P;
 }
