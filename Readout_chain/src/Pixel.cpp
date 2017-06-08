@@ -14,14 +14,14 @@ Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude,
     comptD_I=N-((N*retard)*(frequence/1000000)/(fe/1000000))%N;
     comptD_Q=(comptD_I+N/4)%N;
     pas=round(N*(frequence/1000000)/(fe/1000000));
-    feedback=new int[retard+1];
+    feedback=new double[retard+1];
     int i;
     for (i=0;i<retard;i++){
         feedback[i]=0;
     }
 }
 
-int Pixel::getfeedback()
+double Pixel::getfeedback()
 {
     return feedback[retard];
 }
@@ -36,7 +36,7 @@ double Pixel::computeLC()
     return tes.computeLCTES(20000000);
 }
 
-void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int input, int N)
+void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input, int N)
 {
     bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);
     comptR_I=(comptR_I+pas)%N;

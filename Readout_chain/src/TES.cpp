@@ -35,7 +35,6 @@ double TES::dI(double I, double V, double R)
     return (V-I*Rl-I*R)/L;
 }
 
-
 double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
 {
     double k1,k2,k3,k4;
