@@ -18,7 +18,7 @@ int main()
     }*/
     Pixel pix(1000000,0,0,1,20,20000000,pow(2,16),1);
     DDS dds(pow(2,9),pow(2,18),pow(2,7));
-    int i,Gf=100000;
+    int i,Gf=10000;
     double dac,LC,fbck;
     ofstream fichier("test.txt", ios::out);
     if(fichier)
