@@ -44,7 +44,7 @@ void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int 
     comptR_Q=(comptR_Q+pas)%N;
     comptD_Q=(comptD_Q+pas)%N;
     int i;
-    for (i=retard-1;i>0;i++){
+    for (i=retard-1;i>0;i--){
         feedback[i]=feedback[i-1];
     }
     feedback[0]=bbfb.getfeedback();
