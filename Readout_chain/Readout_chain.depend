@@ -20,42 +20,43 @@
 
 1496401220 c:\users\paul\documents\c++\readout_chain\include\bbfb.h
 
-1496879768 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
+1496954760 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
 	<fstream>
 	<string>
 	<Pixel.h>
+	<Channel.h>
 
 1496819966 c:\users\paul\documents\projetc++\c++\readout_chain\include\dds.h
 
-1496819966 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\bbfb.cpp
+1496952751 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\bbfb.cpp
 	"BBFB.h"
 	<math.h>
 
-1496819966 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
+1496949196 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
 
 1496879647 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
 	"DDS.h"
 	<math.h>
 
-1496877077 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
+1496954740 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
 	"Pixel.h"
 	"BBFB.h"
 	"TES.h"
 	<math.h>
 
-1496875963 c:\users\paul\documents\projetc++\c++\readout_chain\include\pixel.h
+1496949196 c:\users\paul\documents\projetc++\c++\readout_chain\include\pixel.h
 	"BBFB.h"
 	"TES.h"
 
-1496873222 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\channel.cpp
+1496954855 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
 
-1496873198 c:\users\paul\documents\projetc++\c++\readout_chain\include\channel.h
+1496953765 c:\users\paul\documents\projetc++\c++\readout_chain\include\channel.h
 	<vector>
 	"Pixel.h"
 	"DDS.h"
@@ -108,7 +109,7 @@
 
 1496819966 c:\users\paul\documents\projetc++\c++\readout_chain\include\tes.h
 
-1496819966 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\tes.cpp
+1496949196 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\tes.cpp
 	"TES.h"
 	<math.h>
 

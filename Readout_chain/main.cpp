@@ -4,19 +4,27 @@
 #include <fstream>
 #include <string>
 #include <Pixel.h>
+#include <Channel.h>
 
 using namespace std;
 
 int main()
 {
-    /*Channel ch0(pow(2,9),pow(2,18),pow(2,1));
+    Channel ch0(pow(2,9),pow(2,18),pow(2,7),1);
     int i;
-    for (i=0;i<100;i++){
-        ch0.sumPolar();
-        ch0.computeLC_TES();
-        ch0.computeBBFB();
-    }*/
-
+    ofstream fichier("test.txt", ios::out);
+    if(fichier)
+    {
+        for (i=0;i<100000;i++)
+        {
+            ch0.sumPolar();
+            ch0.computeLC_TES();
+            ch0.computeBBFB();
+            fichier << ch0.getinput() << endl;
+        }
+    }
+    fichier.close();
+    /*
     Pixel pix(1000000,0,0,1,4,20000000,pow(2,16),1);
     DDS dds(pow(2,9),pow(2,18),pow(2,7));
     int i,Gf=1000;
@@ -41,6 +49,6 @@ int main()
         fichier.close();
     }
     else
-        cerr << "Impossible d'ouvrir le fichier !" << endl;
+        cerr << "Impossible d'ouvrir le fichier !" << endl;*/
     return 0;
 }

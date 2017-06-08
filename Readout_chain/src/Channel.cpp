@@ -10,8 +10,10 @@ Channel::Channel()
 Channel::Channel(int taille, int precision, int interp, int retard):dds(taille,precision,interp)
 {
     int i;
-    for (i=0;i<1;i++){
-        ch.push_back(Pixel(1000000+i*100000,0,0,1,4,20000000,taille*interp,retard));
+    input=0;
+    fck=0;
+    for (i=0;i<40;i++){
+        ch.push_back(Pixel(1000000+i*100000,0,0,1,4,20000000,taille*interp,1));
     }
 }
 
@@ -19,10 +21,10 @@ void Channel::sumPolar()
 {
     int i;
     double sum=0;
-    for (i=0;i<(int)ch.size();i++){
-        //sum=sum+dds.getvalue(ch[i].getcount());
+    for (i=0;i<40;i++){
+        sum=sum+dds.getvalue(ch[i].getcomptR_I());
     }
-    for (i=0;i<(int)ch.size();i++){
+    for (i=0;i<40;i++){
         ch[i].setinputLC(sum);
     }
 }
@@ -31,7 +33,7 @@ void Channel::computeLC_TES()
 {
     int i;
     double sum=0;
-    for (i=0;i<(int)ch.size();i++){
+    for (i=0;i<40;i++){
         sum=sum+ch[i].computeLC();
     }
     input=sum;
@@ -40,14 +42,25 @@ void Channel::computeLC_TES()
 void Channel::computeBBFB()
 {
     int i;
-    double dac,feedback=0;
-    int taille=pow(2,10);
-    for (i=0;i<(int)ch.size();i++){
+    double dac,G=1000,feedback=0;
+
+    for (i=0;i<40;i++){
         feedback=feedback+ch[i].getfeedback();
     }
-    dac=0.5*80*0.0017/(5.8*pow(10,-6))*(input-feedback);
-    for (i=0;i<(int)ch.size();i++){
-        //ch[i].computeBBFB(ch[i].getcount(),ch[i].getcount(),ch[i].getcount()+taille/4,ch[i].getcount()+taille/4,dac,1000000);
+    feedback=0.5*0.01/pow(2,15)*G*feedback/pow(2,19);
+    dac=0.5*80*0.0017/(5.8*pow(10,-6))*(input-0.1*feedback);
+    fck=feedback;
+    for (i=0;i<40;i++)
+    {
+        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,12)*dac),pow(2,16));
     }
 }
+ double Channel::getinput()
+ {
+     return input;
+ }
 
+ double Channel::getfck()
+ {
+     return fck;
+ }

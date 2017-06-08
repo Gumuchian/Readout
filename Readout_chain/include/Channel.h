@@ -12,11 +12,14 @@ class Channel
         void sumPolar();
         void computeLC_TES();
         void computeBBFB();
+        double getinput();
+        double getfck();
     protected:
     private:
         std::vector<Pixel> ch;
         DDS dds;
-        float input;
+        double input;
+        double fck;
 };
 
 #endif // CHANNEL_H
