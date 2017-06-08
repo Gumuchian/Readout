@@ -20,6 +20,7 @@ class Pixel
         int getcomptD_Q();
         double getbiasm();
         void setPo(double P);
+        int getretard();
 
     protected:
 

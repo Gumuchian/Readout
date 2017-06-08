@@ -10,10 +10,10 @@ Pixel::Pixel(){
 Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),retard(retard),bbfb(gain)
 {
     comptR_I=0;
-    comptR_Q=N/4;
-    comptD_I=N-((N*retard)*frequence/fe)%N;
+    comptR_Q=(comptR_I+N/4)%N;
+    comptD_I=N-((N*retard)*(frequence/1000000)/(fe/1000000))%N;
     comptD_Q=(comptD_I+N/4)%N;
-    pas=(N*frequence)/fe;
+    pas=round(N*(frequence/1000000)/(fe/1000000));
     feedback=new int[retard+1];
     int i;
     for (i=0;i<retard;i++){
@@ -23,7 +23,7 @@ Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude,
 
 int Pixel::getfeedback()
 {
-    return feedback[retard-1];
+    return feedback[retard];
 }
 
 int Pixel::getmodule()
@@ -44,7 +44,7 @@ void Pixel::computeBBFB(int demoduI, int remoduI, int demoduQ, int remoduQ, int 
     comptR_Q=(comptR_Q+pas)%N;
     comptD_Q=(comptD_Q+pas)%N;
     int i;
-    for (i=retard-1;i>0;i--){
+    for (i=retard;i>0;i--){
         feedback[i]=feedback[i-1];
     }
     feedback[0]=bbfb.getfeedback();
@@ -83,5 +83,10 @@ double Pixel::getbiasm()
 void Pixel::setPo(double P)
 {
     tes.setPo(P);
+}
+
+int Pixel::getretard()
+{
+    return retard;
 }
 
