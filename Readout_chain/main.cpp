@@ -10,17 +10,23 @@ using namespace std;
 
 int main()
 {
-    Channel ch0(pow(2,9),pow(2,18),pow(2,7),1);
+    Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
     int i;
     ofstream fichier("test.txt", ios::out);
     if(fichier)
     {
-        for (i=0;i<100000;i++)
+        for (i=0;i<1000000;i++)
         {
+            if (i==500000){
+                ch0.setPo(pow(10,-8));
+            }
+            else{
+                ch0.setPo(0);
+            }
             ch0.sumPolar();
             ch0.computeLC_TES();
             ch0.computeBBFB();
-            fichier << ch0.getinput() << endl;
+            fichier << ch0.getmod() << endl;
         }
     }
     fichier.close();

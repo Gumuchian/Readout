@@ -9,7 +9,7 @@ class Pixel
         Pixel();
         Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard);
         double getfeedback();
-        int getmodule();
+        double getmodule();
         int getfrequency();
         void setinputLC(double input);
         double computeLC();
@@ -26,6 +26,7 @@ class Pixel
 
     private:
         int frequence;
+        int fe;
         int phase_initiale;
         int phase_retard;
         int amplitude;

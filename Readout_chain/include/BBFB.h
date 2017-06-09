@@ -9,7 +9,7 @@ class BBFB
         BBFB(double gain);
         void compute_feedback(double demoduI, double remoduI, double demoduQ, double remoduQ, double input);
         double getfeedback();
-        int module();
+        double module();
 
     protected:
 

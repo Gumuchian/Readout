@@ -7,11 +7,11 @@ Pixel::Pixel(){
 
 }
 
-Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),retard(retard),bbfb(gain)
+Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),retard(retard),bbfb(gain),fe(fe)
 {
-    comptR_I=0;
+    comptR_I=phase_initiale%N;
     comptR_Q=(comptR_I+N/4)%N;
-    comptD_I=N-((N*retard)*(frequence/100000)/(fe/100000))%N;
+    comptD_I=((N-((N*retard*(frequence/100000))/(fe/100000))%N)+phase_initiale)%N;
     comptD_Q=(comptD_I+N/4)%N;
     pas=round(N*(frequence/100000)/(fe/100000));
     feedback=new double[retard+1];
@@ -26,14 +26,14 @@ double Pixel::getfeedback()
     return feedback[retard];
 }
 
-int Pixel::getmodule()
+double Pixel::getmodule()
 {
     return bbfb.module();
 }
 
 double Pixel::computeLC()
 {
-    return tes.computeLCTES(20000000);
+    return tes.computeLCTES(frequence,fe);
 }
 
 void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input, int N)

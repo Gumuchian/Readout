@@ -45,14 +45,15 @@ double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
 
-double TES::computeLCTES(double fe)
+double TES::computeLCTES(double freq, double fe)
 {
-    double Ccp=130*pow(10,-12),
-    Ccar=13*pow(10,-9),
-    L=2*pow(10,-6),
+    double L=2*pow(10,-6),
+    Ccar=(1/(4*pow(M_PI,2)*L*pow(freq,2)))/1.01,
+    Ccp=Ccar/100,
     A=Ccp,
     B=R0*(Ccar+Ccp),
-    C=L*(Ccar+Ccp);
+    C=L*(Ccar+Ccp),
+    TR=4.08;
     ptrm ptrdT,ptrdI;
     ptrdT=&TES::dTes;
     ptrdI=&TES::dI;
@@ -65,7 +66,7 @@ double TES::computeLCTES(double fe)
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
-    return biasm[2]/8120.0*I;
+    return biasm[2]/8120.0*I*sqrt(2)/TR;
 }
 
 void TES::setbias(double biass)

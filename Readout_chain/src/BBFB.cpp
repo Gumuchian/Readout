@@ -15,7 +15,6 @@ void BBFB::compute_feedback(double demoduI, double remoduI, double demoduQ, doub
 {
     I+=((gain*demoduI*input)/pow(2,17+7));
     Q+=((gain*demoduQ*input)/pow(2,17+7));
-    //feedback = ((remoduI*I)>>20)+((remoduQ*Q)>>20);
     feedback = remoduI*I/pow(2,20)+remoduQ*Q/pow(2,20);
 }
 
@@ -24,7 +23,7 @@ double BBFB::getfeedback()
     return feedback;
 }
 
-int BBFB::module()
+double BBFB::module()
 {
     /*int i,sigma;
     int u0[2]={I,Q};
