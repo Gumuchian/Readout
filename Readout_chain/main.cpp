@@ -27,7 +27,7 @@ int main()
             a=ch0.sumPolar();
             ch0.computeLC_TES();
             ch0.computeBBFB();
-            fichier << ch0.getinput() << endl;
+            fichier << a << endl;
         }
     }
     fichier.close();
