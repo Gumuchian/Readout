@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-    Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
+    Channel ch0(5,pow(2,9),pow(2,18),pow(2,7),0);
     int i;
     double a;
     ofstream fichier("test.txt", ios::out);

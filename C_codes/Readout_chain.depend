@@ -1,0 +1,116 @@
+# depslib dependency file v1.0
+1496396995 source:c:\users\paul\documents\c++\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<DDS.h>
+
+1496397116 source:c:\users\paul\documents\c++\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+
+1496396347 c:\users\paul\documents\c++\readout_chain\include\dds.h
+
+1496399789 source:c:\users\paul\documents\c++\readout_chain\src\pixel.cpp
+	"Pixel.h"
+
+1496399833 c:\users\paul\documents\c++\readout_chain\include\pixel.h
+
+1496416112 source:c:\users\paul\documents\c++\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+
+1496401220 c:\users\paul\documents\c++\readout_chain\include\bbfb.h
+
+1497183042 source:c:\users\paul\documents\projetc++\c++\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<Channel.h>
+	<fstream>
+	<string>
+	<Pixel.h>
+	<Channel.h>
+
+1496819966 c:\users\paul\documents\projetc++\c++\readout_chain\include\dds.h
+
+1497023648 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+	<math.h>
+
+1497023648 c:\users\paul\documents\projetc++\c++\readout_chain\include\bbfb.h
+
+1496879647 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+
+1497023648 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\pixel.cpp
+	"Pixel.h"
+	"BBFB.h"
+	"TES.h"
+	<math.h>
+
+1497023648 c:\users\paul\documents\projetc++\c++\readout_chain\include\pixel.h
+	"BBFB.h"
+	"TES.h"
+
+1497212317 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\channel.cpp
+	"Channel.h"
+	"DDS.h"
+	<math.h>
+
+1497023648 c:\users\paul\documents\projetc++\c++\readout_chain\include\channel.h
+	<vector>
+	"Pixel.h"
+	"DDS.h"
+
+1497015003 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<Channel.h>
+	<fstream>
+	<string>
+	<Pixel.h>
+	<Channel.h>
+
+1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
+
+1497022417 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
+	"BBFB.h"
+	"TES.h"
+
+1497022433 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
+
+1497022424 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+	<math.h>
+
+1497260146 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+	"Channel.h"
+	"DDS.h"
+	<math.h>
+
+1497022343 c:\users\paul\documents\github\readout\readout_chain\include\channel.h
+	<vector>
+	"Pixel.h"
+	"DDS.h"
+
+1496912189 source:c:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+
+1497022409 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
+	"Pixel.h"
+	"BBFB.h"
+	"TES.h"
+	<math.h>
+
+1497021956 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
+	"TES.h"
+	<math.h>
+
+1497000568 c:\users\paul\documents\github\readout\readout_chain\include\tes.h
+
+1497023648 c:\users\paul\documents\projetc++\c++\readout_chain\include\tes.h
+
+1497023648 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\tes.cpp
+	"TES.h"
+	<math.h>
+

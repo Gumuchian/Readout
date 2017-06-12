@@ -72,22 +72,22 @@
 
 1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
-1497000730 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
+1497022417 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
 	"BBFB.h"
 	"TES.h"
 
-1496942890 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
+1497022433 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
 
-1497021763 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
+1497022424 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
 	"BBFB.h"
 	<math.h>
 
-1497014904 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1497260146 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
 
-1497014915 c:\users\paul\documents\github\readout\readout_chain\include\channel.h
+1497022343 c:\users\paul\documents\github\readout\readout_chain\include\channel.h
 	<vector>
 	"Pixel.h"
 	"DDS.h"
@@ -96,7 +96,7 @@
 	"DDS.h"
 	<math.h>
 
-1497013593 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
+1497022409 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
 	"Pixel.h"
 	"BBFB.h"
 	"TES.h"
