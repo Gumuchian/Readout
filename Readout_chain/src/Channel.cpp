@@ -13,7 +13,7 @@ Channel::Channel(int N, int taille, int precision, int interp, int retard):N(N),
     input=0;
     fck=0;
     for (i=0;i<N;i++){
-        ch.push_back(Pixel(3900000+i*100000,trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,4,20000000,taille*interp,1));
+        ch.push_back(Pixel(1000000+i*100000,trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,4,20000000,taille*interp,1));
     }
 }
 
@@ -27,7 +27,7 @@ double Channel::sumPolar()
     for (i=0;i<N;i++){
         ch[i].setinputLC(sum);
     }
-    return sum;
+    return 18*sum/pow(2,4+8);
 }
 
 void Channel::computeLC_TES()
