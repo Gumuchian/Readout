@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    // initialise un channel
     Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
     int i;
     double a;
@@ -18,15 +19,21 @@ int main()
     {
         for (i=0;i<1000000;i++)
         {
+            // Le if permet de definir a quel indice on reçoit un photon
             if (i==500000){
+                // On definit la puissance recue en Watt
                 ch0.setPo(pow(10,-8));
             }
             else{
                 ch0.setPo(0);
             }
+            // sumPolar = somme des bias de chaque pixel
             a=ch0.sumPolar();
+            // compute LC_TES = sortie du LC-TES
             ch0.computeLC_TES();
+            // compute le feedback
             ch0.computeBBFB();
+            // sauvegarde les données
             fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl;
         }
     }

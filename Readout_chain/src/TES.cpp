@@ -19,6 +19,7 @@ TES::TES()
     bias[0]=0;bias[1]=0;bias[2]=0;
 }
 
+// derivee de T du TES
 double TES::dTes(double Tes, double Pj, double Po)
 {
     double G=115.0*pow(10,-12);
@@ -28,6 +29,7 @@ double TES::dTes(double Tes, double Pj, double Po)
     return (Po+Pj-K*(pow(Tes,3)-pow(Tbath,3)))/C;
 }
 
+// derivee de I traversant le TES
 double TES::dI(double I, double V, double R)
 {
     double L=121*pow(10,-9);
@@ -35,6 +37,7 @@ double TES::dI(double I, double V, double R)
     return (V-I*Rl-I*R)/L;
 }
 
+// Solveur Runge Kutta 4 à pas constant
 double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
 {
     double k1,k2,k3,k4;
@@ -58,14 +61,18 @@ double TES::computeLCTES(double freq, double fe)
     ptrdT=&TES::dTes;
     ptrdI=&TES::dI;
     Pj=pow(51.5*pow(10,-9),2)/R;
+    // Resolution des equa diff
     I=RK4(ptrdI,1.0/fe,I,V,R);
     Tes=RK4(ptrdT,1.0/fe,Tes,Pj,Po);
+    // Update de R du TES
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);
+    // Calcul de l'effet du LC
     biasm[2]=(-(2-8*C*pow(fe,2))*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
+    //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 8120 valable que pour un bias à 1MhZ
     return biasm[2]/8120.0*I*sqrt(2)/TR;
 }
 
