@@ -52,7 +52,7 @@ void Channel::computeLC_TES()
 void Channel::computeBBFB()
 {
     int i;
-    double dac,G=100000,feedback=0;
+    double adc,G=100000,feedback=0;
     //somme du feedback de chaque pixel
     for (i=0;i<N;i++){
         feedback=feedback+ch[i].getfeedback();
@@ -67,12 +67,13 @@ void Channel::computeBBFB()
     80 = gain du LNA
     0.0017/(5.8*pow(10,-6)) = transimpedance du SQUID, facteur 0.1 sur feedback
     */
-    dac=0.5*80*0.0017/(5.8*pow(10,-6))*(input-0.1*feedback);
+    adc=0.5*80*0.0017/(5.8*pow(10,-6))*(input-0.1*feedback);
     fck=feedback;
     // Calcul du feedback pour chaque pixel
     for (i=0;i<N;i++)
     {
-        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,12)*dac),pow(2,16));
+        //dds.getvalue donne la valeur de la table DDS pour le compteur ch[i].getcompt(D_I(),D_Q(),R_I(),R_Q()) pour le pixel i, trunc(pow(2,12)*adc) : conversion de l'adc en numérique
+        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,12)*adc),pow(2,16));
     }
 }
 
