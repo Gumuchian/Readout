@@ -16,6 +16,7 @@ class TES
         double getI();
         double getbiasm();
         void setPo(double P);
+        void setI(double p);
     protected:
 
     private:

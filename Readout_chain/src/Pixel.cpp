@@ -94,3 +94,7 @@ int Pixel::getretard()
     return retard;
 }
 
+void Pixel::setI(double p)
+{
+    tes.setI(p);
+}

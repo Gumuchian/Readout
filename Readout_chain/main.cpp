@@ -5,6 +5,7 @@
 #include <string>
 #include <Pixel.h>
 #include <Channel.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -12,29 +13,44 @@ int main()
 {
     // initialise un channel
     Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
-    int i;
+    int i,ip=0;
+    string str;
+    char* ptr;
     double a;
+    double pulse[140000];
     ofstream fichier("test.txt", ios::out);
+    ifstream fichier1("Pulse.txt", ios::out);
+    if(fichier1)
+    {
+        for (i=0;i<140000;i++){
+            getline(fichier1,str);
+            pulse[i]=strtod(str.c_str(),&ptr);
+        }
+    }
+    fichier1.close();
     if(fichier)
     {
         for (i=0;i<1000000;i++)
         {
             // Le if permet de definir a quel indice on reçoit un photon
-            if (i==500000){
+            /*if (i==500000){
                 // On definit la puissance recue en Watt
                 ch0.setPo(pow(10,-8));
             }
             else{
                 ch0.setPo(0);
-            }
+            }*/
             // sumPolar = somme des bias de chaque pixel
             a=ch0.sumPolar();
             // compute LC_TES = sortie du LC-TES
+            ch0.setI(pulse[ip]);
             ch0.computeLC_TES();
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
             fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl;
+            ip++;
+            ip=ip%140000;
         }
     }
     fichier.close();

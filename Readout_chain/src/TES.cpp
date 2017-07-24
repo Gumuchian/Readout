@@ -1,5 +1,6 @@
 #include "TES.h"
 #include <math.h>
+#include <fstream>
 
 typedef double (*ptrm) (double,double,double);
 
@@ -57,7 +58,7 @@ double TES::computeLCTES(double freq, double fe)
     B=R0*(Ccar+Ccp),
     C=L*(Ccar+Ccp),
     TR=4.08;
-    ptrm ptrdT,ptrdI;
+    /*ptrm ptrdT,ptrdI;
     ptrdT=&TES::dTes;
     ptrdI=&TES::dI;
     Pj=pow(51.5*pow(10,-9),2)/R;
@@ -65,7 +66,8 @@ double TES::computeLCTES(double freq, double fe)
     I=RK4(ptrdI,1.0/fe,I,V,R);
     Tes=RK4(ptrdT,1.0/fe,Tes,Pj,Po);
     // Update de R du TES
-    R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);
+    R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);*/
+
     // Calcul de l'effet du LC
     biasm[2]=(-(2-8*C*pow(fe,2))*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
@@ -94,4 +96,9 @@ void TES::setPo(double P)
 double TES::getbiasm()
 {
     return biasm[2];
+}
+
+void TES::setI(double p)
+{
+    I=p;
 }

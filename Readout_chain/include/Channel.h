@@ -16,6 +16,7 @@ class Channel
         double getfck();
         double getmod();
         void setPo(double P);
+        void setI(double p);
     protected:
     private:
         std::vector<Pixel> ch;

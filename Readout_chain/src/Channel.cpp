@@ -92,7 +92,12 @@ void Channel::computeBBFB()
      ch[0].setPo(P);
  }
 
-double Channel::getmod()
+ double Channel::getmod()
  {
      return ch[0].getmodule();
+ }
+
+ void Channel::setI(double p)
+ {
+     ch[0].setI(p);
  }

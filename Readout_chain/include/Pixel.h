@@ -20,6 +20,7 @@ class Pixel
         int getcomptD_Q();
         double getbiasm();
         void setPo(double P);
+        void setI(double p);
         int getretard();
 
     protected:
@@ -36,6 +37,7 @@ class Pixel
         int comptR_Q;
         int pas;
         double *feedback;
+        double I;
         int retard;
         double input_adc;
         BBFB bbfb;
