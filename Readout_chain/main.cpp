@@ -48,12 +48,12 @@ int main()
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
-            //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl;
+            //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
             ip++;
             ip=ip%140000;
         }
+        fichier.close();
     }
-    fichier.close();
     /*
     Pixel pix(1000000,0,0,1,4,20000000,pow(2,16),1);
     DDS dds(pow(2,9),pow(2,18),pow(2,7));
