@@ -48,7 +48,7 @@ int main()
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
-            //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
+            fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
             ip++;
             ip=ip%140000;
         }

@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1500902743 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1501002444 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -69,6 +69,7 @@
 	<string>
 	<Pixel.h>
 	<Channel.h>
+	<stdlib.h>
 
 1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
