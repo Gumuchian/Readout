@@ -6,6 +6,8 @@
 #include <Pixel.h>
 #include <Channel.h>
 #include <stdlib.h>
+#include <random>
+#include <cmath>
 
 using namespace std;
 
@@ -13,6 +15,11 @@ int main()
 {
     // initialise un channel
     Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
+    random_device rd;
+    mt19937 gen(rd());
+    double dsl=0.1*pow(10,-12);//pow(10,-130/10);
+    double B=600;
+    normal_distribution<double> distribution(0.0,dsl*sqrt(B));
     int i,ip=0;
     string str;
     char* ptr;
@@ -30,8 +37,9 @@ int main()
     fichier1.close();
     if(fichier)
     {
-        for (i=0;i<1000000;i++)
+        for (i=0;i<10000;i++)
         {
+            cout << distribution(gen) << endl;
             // Le if permet de definir a quel indice on reçoit un photon
             /*if (i==500000){
                 // On definit la puissance recue en Watt
@@ -48,7 +56,7 @@ int main()
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
-            fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
+            //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
             ip++;
             ip=ip%140000;
         }
