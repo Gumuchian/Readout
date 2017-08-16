@@ -1,6 +1,7 @@
 #include "TES.h"
 #include <math.h>
 #include <fstream>
+#define M_PI 3.1415926535
 
 typedef double (*ptrm) (double,double,double);
 

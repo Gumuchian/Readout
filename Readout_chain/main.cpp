@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <random>
 #include <cmath>
+#include <vector>
+#define M_PI 3.1415926535
 
 using namespace std;
 
@@ -20,11 +22,15 @@ int main()
     double dsl=0.1*pow(10,-12);//pow(10,-130/10);
     double B=600;
     normal_distribution<double> b(0.0,dsl*sqrt(B));
-    int i,ip=0;
+    int i,ip=0,j=0;
+    vector<double> module(1094);
     string str;
     char* ptr;
-    double a;
+    double a,bbfi[2],bbfo[2];
+    bbfo[0]=0;
+    bbfi[0]=0;
     double pulse[140000];
+    double pattern[1094];
     ofstream fichier("test.txt", ios::out);
     ifstream fichier1("Pulse.txt", ios::out);
     if(fichier1)
@@ -37,9 +43,12 @@ int main()
     fichier1.close();
     if(fichier)
     {
-        for (i=0;i<10000;i++)
+        for (i=0;i<10000000;i++)
         {
-            cout << b(gen) << endl;
+            bbfi[1]=b(gen);
+            bbfo[1]=(20.0*pow(10,6)/(M_PI*1000.0)+1)*(bbfi[1]+bbfi[0]+(20.0*pow(10,6)/(M_PI*1000.0)-1)*bbfo[0]);
+            bbfi[0]=bbfi[1];
+            bbfo[0]=bbfo[1];
             // Le if permet de definir a quel indice on reçoit un photon
             /*if (i==500000){
                 // On definit la puissance recue en Watt
@@ -57,6 +66,11 @@ int main()
             ch0.computeBBFB();
             // sauvegarde les données
             //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
+            if (j==0){
+                module[j]=ch0.getmod();
+            }
+            j++;
+            j=j%128;
             ip++;
             ip=ip%140000;
         }
