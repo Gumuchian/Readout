@@ -19,7 +19,7 @@ int main()
     mt19937 gen(rd());
     double dsl=0.1*pow(10,-12);//pow(10,-130/10);
     double B=600;
-    normal_distribution<double> distribution(0.0,dsl*sqrt(B));
+    normal_distribution<double> b(0.0,dsl*sqrt(B));
     int i,ip=0;
     string str;
     char* ptr;
@@ -39,7 +39,7 @@ int main()
     {
         for (i=0;i<10000;i++)
         {
-            cout << distribution(gen) << endl;
+            cout << b(gen) << endl;
             // Le if permet de definir a quel indice on reçoit un photon
             /*if (i==500000){
                 // On definit la puissance recue en Watt
