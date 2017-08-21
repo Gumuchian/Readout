@@ -19,7 +19,7 @@ Channel::Channel(int N, int taille, int precision, int interp, int retard):N(N),
     input=0;
     fck=0;
     for (i=0;i<N;i++){
-        ch.push_back(Pixel(1000000+i*100000,trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,1,20000000,taille*interp,1));
+        ch.push_back(Pixel(1000000+i*100000,trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,5000,20000000,taille*interp,1));
     }
 }
 
@@ -52,7 +52,7 @@ void Channel::computeLC_TES()
 void Channel::computeBBFB()
 {
     int i;
-    double adc,G=100000,feedback=0;
+    double adc,G=37000,feedback=0;
     //somme du feedback de chaque pixel
     for (i=0;i<N;i++){
         feedback=feedback+ch[i].getfeedback();

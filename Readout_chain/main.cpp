@@ -22,16 +22,16 @@ int main()
     double dsl=0.1*pow(10,-12);//pow(10,-130/10);
     double B=600;
     normal_distribution<double> b(0.0,dsl*sqrt(B));
-    int i,ip=0,j=0,k,l=0,m;
-    vector<double> module(1094,0);
+    int i,ip=0,j=0,k,l=0;
+    vector<double> module(1093,0);
     vector<double> E;
     string str;
     char* ptr;
-    double a,bbfi[2],bbfo[2],sum,mE,var=0;
+    double a,bbfi[2],bbfo[2],sum,Em=0,var=0,TR=4.08,Gb=37000;
     bbfo[0]=0;
     bbfi[0]=0;
     double pulse[140000];
-    double pattern[1094];
+    double pattern[1093];
     ofstream fichier("test.txt", ios::out);
     ifstream fichier1("Pulse.txt", ios::out);
     if(fichier1)
@@ -41,10 +41,14 @@ int main()
             pulse[i]=strtod(str.c_str(),&ptr);
         }
     }
+    for (i=0;i<1093;i++)
+    {
+        pattern[i]=pulse[(1093-1)*128-i*128];
+    }
     fichier1.close();
     if(fichier)
     {
-        for (i=0;i<1000000;i++)
+        for (i=0;i<10000000;i++)
         {
             bbfi[1]=b(gen);
             bbfo[1]=(20.0*pow(10,6)/(M_PI*1000.0)+1)*(bbfi[1]+bbfi[0]+(20.0*pow(10,6)/(M_PI*1000.0)-1)*bbfo[0]);
@@ -68,20 +72,22 @@ int main()
             // sauvegarde les données
             //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
             if (j==0)
-                {
-                module.insert(module.begin(),ch0.getmod());
-                module.erase(module.end());
-                sum=0;
-                for (k=0;k<1094;k++)
-                {
-                    sum=(pattern[0]-module[k]*0.5*0.01/pow(2,15)*Gb/(pow(2,19)*0.1*TR/sqrt(2)/4)*(pattern[0]-pattern[k])+sum;
-                }
+            {
+                module.push_back(ch0.getmod());
+                module.erase(module.begin());
+                //fichier <<ch0.getmod()*0.5*0.01/pow(2,15)*Gb/pow(2,19)*0.1*TR/sqrt(2)/4<< endl <<flush;
+
                 if (l==0)
                 {
-                    E.push_back(sum);
+                    sum=0;
+                    for (k=0;k<1093;k++)
+                    {
+                        sum=(pattern[0]-module[1092-k]*0.5*0.01/pow(2,15)*Gb/pow(2,19)*0.1*TR/sqrt(2)/4)*(pattern[0]-pattern[k])+sum;
+                    }
+                    E.push_back(12000*sum/(1.27035613*pow(10,-5)));
                 }
                 l++;
-                l=l%140000;
+                l=l%1093;
             }
             j++;
             j=j%128;
@@ -89,13 +95,14 @@ int main()
             ip=ip%140000;
         }
         fichier.close();
-        for (m=0;m<E.size();m++){
-            Em=E[m]+Em;
+        for (i=3;i<E.size();i++){
+            Em=abs(E[i])+Em;
         }
-        for (m=0;m<E.size();m++){
-            var=pow((E[m]-Em),2)+var;
+        Em=Em/(E.size()-3);
+        for (i=3;i<E.size();i++){
+            var=pow(abs(E[i])-Em,2)+var;
         }
-        cout << sqrt(var/E.size()) << endl;
+        cout << sqrt(var/(E.size()-3)) << endl;
     }
     /*
     Pixel pix(1000000,0,0,1,4,20000000,pow(2,16),1);

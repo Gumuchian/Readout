@@ -70,13 +70,14 @@ double TES::computeLCTES(double freq, double fe)
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);*/
 
     // Calcul de l'effet du LC
+    bias[2]=bias[2]/(pow(2,18)-1);
     biasm[2]=(-(2-8*C*pow(fe,2))*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
     //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 8120 valable que pour un bias à 1MhZ
-    return biasm[2]/8120.0*I*sqrt(2)/TR;
+    return biasm[2]*I/0.5941*sqrt(2)/TR;
 }
 
 void TES::setbias(double biass)
