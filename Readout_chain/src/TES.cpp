@@ -76,7 +76,7 @@ double TES::computeLCTES(double freq, double fe)
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
-    //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 8120 valable que pour un bias à 1MhZ
+    //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 0.5941)
     return biasm[2]*I/0.5941*sqrt(2)/TR;
 }
 
