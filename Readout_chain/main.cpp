@@ -77,16 +77,16 @@ int main()
                 module.push_back(ch0.getmod());
                 module.erase(module.begin());
 
-                if (l==0)
-                {
+                //if (l==0)
+                //{
                     sum=0;
                     for (k=0;k<(140000/d);k++)
                     {
                         sum=(pulse[0]-module[140000/d-1-k]*0.5*0.01/pow(2,15)*Gb/pow(2,19)*0.1*TR/sqrt(2)/4)*pattern[k]+sum;
-                        fichier << pulse[0]-module[140000/d-1-k]*0.5*0.01/pow(2,15)*Gb/pow(2,19)*0.1*TR/sqrt(2)/4 << endl;
                     }
                     E.push_back(12000*sum/P);
-                }
+                    fichier << sum << endl;
+                //}
                 l++;
                 l=l%(140000/d);
             }
@@ -107,7 +107,6 @@ int main()
             var=pow(abs(E[i])-Em,2)+var;
         }
         cout << sqrt(var/(E.size()-3)) << endl;
-        cout << P ;
     }
     /*
     Pixel pix(1000000,0,0,1,4,20000000,pow(2,16),1);

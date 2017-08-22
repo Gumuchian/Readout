@@ -53,12 +53,14 @@ double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
 double TES::computeLCTES(double freq, double fe)
 {
     double L=2*pow(10,-6),
-    Ccar=(1/(4*pow(M_PI,2)*L*pow(freq,2)))/1.0262,
+    //Ccar=(1/(4*pow(M_PI,2)*L*pow(freq,2)))/1.0262,
+    Ccar=13*pow(10,-9),
     Ccp=Ccar/100.0,
+    TR=4.08,
     A=Ccp,
-    B=R0*(Ccar+Ccp),
-    C=L*(Ccar+Ccp),
-    TR=4.08;
+    B=pow(TR,2)*R0*(Ccar+Ccp),
+    C=L*(Ccar+Ccp);
+
     /*ptrm ptrdT,ptrdI;
     ptrdT=&TES::dTes;
     ptrdI=&TES::dI;
