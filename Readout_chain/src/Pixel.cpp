@@ -13,9 +13,9 @@ Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude,
     // les attributs compt(R_I,R_Q ...) sont les compteurs pour la table DDS
     comptR_I=phase_initiale%N;
     comptR_Q=(comptR_I+N/4)%N;
-    comptD_I=((N-((N*retard*(frequence/100000))/(fe/100000))%N)+phase_initiale)%N;
+    comptD_I=((N-((N*retard*(frequence/100))/(fe/100))%N)+phase_initiale)%N;
     comptD_Q=(comptD_I+N/4)%N;
-    pas=round(N*(frequence/100000)/(fe/100000));
+    pas=round(N*(frequence/100)/(fe/100));
     feedback=new double[retard+1];
     int i;
     for (i=0;i<retard;i++){

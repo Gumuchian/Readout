@@ -27,10 +27,11 @@ class Pixel
 
     private:
         int frequence;
-        int fe;
         int phase_initiale;
         int phase_retard;
         int amplitude;
+        BBFB bbfb;
+        int fe;
         int comptD_I;
         int comptR_I;
         int comptD_Q;
@@ -40,7 +41,6 @@ class Pixel
         double I;
         int retard;
         double input_adc;
-        BBFB bbfb;
         TES tes;
 };
 

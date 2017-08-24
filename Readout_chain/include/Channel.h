@@ -19,11 +19,11 @@ class Channel
         void setI(double p);
     protected:
     private:
+        int N;
         std::vector<Pixel> ch;
         DDS dds;
         double input;
         double fck;
-        int N;
 };
 
 #endif // CHANNEL_H

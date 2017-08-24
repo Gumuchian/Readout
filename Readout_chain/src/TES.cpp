@@ -54,7 +54,7 @@ double TES::computeLCTES(double freq, double fe)
 {
     double L=2*pow(10,-6),
     //Ccar=(1/(4*pow(M_PI,2)*L*pow(freq,2)))/1.0262,
-    Ccar=13*pow(10,-9),
+    Ccar=13.0*pow(10,-9),
     Ccp=Ccar/100.0,
     TR=4.08,
     A=Ccp,
