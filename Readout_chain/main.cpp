@@ -44,7 +44,8 @@ int main()
     for (i=0;i<(140000/d);i++)
     {
         pattern[i]=pulse[0]-pulse[(140000/d-1)*d-i*d];
-        P=P+pow(pulse[0]-pattern[i],2);
+        P=P+pow(pattern[i],2);
+        fichier << pattern[i] << endl;
     }
     fichier1.close();
     if(fichier)
@@ -59,13 +60,12 @@ int main()
             // sumPolar = somme des bias de chaque pixel
             ch0.sumPolar();
             // compute LC_TES = sortie du LC-TES
-            ch0.setI(pulse[ip]);
+            ch0.setI(pulse[ip]+bbfo[1]);
             ch0.computeLC_TES();
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
             //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
-            fichier << ch0.getmod() << endl;
             if (i==140000)
             {
                 maxi=ch0.getmod();
@@ -96,14 +96,13 @@ int main()
         for (i=3;i<(int)E.size();i++)
         {
             Em=abs(E[i])+Em;
-            cout << abs(E[i]) << endl;
         }
         Em=Em/(E.size()-3);
         for (i=3;i<(int)E.size();i++)
         {
             var=pow(abs(E[i])-Em,2)+var;
         }
-        cout << sqrt(var/(E.size()-3)) << endl;
+        cout << Em << endl << sqrt(var/(E.size()-3)) << endl;
     }
     return 0;
 }
