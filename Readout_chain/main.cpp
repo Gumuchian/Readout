@@ -33,6 +33,7 @@ int main()
     double pattern[140000/d];
     ofstream fichier("test.txt", ios::out);
     ifstream fichier1("Pulse.txt", ios::out);
+    //ifstream fichier2("Cov.txt", ios::out);
     if(fichier1)
     {
         for (i=0;i<140000;i++){
