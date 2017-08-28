@@ -9,7 +9,7 @@
 #include <random>
 #include <cmath>
 #include <vector>
-#define M_PI 3.1415926535
+#define PI 3.1415926535
 
 using namespace std;
 
@@ -54,7 +54,7 @@ int main()
         for (i=0;i<1000000;i++)
         {
             bbfi[1]=bbg(gen);
-            bbfo[1]=(bbfi[1]+bbfi[0]+(20.0*pow(10,6)/(M_PI*1000.0)-1)*bbfo[0])/(20.0*pow(10,6)/(M_PI*1000.0)+1);
+            bbfo[1]=(bbfi[1]+bbfi[0]+(20.0*pow(10,6)/(PI*1000.0)-1)*bbfo[0])/(20.0*pow(10,6)/(PI*1000.0)+1);
             bbfi[0]=bbfi[1];
             bbfo[0]=bbfo[1];
 
