@@ -10,7 +10,7 @@ class Channel
         Channel();
         Channel(int N, int taille, int precision, int interp, int retard);
         double sumPolar();
-        void computeLC_TES();
+        void computeLC_TES(double noise);
         void computeBBFB();
         double getinput();
         double getfck();

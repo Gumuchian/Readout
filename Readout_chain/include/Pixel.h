@@ -7,10 +7,9 @@ class Pixel
 {
     public:
         Pixel();
-        Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard);
+        Pixel(double frequence, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int retard);
         double getfeedback();
         double getmodule();
-        int getfrequency();
         void setinputLC(double input);
         double computeLC();
         void computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input, int N);
@@ -26,12 +25,13 @@ class Pixel
     protected:
 
     private:
-        int frequence;
+        double frequence;
         int phase_initiale;
         int phase_retard;
         int amplitude;
         BBFB bbfb;
-        int fe;
+        double fe;
+        int retard;
         int comptD_I;
         int comptR_I;
         int comptD_Q;
@@ -39,7 +39,6 @@ class Pixel
         int pas;
         double *feedback;
         double I;
-        int retard;
         double input_adc;
         TES tes;
 };

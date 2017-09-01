@@ -8,14 +8,14 @@ Pixel::Pixel(){
 }
 
 // amplitude est inutilisée, le gain intervient avant l'integrateur, fe la fréquence d'échantillonnage, N la taille de la table DDS
-Pixel::Pixel(int frequence, int phase_initiale, int phase_retard, int amplitude, int gain, int fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),retard(retard),bbfb(gain),fe(fe)
+Pixel::Pixel(double frequence, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),fe(fe),retard(retard)
 {
     // les attributs compt(R_I,R_Q ...) sont les compteurs pour la table DDS
     comptR_I=phase_initiale%N;
     comptR_Q=(comptR_I+N/4)%N;
-    comptD_I=((N-((N*retard*(frequence/100))/(fe/100))%N)+phase_initiale)%N;
+    comptD_I=(N-((int)(N*retard*(frequence/fe))%N)+phase_initiale)%N;
     comptD_Q=(comptD_I+N/4)%N;
-    pas=round(N*(frequence/100)/(fe/100));
+    pas=(int)round(N*(frequence/fe));
     feedback=new double[retard+1];
     int i;
     for (i=0;i<retard;i++){

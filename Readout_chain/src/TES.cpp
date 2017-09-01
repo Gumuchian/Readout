@@ -1,7 +1,7 @@
 #include "TES.h"
 #include <math.h>
 #include <fstream>
-#define M_PI 3.1415926535
+#define PI 3.1415926535
 
 typedef double (*ptrm) (double,double,double);
 
@@ -53,7 +53,7 @@ double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
 double TES::computeLCTES(double freq, double fe)
 {
     double L=2*pow(10,-6),
-    //Ccar=(1/(4*pow(M_PI,2)*L*pow(freq,2)))/1.0262,
+    //Ccar=(1/(4*pow(PI,2)*L*pow(freq,2)))/1.02682,
     Ccar=13.0*pow(10,-9),
     Ccp=Ccar/100.0,
     TR=4.08,
@@ -79,7 +79,7 @@ double TES::computeLCTES(double freq, double fe)
     bias[0]=bias[1];
     bias[1]=bias[2];
     //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 0.5941)
-    return biasm[2]*I/0.5941*sqrt(2)/TR;
+    return biasm[2]*I/0.5941402124*sqrt(2)/TR;
 }
 
 void TES::setbias(double biass)
