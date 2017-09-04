@@ -2,20 +2,22 @@
 #include "BBFB.h"
 #include "TES.h"
 #include <math.h>
+#include <random>
 
-Pixel::Pixel(){
+Pixel::Pixel()
+{
 
 }
 
 // amplitude est inutilisée, le gain intervient avant l'integrateur, fe la fréquence d'échantillonnage, N la taille de la table DDS
-Pixel::Pixel(double frequence, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int retard): frequence(frequence),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),fe(fe),retard(retard)
+Pixel::Pixel(double frequence, double frequence_ideale, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int retard): frequence(frequence),frequence_ideale(frequence_ideale),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),fe(fe),retard(retard)
 {
     // les attributs compt(R_I,R_Q ...) sont les compteurs pour la table DDS
     comptR_I=phase_initiale%N;
     comptR_Q=(comptR_I+N/4)%N;
-    comptD_I=(N-((int)(N*retard*(frequence/fe))%N)+phase_initiale)%N;
+    comptD_I=(N-((int)(N*retard*(frequence_ideale/fe))%N)+phase_initiale)%N;
     comptD_Q=(comptD_I+N/4)%N;
-    pas=(int)round(N*(frequence/fe));
+    pas=(int)round(N*(frequence_ideale/fe));
     feedback=new double[retard+1];
     int i;
     for (i=0;i<retard;i++){

@@ -2,6 +2,7 @@
 #include <math.h>
 #include <fstream>
 #define PI 3.1415926535
+#include <random>
 
 typedef double (*ptrm) (double,double,double);
 
@@ -19,6 +20,9 @@ TES::TES()
     beta=1.25;
     biasm[0]=0;biasm[1]=0;biasm[2]=0;
     bias[0]=0;bias[1]=0;bias[2]=0;
+    bbfi[0]=0;bbfo[0]=0;bbfo[1]=0;
+    dsl=1.0*pow(10,-12);
+    B=1000;
 }
 
 // derivee de T du TES
@@ -53,8 +57,8 @@ double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
 double TES::computeLCTES(double freq, double fe)
 {
     double L=2*pow(10,-6),
-    //Ccar=(1/(4*pow(PI,2)*L*pow(freq,2)))/1.02682,
-    Ccar=13.0*pow(10,-9),
+    Ccar=(1/(4*pow(PI,2)*L*pow(freq,2))),
+    //Ccar=13.0*pow(10,-9),
     Ccp=Ccar/100.0,
     TR=4.08,
     A=Ccp,
@@ -78,8 +82,13 @@ double TES::computeLCTES(double freq, double fe)
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
+    std::normal_distribution<double> bbg(0,dsl*sqrt(B));
+    bbfi[1]=bbg(gen);
+    bbfo[1]=(bbfi[1]+bbfi[0]+(20.0*pow(10,6)/(PI*1000.0)-1)*bbfo[0])/(20.0*pow(10,6)/(PI*1000.0)+1);
+    bbfi[0]=bbfi[1];
+    bbfo[0]=bbfo[1];
     //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 0.5941)
-    return biasm[2]*I/0.5941402124*sqrt(2)/TR;
+    return biasm[2]*(I*sqrt(2)+bbfo[1])/0.5941402124/TR;
 }
 
 void TES::setbias(double biass)

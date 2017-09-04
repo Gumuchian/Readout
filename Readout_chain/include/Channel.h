@@ -3,6 +3,7 @@
 #include <vector>
 #include "Pixel.h"
 #include "DDS.h"
+#include <random>
 
 class Channel
 {
@@ -10,7 +11,7 @@ class Channel
         Channel();
         Channel(int N, int taille, int precision, int interp, int retard);
         double sumPolar();
-        void computeLC_TES(double noise);
+        void computeLC_TES();
         void computeBBFB();
         double getinput();
         double getfck();
@@ -24,6 +25,9 @@ class Channel
         DDS dds;
         double input;
         double fck;
+        std::mt19937 gen;
+        double dsla;
+        double Ba;
 };
 
 #endif // CHANNEL_H
