@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1504536948 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1504622311 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -73,6 +73,7 @@
 	<random>
 	<cmath>
 	<vector>
+	<algorithm>
 
 1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
@@ -86,7 +87,7 @@
 	"BBFB.h"
 	<math.h>
 
-1504543436 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1504544678 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
@@ -125,4 +126,10 @@
 1497023648 source:c:\users\paul\documents\projetc++\c++\readout_chain\src\tes.cpp
 	"TES.h"
 	<math.h>
+
+1504710551 source:c:\users\paul\documents\github\readout\readout_chain\src\cic.cpp
+	"CIC.h"
+	<math.h>
+
+1504709762 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
 

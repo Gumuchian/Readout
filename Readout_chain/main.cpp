@@ -9,6 +9,8 @@
 #include <random>
 #include <cmath>
 #include <vector>
+#include <algorithm>
+#include "CIC.h"
 #define PI 3.1415926535
 
 using namespace std;
@@ -16,12 +18,14 @@ using namespace std;
 int main()
 {
     Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
-    int i,ip=0,j=0,k,l=0,decim=16;
+    CIC cic;
+    int i,ip=0,j=0,k,l=0,decim=128,m;
     vector<double> module(140000/decim,0);
     vector<double> E;
+    vector<double> tab(4*14000/decim,0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi;
+    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab;
     double pulse[140000];
     double pattern[140000/decim];
     ofstream fichier("test.txt", ios::out);
@@ -57,18 +61,30 @@ int main()
             {
                 maxi=ch0.getmod();
             }
-            if (j==0)
+            if (j==0 && i>(int)(140000*0.8))
             {
                 module.push_back(ch0.getmod());
                 module.erase(module.begin());
-                if (l==0)
+                if (l<(4*14000/decim))
                 {
                     sum=0;
                     for (k=0;k<(140000/decim);k++)
                     {
                         sum=((maxi-module[140000/decim-1-k])*0.5*0.01/pow(2,15)*Gb/pow(2,19)*0.1*TR/sqrt(2)/4)*pattern[k]+sum;
                     }
-                    E.push_back(12000*sum/P);
+                    tab[l]=sum;
+                }
+                if(l==(4*14000/decim))
+                {
+                    max_tab=0;
+                    for (m=0;m<(int)tab.size();m++)
+                    {
+                        if (tab[m]>max_tab)
+                        {
+                            max_tab=tab[m];
+                        }
+                    }
+                    E.push_back(12000*max_tab/P);
                 }
                 l++;
                 l=l%(140000/decim);
