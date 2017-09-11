@@ -12,7 +12,7 @@ class Channel
         Channel(int N, int taille, int precision, int interp, int retard);
         double sumPolar();
         void computeLC_TES();
-        void computeBBFB();
+        double computeBBFB();
         double getinput();
         double getfck();
         double getmod();
@@ -28,6 +28,9 @@ class Channel
         std::mt19937 gen;
         double dsla;
         double Ba;
+        int taille;
+        int precision;
+        int interp;
 };
 
 #endif // CHANNEL_H

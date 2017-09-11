@@ -54,7 +54,7 @@ double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
 
-double TES::computeLCTES(double freq, double fe)
+double TES::computeLCTES(double freq, double fe, int precision)
 {
     double L=2*pow(10,-6),
     Ccar=(1/(4*pow(PI,2)*L*pow(freq,2))),
@@ -76,7 +76,7 @@ double TES::computeLCTES(double freq, double fe)
     R=R0+alpha*R0/T0*(Tes-T0)+beta*R0/I0*(I-I0);*/
 
     // Calcul de l'effet du LC
-    bias[2]=bias[2]/(pow(2,18)-1);
+    bias[2]=bias[2]/(precision-1);
     biasm[2]=(-(2-8*C*pow(fe,2))*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
     biasm[1]=biasm[2];

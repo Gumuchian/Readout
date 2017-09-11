@@ -12,7 +12,7 @@ class TES
         static double dTes(double Tes, double Pj, double Po);
         static double dI(double I, double V, double R);
         double RK4(ptrm f, double dt, double y0, double y1, double y2);
-        double computeLCTES(double freq, double fe);
+        double computeLCTES(double freq, double fe, int precision);
         void setbias(double biass);
         double getI();
         double getbiasm();

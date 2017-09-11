@@ -17,7 +17,7 @@ using namespace std;
 
 int main()
 {
-    Channel ch0(1,pow(2,9),pow(2,18),pow(2,7),0);
+    Channel ch0(1,pow(2,9),pow(2,12),pow(2,21-9),0);
     CIC cic;
     int i,ip=0,j=0,k,l=0,decim=128,m;
     vector<double> module(140000/decim,0);
@@ -25,7 +25,7 @@ int main()
     vector<double> tab(4*14000/decim,0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab;
+    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab,a;
     double pulse[140000];
     double pattern[140000/decim];
     ofstream fichier("test.txt", ios::out);
@@ -46,17 +46,20 @@ int main()
     fichier1.close();
     if(fichier)
     {
-        for (i=0;i<20000000;i++)
+        for (i=0;i<2000000;i++)
         {
             // sumPolar = somme des bias de chaque pixel
             ch0.sumPolar();
-            // compute LC_TES = sortie du LC-TES
+            // modulation du bias par pulse
             ch0.setI(pulse[ip]);
+            // compute LC_TES = sortie du LC-TES
             ch0.computeLC_TES();
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
             //fichier <<a<<";"<< ch0.getinput()<<";"<<ch0.getfck()<<";"<<ch0.getmod()<< endl <<flush;
+            a=cic.compute(ch0.getmod());
+            if (cic.getaccess()){ fichier << a << ";" << ch0.getmod() << endl;}
             if (i==140000)
             {
                 maxi=ch0.getmod();
@@ -70,7 +73,7 @@ int main()
                     sum=0;
                     for (k=0;k<(140000/decim);k++)
                     {
-                        sum=((maxi-module[140000/decim-1-k])*0.5*0.01/pow(2,15)*Gb/pow(2,19)*0.1*TR/sqrt(2)/4)*pattern[k]+sum;
+                        sum=((maxi-module[140000/decim-1-k])*0.5*0.01/pow(2,15)*Gb/pow(2,15+4)*0.1*TR/sqrt(2))*pattern[k]+sum;
                     }
                     tab[l]=sum;
                 }

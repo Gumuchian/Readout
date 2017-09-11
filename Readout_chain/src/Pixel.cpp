@@ -10,7 +10,7 @@ Pixel::Pixel()
 }
 
 // amplitude est inutilisée, le gain intervient avant l'integrateur, fe la fréquence d'échantillonnage, N la taille de la table DDS
-Pixel::Pixel(double frequence, double frequence_ideale, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int retard): frequence(frequence),frequence_ideale(frequence_ideale),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),fe(fe),retard(retard)
+Pixel::Pixel(double frequence, double frequence_ideale, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int precision, int retard): frequence(frequence),frequence_ideale(frequence_ideale),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),fe(fe),precision(precision),retard(retard)
 {
     // les attributs compt(R_I,R_Q ...) sont les compteurs pour la table DDS
     comptR_I=phase_initiale%N;
@@ -37,13 +37,13 @@ double Pixel::getmodule()
 
 double Pixel::computeLC()
 {
-    return tes.computeLCTES(frequence,fe);
+    return tes.computeLCTES(frequence,fe,precision);
 }
 
 //computeBBFB prend en parametre les signaux de modulation/demodulation, l'entrée du SQUID et le nombre de point de la table DDS
-void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input, int N)
+void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input, int precision, int N)
 {
-    bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);
+    bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,precision,input);
     // update des compteurs
     comptR_I=(comptR_I+pas)%N;
     comptD_I=(comptD_I+pas)%N;

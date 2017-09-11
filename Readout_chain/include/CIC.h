@@ -18,7 +18,7 @@ class CIC
         double **integ;
         double **acc;
         bool access;
-        double trunc[3][2];
+        double trnc[4][2];
 };
 
 #endif // CIC_H

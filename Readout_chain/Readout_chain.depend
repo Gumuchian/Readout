@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1504622311 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1505149945 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -74,20 +74,21 @@
 	<cmath>
 	<vector>
 	<algorithm>
+	"CIC.h"
 
 1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
-1504542523 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
+1504890832 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
 	"BBFB.h"
 	"TES.h"
 
-1497022433 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
+1504864264 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
 
-1503577345 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
+1504864156 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
 	"BBFB.h"
 	<math.h>
 
-1504544678 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1504907636 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
@@ -95,7 +96,7 @@
 	<string>
 	<random>
 
-1504531167 c:\users\paul\documents\github\readout\readout_chain\include\channel.h
+1504907644 c:\users\paul\documents\github\readout\readout_chain\include\channel.h
 	<vector>
 	"Pixel.h"
 	"DDS.h"
@@ -105,20 +106,20 @@
 	"DDS.h"
 	<math.h>
 
-1504544541 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
+1504890863 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
 	"Pixel.h"
 	"BBFB.h"
 	"TES.h"
 	<math.h>
 	<random>
 
-1504542745 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
+1504890754 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
 	"TES.h"
 	<math.h>
 	<fstream>
 	<random>
 
-1504542744 c:\users\paul\documents\github\readout\readout_chain\include\tes.h
+1504890768 c:\users\paul\documents\github\readout\readout_chain\include\tes.h
 	<random>
 
 1497023648 c:\users\paul\documents\projetc++\c++\readout_chain\include\tes.h
@@ -127,9 +128,11 @@
 	"TES.h"
 	<math.h>
 
-1504710551 source:c:\users\paul\documents\github\readout\readout_chain\src\cic.cpp
+1505149685 source:c:\users\paul\documents\github\readout\readout_chain\src\cic.cpp
 	"CIC.h"
 	<math.h>
 
-1504709762 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
+1505157042 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
+
+1504876233 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
 
