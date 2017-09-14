@@ -81,7 +81,7 @@ double Channel::computeBBFB()
     0.5 = attenuation du filtre
     0.01/pow(2,15) = conversion du DAC
     pow(2,19) = troncation de 19 bits*/
-    feedback=0.5*0.01/pow(2,15)*trunc(G*feedback/precision);
+    feedback=0.5*0.02/pow(2,16)*trunc(G*feedback/precision);
     //dac = entrée du DAC
     /*0.5 = attenuation du filtre
     80 = gain du LNA

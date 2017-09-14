@@ -15,6 +15,7 @@
 
 /** Paramètres de simulation **/
 
+#define energie 7850.0
 #define Npr pow(2,18)
 #define Npt pow(2,9)
 #define interpolation pow(2,20-9)
@@ -38,7 +39,7 @@ int main()
     vector<double> tab(trunc(2*prctg*Np/decim),0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab,a;
+    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab;
     double pulse[Np];
     double pattern[Np/decim];
     ofstream fichier("test.txt", ios::out);
@@ -64,11 +65,11 @@ int main()
             // sumPolar = somme des bias de chaque pixel
             ch0.sumPolar();
             // modulation du bias par pulse
-            ch0.setI(pulse[ip]);
+            ch0.setI(energie/12000.0*pulse[ip]);
             // compute LC_TES = sortie du LC-TES
             ch0.computeLC_TES();
             // compute le feedback
-            a=ch0.computeBBFB();
+            ch0.computeBBFB();
             // sauvegarde les données
             //fichier << a << ";" << ch0.getinput() << ";" << ch0.getfck() << ";" << ch0.getmod() << endl;
             //a=cic.compute(ch0.getmod());

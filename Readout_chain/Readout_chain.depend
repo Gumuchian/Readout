@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1505385202 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1505403566 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -88,7 +88,7 @@
 	"BBFB.h"
 	<math.h>
 
-1505397682 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1505406532 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
