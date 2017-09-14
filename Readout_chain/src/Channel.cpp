@@ -16,7 +16,7 @@ Channel::Channel()
     _ precision = maximum des valeurs stockées dans la table DDS
     _ interp = nombre de points d'interpolation
     _ retard = retard de boucle exprimé en nombre de pas de simulations*/
-Channel::Channel(int N, int taille, int precision, int interp, int retard):N(N),dds(taille,precision,interp),taille(taille),precision(precision),interp(interp)
+Channel::Channel(int N, int taille, int precision, int interp, int retard):N(N),dds(taille,precision,interp),taille(taille),precision(precision),interp(interp),gen((std::random_device())())
 {
     int i;
     input=0;
@@ -81,7 +81,7 @@ double Channel::computeBBFB()
     0.5 = attenuation du filtre
     0.01/pow(2,15) = conversion du DAC
     pow(2,19) = troncation de 19 bits*/
-    feedback=0.5*0.01/pow(2,15)*trunc(G*feedback/pow(2,15+4));
+    feedback=0.5*0.01/pow(2,15)*trunc(G*feedback/precision);
     //dac = entrée du DAC
     /*0.5 = attenuation du filtre
     80 = gain du LNA
@@ -95,7 +95,7 @@ double Channel::computeBBFB()
         //dds.getvalue donne la valeur de la table DDS pour le compteur ch[i].getcompt(D_I(),D_Q(),R_I(),R_Q()) pour le pixel i, trunc(pow(2,12)*adc) : conversion de l'adc en numérique
         ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,12)*adc),precision,taille*interp);
     }
-    return adc;
+    return input;
 }
 
  double Channel::getinput()

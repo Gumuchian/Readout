@@ -6,7 +6,7 @@
 
 typedef double (*ptrm) (double,double,double);
 
-TES::TES()
+TES::TES():gen((std::random_device())())
 {
     R0=0.001;
     T0=0.09;
@@ -58,7 +58,6 @@ double TES::computeLCTES(double freq, double fe, int precision)
 {
     double L=2*pow(10,-6),
     Ccar=(1/(4*pow(PI,2)*L*pow(freq,2))),
-    //Ccar=13.0*pow(10,-9),
     Ccp=Ccar/100.0,
     TR=4.08,
     A=Ccp,
@@ -88,7 +87,7 @@ double TES::computeLCTES(double freq, double fe, int precision)
     bbfi[0]=bbfi[1];
     bbfo[0]=bbfo[1];
     //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 0.5941)
-    return biasm[2]*(I*sqrt(2)+bbfo[1])/0.5941402124/TR;
+    return biasm[2]*(I*sqrt(2)+bbfo[1])/0.481859849392335/TR;
 }
 
 void TES::setbias(double biass)

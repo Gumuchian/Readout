@@ -25,12 +25,12 @@ class Channel
         DDS dds;
         double input;
         double fck;
-        std::mt19937 gen;
         double dsla;
         double Ba;
         int taille;
         int precision;
         int interp;
+        std::mt19937 gen;
 };
 
 #endif // CHANNEL_H
