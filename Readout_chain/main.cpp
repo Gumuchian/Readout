@@ -15,8 +15,8 @@
 
 /** Paramètres de simulation **/
 
-#define energie 7850.0
-#define Npr pow(2,18)
+#define energie 11180.0
+#define Npr pow(2,16)
 #define Npt pow(2,9)
 #define interpolation pow(2,20-9)
 #define retard 0
@@ -39,7 +39,7 @@ int main()
     vector<double> tab(trunc(2*prctg*Np/decim),0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab;
+    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab,a;
     double pulse[Np];
     double pattern[Np/decim];
     ofstream fichier("test.txt", ios::out);
@@ -65,29 +65,28 @@ int main()
             // sumPolar = somme des bias de chaque pixel
             ch0.sumPolar();
             // modulation du bias par pulse
-            ch0.setI(energie/12000.0*pulse[ip]);
-            // compute LC_TES = sortie du LC-TES
+            ch0.setI(pulse[0]-energie/12000.0*(pulse[0]-pulse[ip]));
+            // compute LC_TES = sortie du LC-T ES
             ch0.computeLC_TES();
             // compute le feedback
             ch0.computeBBFB();
             // sauvegarde les données
             //fichier << a << ";" << ch0.getinput() << ";" << ch0.getfck() << ";" << ch0.getmod() << endl;
-            //a=cic.compute(ch0.getmod());
-            //fichier << a << endl;
             if (i==Np)
             {
                 maxi=ch0.getmod();
             }
-            if (j==0 && i>(int)(Np*(1-prctg)))
+            a=cic.compute(ch0.getmod()-maxi);
+            if (cic.getaccess() && i>(int)(Np*(1-prctg)))
             {
-                module.push_back(ch0.getmod());
+                module.push_back(-a);
                 module.erase(module.begin());
                 if (l<trunc(2*prctg*Np/decim))
                 {
                     sum=0;
                     for (k=0;k<(Np/decim);k++)
                     {
-                        sum=((maxi-module[Np/decim-1-k])*0.5*0.02/pow(2,16)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
+                        sum=(module[Np/decim-1-k]*0.5*0.02/pow(2,16)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
                     }
                     tab[l]=sum;
                 }
