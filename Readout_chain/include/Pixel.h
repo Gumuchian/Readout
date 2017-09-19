@@ -18,7 +18,7 @@ class Pixel
         int getcomptD_I();
         int getcomptD_Q();
         double getbiasm();
-        void setPo(double P);
+        //void setPo(double P);
         void setI(double p);
         int getretard();
 

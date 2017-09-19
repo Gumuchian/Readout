@@ -8,16 +8,16 @@ typedef double (*ptrm) (double,double,double);
 
 TES::TES():gen((std::random_device())())
 {
-    R0=0.001;
-    T0=0.09;
-    I0=51.5*pow(10,-6);
+    /*T0=0.09;
     Tes=T0;
     Po=0;
     R=R0;
-    I=I0;
     V=51.5*pow(10,-9);
     alpha=75;
-    beta=1.25;
+    beta=1.25;*/
+    I0=51.5*pow(10,-6);
+    R0=0.001;
+    I=I0;
     biasm[0]=0;biasm[1]=0;biasm[2]=0;
     bias[0]=0;bias[1]=0;bias[2]=0;
     bbfi[0]=0;bbfo[0]=0;bbfo[1]=0;
@@ -25,6 +25,7 @@ TES::TES():gen((std::random_device())())
     B=1000;
 }
 
+/*
 // derivee de T du TES
 double TES::dTes(double Tes, double Pj, double Po)
 {
@@ -53,7 +54,7 @@ double TES::RK4(ptrm f, double dt, double y0, double y1, double y2)
     k4=f(y0+dt*k3,y1,y2);
     return y0+dt/6*(k1+2*k2+2*k3+k4);
 }
-
+*/
 double TES::computeLCTES(double freq, double fe, int precision)
 {
     double L=2*pow(10,-6),
@@ -100,10 +101,10 @@ double TES::getI()
     return I;
 }
 
-void TES::setPo(double P)
+/*void TES::setPo(double P)
 {
     Po=P;
-}
+}*/
 
 double TES::getbiasm()
 {

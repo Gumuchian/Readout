@@ -108,10 +108,10 @@ double Channel::computeBBFB()
      return fck;
  }
 
- void Channel::setPo(double P)
+ /*void Channel::setPo(double P)
  {
      ch[0].setPo(P);
- }
+ }*/
 
  double Channel::getmod()
  {

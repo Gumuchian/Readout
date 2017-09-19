@@ -15,15 +15,15 @@
 
 /** Paramètres de simulation **/
 
-#define energie 11180.0
-#define Npr pow(2,16)
+#define energie 3789.0
+#define Npr pow(2,18)
 #define Npt pow(2,9)
 #define interpolation pow(2,20-9)
 #define retard 0
 #define Npix 1
 #define Np 140000
 #define N 2000000
-#define prctg 0.2
+#define prctg 0.4
 
 /****/
 

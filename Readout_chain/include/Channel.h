@@ -16,7 +16,7 @@ class Channel
         double getinput();
         double getfck();
         double getmod();
-        void setPo(double P);
+        //void setPo(double P);
         void setI(double p);
     protected:
     private:
