@@ -71,7 +71,7 @@ void Channel::computeLC_TES()
 double Channel::computeBBFB()
 {
     int i;
-    double adc,G=37000,feedback=0;
+    double adc,G=500,feedback=0;
     //somme du feedback de chaque pixel
     std::normal_distribution<double> bbg(0.0,dsla*sqrt(Ba));
     for (i=0;i<N;i++){

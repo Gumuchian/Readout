@@ -15,15 +15,15 @@
 
 /** Paramètres de simulation **/
 
-#define energie 3789.0
+#define energie 11394.0
 #define Npr pow(2,18)
 #define Npt pow(2,9)
 #define interpolation pow(2,20-9)
 #define retard 0
 #define Npix 1
 #define Np 140000
-#define N 2000000
-#define prctg 0.4
+#define N 20000000
+#define prctg 0.2
 
 /****/
 
@@ -39,7 +39,7 @@ int main()
     vector<double> tab(trunc(2*prctg*Np/decim),0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,TR=4.08,Gb=37000,P=0,maxi,max_tab,a;
+    double sum,Em=0,var=0,TR=4.08,Gb=500,P=0,maxi,max_tab,a;
     double pulse[Np];
     double pattern[Np/decim];
     ofstream fichier("test.txt", ios::out);
@@ -120,7 +120,8 @@ int main()
         {
             var=pow(abs(E[i])-Em,2)+var;
         }
-        cout << "Energie moyenne estim\202e: " << Em << " eV" << endl << "R\202solution: " << sqrt(var/(E.size()-3)) << " eV" << endl;
+        cout << "Energie inject\202e: " << energie << " eV" << endl << "Energie moyenne estim\202e: " << Em << " eV" << endl << "Erreur relative: " << (energie-Em)/energie << endl;
+        cout << "R\202solution: " << sqrt(var/(E.size()-3)) << " eV" << endl;
     }
     return 0;
 }
