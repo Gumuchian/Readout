@@ -15,7 +15,7 @@
 
 /** Paramètres de simulation **/
 
-#define energie 11394.0
+#define energie 11634.0
 #define Npr pow(2,18)
 #define Npt pow(2,9)
 #define interpolation pow(2,20-9)
