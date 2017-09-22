@@ -22,7 +22,7 @@
 #define retard 0
 #define Npix 1
 #define Np 140000
-#define N 20000000
+#define N 2000000
 #define prctg 0.2
 
 /****/
@@ -76,6 +76,7 @@ int main()
             {
                 maxi=ch0.getmod();
             }
+
             a=cic.compute(ch0.getmod()-maxi);
             if (cic.getaccess() && i>(int)(Np*(1-prctg)))
             {
