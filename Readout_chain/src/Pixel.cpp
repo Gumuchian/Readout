@@ -3,31 +3,31 @@
 #include "TES.h"
 #include <math.h>
 #include <random>
+#include "ressources.h"
 
 Pixel::Pixel()
 {
 
 }
 
-// amplitude est inutilisée, le gain intervient avant l'integrateur, fe la fréquence d'échantillonnage, N la taille de la table DDS
-Pixel::Pixel(double frequence, double frequence_ideale, int phase_initiale, int phase_retard, int amplitude, int gain, double fe, int N, int precision, int retard): frequence(frequence),frequence_ideale(frequence_ideale),phase_initiale(phase_initiale),phase_retard(phase_retard),amplitude(amplitude),bbfb(gain),fe(fe),precision(precision),retard(retard)
+Pixel::Pixel(double frequence, double frequence_ideale, int phase_initiale):frequence(frequence)
 {
     // les attributs compt(R_I,R_Q ...) sont les compteurs pour la table DDS
-    comptR_I=phase_initiale%N;
-    comptR_Q=(comptR_I+N/4)%N;
-    comptD_I=(N-((int)(N*retard*(frequence_ideale/fe))%N)+phase_initiale)%N;
-    comptD_Q=(comptD_I+N/4)%N;
-    pas=(int)round(N*(frequence_ideale/fe));
-    feedback=new double[retard+1];
+    comptR_I=phase_initiale%(Npt*interpolation);
+    comptR_Q=(comptR_I+(Npt*interpolation)/4)%(Npt*interpolation);
+    comptD_I=((Npt*interpolation)-((int)((Npt*interpolation)*rtd*(frequence_ideale/fe))%(Npt*interpolation))+phase_initiale)%(Npt*interpolation);
+    comptD_Q=(comptD_I+(Npt*interpolation)/4)%(Npt*interpolation);
+    pas=(int)round((Npt*interpolation)*(frequence_ideale/fe));
+    feedback=new double[rtd+1];
     int i;
-    for (i=0;i<retard;i++){
+    for (i=0;i<rtd;i++){
         feedback[i]=0;
     }
 }
 
 double Pixel::getfeedback()
 {
-    return feedback[retard];
+    return feedback[rtd];
 }
 
 double Pixel::getmodule()
@@ -37,20 +37,20 @@ double Pixel::getmodule()
 
 double Pixel::computeLC()
 {
-    return tes.computeLCTES(frequence,fe,precision);
+    return tes.computeLCTES(frequence);
 }
 
 //computeBBFB prend en parametre les signaux de modulation/demodulation, l'entrée du SQUID et le nombre de point de la table DDS
-void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input, int precision, int N)
+void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input)
 {
-    bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,precision,input);
+    bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);
     // update des compteurs
-    comptR_I=(comptR_I+pas)%N;
-    comptD_I=(comptD_I+pas)%N;
-    comptR_Q=(comptR_Q+pas)%N;
-    comptD_Q=(comptD_Q+pas)%N;
+    comptR_I=(comptR_I+pas)%(Npt*interpolation);
+    comptD_I=(comptD_I+pas)%(Npt*interpolation);
+    comptR_Q=(comptR_Q+pas)%(Npt*interpolation);
+    comptD_Q=(comptD_Q+pas)%(Npt*interpolation);
     int i;
-    for (i=retard;i>0;i--){
+    for (i=rtd;i>0;i--){
         feedback[i]=feedback[i-1];
     }
     feedback[0]=bbfb.getfeedback();
@@ -84,16 +84,6 @@ void Pixel::setinputLC(double input)
 double Pixel::getbiasm()
 {
     return tes.getbiasm();
-}
-
-/*void Pixel::setPo(double P)
-{
-    tes.setPo(P);
-}*/
-
-int Pixel::getretard()
-{
-    return retard;
 }
 
 void Pixel::setI(double p)

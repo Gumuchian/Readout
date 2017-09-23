@@ -1,23 +1,21 @@
 #include "BBFB.h"
 #include <math.h>
+#include "ressources.h"
 
 BBFB::BBFB()
 {
-
+    I=0;
+    Q=0;
+    feedback=0;
 }
 
-BBFB::BBFB(double gain):I(0),Q(0),feedback(0),gain(gain)
-{
-
-}
-
-void BBFB::compute_feedback(double demoduI, double remoduI, double demoduQ, double remoduQ, int precision, double input)
+void BBFB::compute_feedback(double demoduI, double remoduI, double demoduQ, double remoduQ, double input)
 {
     // Integrateur sur I et Q, /pow(2,17+13) troncature de (17+13) bits cf. codes VHDL: Integrator.vhd: ligne 74 et Real_mult_Complex.vhd :ligne 63-64
-    I+=trunc((gain*demoduI*input)/(precision*pow(2,12)));
-    Q+=trunc((gain*demoduQ*input)/(precision*pow(2,12)));
+    I+=trunc((G*demoduI*input)/(Npr*pow(2,ADC_bit)));
+    Q+=trunc((G*demoduQ*input)/(Npr*pow(2,ADC_bit)));
     // pow(2,20) troncation de 20 bits cf. Complex_mult_Real: ligne 67
-    feedback = trunc(remoduI*I/precision)+trunc(remoduQ*Q/precision);
+    feedback = trunc(remoduI*I/Npr)+trunc(remoduQ*Q/Npr);
 }
 
 double BBFB::getfeedback()

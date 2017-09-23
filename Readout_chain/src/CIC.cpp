@@ -1,12 +1,11 @@
 #include "CIC.h"
 #include <math.h>
+#include <ressources.h>
 
 CIC::CIC()
 {
     int i;
-    f_decimation = 128;
     indice = 0;
-    ordre = 2;
     access = false;
     integ = new double*[ordre+1];
     acc = new double*[ordre+1];
@@ -26,7 +25,7 @@ double CIC::compute(double input)
     integ[0][1]=input;
     for (i=1;i<ordre+1;i++)
     {
-        integ[i][1]=integrateur(integ[i][0],integ[i-1][1]/f_decimation);
+        integ[i][1]=integrateur(integ[i][0],integ[i-1][1]/decimation);
     }
     if (indice==0)
     {
@@ -47,7 +46,7 @@ double CIC::compute(double input)
         integ[i][0]=integ[i][1];
     }
     indice++;
-    indice=indice%f_decimation;
+    indice=indice%decimation;
     return acc[ordre][1];
 }
 

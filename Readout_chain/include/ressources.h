@@ -2,41 +2,58 @@
 #define RESSOURCES_H_INCLUDED
 
 // paramètres de simulation
-int Np=20000000;
-int N_pix=1;
+
+const double fe=20000000; //fréquence d'échantillonnage
+const int N=2000000; //nombre de pas de la simulation
+const int Npix=1; // nombre de pixels
+const double prctg=0.2;
+const double PI=3.1415926535;
 
 // paramètres DDS
-int Npt=pow(2,9);
-int Npr=pow(2,18);
-int interp=pow(2,7);
+const int Npt=pow(2,9); // nombre de valeur du DDS
+const int Npr=pow(2,18); // nombre de bits pour coder une valeur
+const int interpolation=pow(2,20-9); // facteur d'interpolation
 
 // paramètres du bruit
-double dsl=0.1*pow(10,-12);
-double B=1000;
-double Ba=10000000;
-double dsla=1.0*pow(10,-9);
+const double dsl=1.0*pow(10,-12); // densité spectrale linéaire d'un TES (A/sqrt(Hz)
+const double Btes=1000; // bande de bruit du TES
+const double Ba=10000000; // bande de bruit du LNA
+const double dsla=1.0*pow(10,-9); // densité spectrale linéaire du LNA (V/sqrt(Hz)
+const double fc=1000.0; // frequence de coupure de la bande de bruit du TES
 
 // Pulse fichier texte
-int N_pulse=140000;
+const int Np=140000; // nombre de points d'un pulse
+const double energie=9847; // énergie d'un pulse
 
 // CIC
-int decim =128;
+const int decimation=128; // facteur de décimation
+const int ordre=3; // ordre du CIC
 
-//BBFB
-double Gb=37000;
+// BBFB
+const double G=5000; // gain de l'intégrateur
+const double Gb=500; // gain du feedback
+const static int rtd=0; // retard de boucle (en pas de simulation)
 
-// paramètres du LC-TES
-double R0=0.001;
-double T0=0.09;
-double I0=51.5*pow(10,-6);
-double V=51.5*pow(10,-9);
-double alpha=75;
-double beta=1.25;
-double G=115.0*pow(10,-12);
-double C=0.8*pow(10,-12);
-double Tbath=0.055;
-double Rl=60*pow(10,-6);
-double L=121*pow(10,-9);
-double TR=4.08;
+// DAC
+const double PE=0.02; // pleine échelle (A)
+const int DAC_bit=16; // nombre de bits du DAC
+
+// ADC
+const int ADC_bit=12; // nombre de bits de l'ADC
+
+// Filtre
+const double G_filtre=0.5; // gain du filtre de reconstruction et de l'anti-aliasing
+
+// LNA
+const double G_LNA=80; // gain du LNA
+
+// SQUID
+const double G_SQUID=0.0017/(5.8*pow(10,-6)); // transimpédance du SQUID
+
+// Paramètres du LC-TES
+const double R0=0.001;
+const double I0=51.5*pow(10,-6);
+const double TR=4.08;
+const double Lc=2*pow(10,-6);
 
 #endif // RESSOURCES_H_INCLUDED

@@ -4,25 +4,14 @@
 #include <fstream>
 #include <string>
 #include <random>
+#include <iostream>
+#include "ressources.h"
 
-Channel::Channel()
-{
-
-}
-
-/* Constructeur:
-    _ N = nombre de pixels
-    _ taille = taille de la table DDS
-    _ precision = maximum des valeurs stockées dans la table DDS
-    _ interp = nombre de points d'interpolation
-    _ retard = retard de boucle exprimé en nombre de pas de simulations*/
-Channel::Channel(int N, int taille, int precision, int interp, int retard):N(N),dds(taille,precision,interp),taille(taille),precision(precision),interp(interp),gen((std::random_device())())
+Channel::Channel():dds(Npt,Npr,interpolation)
 {
     int i;
     input=0;
     fck=0;
-    Ba=10000000;
-    dsla=1.0*pow(10,-9);
     std::string str;
     char* ptr;
     double frequence[40];
@@ -35,10 +24,8 @@ Channel::Channel(int N, int taille, int precision, int interp, int retard):N(N),
             frequence[i]=strtod(str.c_str(),&ptr);
         }
     }
-    for (i=0;i<N;i++){
-        //ch.push_back(Pixel(20000000.0/(taille*interp)*round((1000000.0+i*100000.0)*taille*interp/20000000.0),trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,5000,20000000.0,taille*interp,1));
-        //ch.push_back(Pixel(974500.0+i*100000.0,trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,5000,20000000.0,taille*interp,1));
-        ch.push_back(Pixel(1000000.0+i*100000.0,frequence[i],trunc(pow(i,2)*(taille*interp)/(2*N)),0,1,5000,20000000.0,taille*interp,precision,1));
+    for (i=0;i<Npix;i++){
+        ch.push_back(Pixel(1000000.0+i*100000.0,frequence[i],trunc(pow(i,2)*(Npt*interpolation)/(2*Npix))));
     }
 }
 
@@ -47,10 +34,10 @@ double Channel::sumPolar()
 {
     int i;
     double sum=0;
-    for (i=0;i<N;i++){
+    for (i=0;i<Npix;i++){
         sum=sum+dds.getvalue(ch[i].getcomptR_I());
     }
-    for (i=0;i<N;i++){
+    for (i=0;i<Npix;i++){
         ch[i].setinputLC(sum);
     }
     return sum;
@@ -61,7 +48,7 @@ void Channel::computeLC_TES()
 {
     int i;
     double sum=0;
-    for (i=0;i<N;i++){
+    for (i=0;i<Npix;i++){
         sum=sum+ch[i].computeLC();
     }
     input=sum;
@@ -71,29 +58,29 @@ void Channel::computeLC_TES()
 double Channel::computeBBFB()
 {
     int i;
-    double adc,G=500,feedback=0;
+    double adc,feedback=0;
     //somme du feedback de chaque pixel
     std::normal_distribution<double> bbg(0.0,dsla*sqrt(Ba));
-    for (i=0;i<N;i++){
+    for (i=0;i<Npix;i++){
         feedback=feedback+ch[i].getfeedback();
     }
     /*G = gain du feedback
     0.5 = attenuation du filtre
     0.01/pow(2,15) = conversion du DAC
     pow(2,19) = troncation de 19 bits*/
-    feedback=0.5*0.02/pow(2,16)*trunc(G*feedback/precision);
+    feedback=G_filtre*PE/pow(2,DAC_bit)*trunc(Gb*feedback/Npr);
     //dac = entrée du DAC
     /*0.5 = attenuation du filtre
     80 = gain du LNA
     0.0017/(5.8*pow(10,-6)) = transimpedance du SQUID, facteur 0.1 sur feedback
     */
-    adc=0.5*80*0.0017/(5.8*pow(10,-6))*(input-0.1*feedback)+bbg(gen)*0.5;
+    adc=G_filtre*(G_LNA*G_SQUID*(input-0.1*feedback)+bbg(gen));
     fck=feedback;
     // Calcul du feedback pour chaque pixel
-    for (i=0;i<N;i++)
+    for (i=0;i<Npix;i++)
     {
         //dds.getvalue donne la valeur de la table DDS pour le compteur ch[i].getcompt(D_I(),D_Q(),R_I(),R_Q()) pour le pixel i, trunc(pow(2,12)*adc) : conversion de l'adc en numérique
-        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,12)*adc),precision,taille*interp);
+        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,ADC_bit)*adc));
     }
     return input;
 }
@@ -107,11 +94,6 @@ double Channel::computeBBFB()
  {
      return fck;
  }
-
- /*void Channel::setPo(double P)
- {
-     ch[0].setPo(P);
- }*/
 
  double Channel::getmod()
  {
