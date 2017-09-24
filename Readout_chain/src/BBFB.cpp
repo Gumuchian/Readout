@@ -12,8 +12,8 @@ BBFB::BBFB()
 void BBFB::compute_feedback(double demoduI, double remoduI, double demoduQ, double remoduQ, double input)
 {
     // Integrateur sur I et Q, /pow(2,17+13) troncature de (17+13) bits cf. codes VHDL: Integrator.vhd: ligne 74 et Real_mult_Complex.vhd :ligne 63-64
-    I+=trunc((G*demoduI*input)/(Npr*pow(2,ADC_bit)));
-    Q+=trunc((G*demoduQ*input)/(Npr*pow(2,ADC_bit)));
+    I+=trunc((G*demoduI*input)/(Npr*pow(2,12)));
+    Q+=trunc((G*demoduQ*input)/(Npr*pow(2,12)));
     // pow(2,20) troncation de 20 bits cf. Complex_mult_Real: ligne 67
     feedback = trunc(remoduI*I/Npr)+trunc(remoduQ*Q/Npr);
 }

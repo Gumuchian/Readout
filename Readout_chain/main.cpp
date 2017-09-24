@@ -19,13 +19,13 @@ int main()
 {
     Channel ch0;
     CIC cic;
-    int i,k,m,ip=0,j=0,l=0;
+    int i,k,m,ip=0,l=0;
     vector<double> module(Np/decimation,0);
     vector<double> E;
     vector<double> tab(trunc(2*prctg*Np/decimation),0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,P=0,maxi,max_tab,a;
+    double sum,Em=0,var=0,P=0,maxi,a,max_tab;
     double pulse[Np];
     double pattern[Np/decimation];
     ofstream fichier("test.txt", ios::out);
@@ -62,10 +62,10 @@ int main()
                 maxi=ch0.getmod();
             }
 
-            a=cic.compute(ch0.getmod()-maxi);
+            a=cic.compute(ch0.getmod());
             if (cic.getaccess() && i>(int)(Np*(1-prctg)))
             {
-                module.push_back(-a);
+                module.push_back(maxi-a);
                 module.erase(module.begin());
                 if (l<trunc(2*prctg*Np/decimation))
                 {
@@ -86,13 +86,11 @@ int main()
                             max_tab=tab[m];
                         }
                     }
-                    E.push_back(12000*max_tab/(P*1.217376343));
+                    E.push_back(12000*max_tab/(P*0.987368908882609));
                 }
                 l++;
                 l=l%(Np/decimation);
             }
-            j++;
-            j=j%decimation;
             ip++;
             ip=ip%Np;
         }

@@ -3,7 +3,6 @@
 #include <fstream>
 #include <random>
 #include "ressources.h"
-#include <iostream>
 
 TES::TES():gen((std::random_device())())
 {
@@ -15,12 +14,11 @@ TES::TES():gen((std::random_device())())
 
 double TES::computeLCTES(double freq)
 {
-    double Ccar=(1/(4*pow(PI,2)*Lc*pow(freq,2))),
+    double Ccar=(1/(4*pow(PI,2)*L*pow(freq,2))),
     Ccp=Ccar/100.0,
     A=Ccp,
     B=pow(TR,2)*R0*(Ccar+Ccp),
-    C=Lc*(Ccar+Ccp);
-    // Calcul de l'effet du LC
+    C=L*(Ccar+Ccp);
     bias[2]=bias[2]/Npr;
     biasm[2]=(-(2-8*C*pow(fe,2))*biasm[1]-(1-2*fe*B+4*pow(fe,2)*C)*biasm[0]+2*fe*A*(bias[2]-bias[0]))/(2*fe*B+1+4*C*pow(fe,2));
     biasm[0]=biasm[1];
@@ -33,7 +31,7 @@ double TES::computeLCTES(double freq)
     bbfi[0]=bbfi[1];
     bbfo[0]=bbfo[1];
     //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 0.5941)
-    return biasm[2]*(I*sqrt(2)+bbfo[1])/0.481859849392335/TR;
+    return biasm[2]/0.594528739972466*(I*sqrt(2)+bbfo[1])/TR;//0.481859849392335
 }
 
 void TES::setbias(double biass)
