@@ -1,6 +1,7 @@
 #include "CIC.h"
 #include <math.h>
 #include <ressources.h>
+#include <iostream>
 
 CIC::CIC()
 {

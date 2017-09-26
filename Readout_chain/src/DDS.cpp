@@ -1,5 +1,6 @@
 #include "DDS.h"
 #include <math.h>
+#include <ressources.h>
 
 DDS::DDS()
 {
@@ -15,7 +16,7 @@ DDS::DDS(int taille, int precision, int interp)
     int i,j;
     // generation de la table DDS
     for (i=0;i<taille+1;i++){
-        table[i*interp]=trunc((precision-1)*cos(2*M_PI*i/taille));
+        table[i*interp]=trunc(precision*cos(2*PI*i/taille));
     }
     for (i=0;i<taille;i++){
         for (j=0;j<interp;j++){

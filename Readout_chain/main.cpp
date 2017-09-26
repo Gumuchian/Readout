@@ -12,22 +12,23 @@
 #include <algorithm>
 #include "ressources.h"
 #include <CIC.h>
+#include <DDS.h>
 
 using namespace std;
 
 int main()
 {
+    DDS dds;
     Channel ch0;
     CIC cic;
-    int i,k,m,ip=0,l=0;
-    vector<double> module(Np/decimation,0);
+    int i,k,m,ip=0,l=0,n=0;
+    vector<double> module(Np/decimation+1,0);
     vector<double> E;
-    vector<double> tab(trunc(2*prctg*Np/decimation),0);
     string str;
     char* ptr;
-    double sum,Em=0,var=0,P=0,maxi,a,max_tab;
+    double sum,Em=0,var=0,P=0,maxi,a;
     double pulse[Np];
-    double pattern[Np/decimation];
+    double pattern[Np/decimation+1];
     ofstream fichier("test.txt", ios::out);
     ifstream fichier1("Pulse.txt", ios::out);
     if(fichier1)
@@ -38,9 +39,9 @@ int main()
         }
         maxi=pulse[0];
     }
-    for (i=0;i<(Np/decimation);i++)
+    for (i=0;i<Np/decimation+1;i++)
     {
-        pattern[i]=pulse[0]-pulse[(Np/decimation-1)*decimation-i*decimation];
+        pattern[i]=pulse[0]-pulse[Np/decimation*decimation-i*decimation];
         P=P+pow(pattern[i],2);
     }
     fichier1.close();
@@ -57,39 +58,32 @@ int main()
             // compute le feedback
             ch0.computeBBFB();
 
-            if (i==Np)
+            if (i==Np+100)
             {
                 maxi=ch0.getmod();
             }
-
-            a=cic.compute(ch0.getmod());
-            if (cic.getaccess() && i>(int)(Np*(1-prctg)))
-            {
-                module.push_back(maxi-a);
-                module.erase(module.begin());
-                if (l<trunc(2*prctg*Np/decimation))
+            fichier << ch0.getmod() << endl;
+            if (i>Np){
+                a=cic.compute(maxi-ch0.getmod());
+                if (cic.getaccess())
                 {
-                    sum=0;
-                    for (k=0;k<(Np/decimation);k++)
+                    module.push_back(a);
+                    module.erase(module.begin());
+                    if (l==0)
                     {
-                        sum=(module[Np/decimation-1-k]*G_filtre*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
-                    }
-                    tab[l]=sum;
-                }
-                if(l==trunc(2*prctg*Np/decimation))
-                {
-                    max_tab=0;
-                    for (m=0;m<(int)tab.size();m++)
-                    {
-                        if (tab[m]>max_tab)
+                        sum=0;
+                        for (k=0;k<Np/decimation+1;k++)
                         {
-                            max_tab=tab[m];
+                            sum=(module[Np/decimation-k]*G_filtre*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
                         }
+                        E.push_back(12000*sum/(P*0.999153764893092));
+                        n++;
+                        if (n==4){m=1;}else{m=0;}
+                        n=n%4;
                     }
-                    E.push_back(12000*max_tab/(P*0.987368908882609));
+                    l++;
+                    l=l%(Np/decimation+1-m);
                 }
-                l++;
-                l=l%(Np/decimation);
             }
             ip++;
             ip=ip%Np;

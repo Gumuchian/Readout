@@ -12,8 +12,6 @@ class CIC
         bool getaccess();
 
     private:
-        int ordre;
-        int f_decimation;
         int indice;
         double **integ;
         double **acc;

@@ -1,11 +1,11 @@
 #ifndef RESSOURCES_H_INCLUDED
 #define RESSOURCES_H_INCLUDED
+#include <math.h>
 
 // paramètres de simulation
 const double fe=20000000; // fréquence d'échantillonnage
 const int N=2000000; // nombre de pas de la simulation
-const int Npix=1; // nombre de pixels
-const double prctg=0.2;
+const int Npix=2; // nombre de pixels
 const double PI=3.1415926535;
 
 // paramètres DDS
@@ -22,7 +22,7 @@ const double fc=1000; // frequence de coupure de la bande de bruit du TES
 
 // Pulse fichier texte
 const int Np=140000; // nombre de points d'un pulse
-const double energie=706; // énergie d'un pulse en eV
+const double energie=5256; // énergie d'un pulse en eV
 
 // CIC
 const int decimation=128; // facteur de décimation
@@ -30,7 +30,8 @@ const int ordre=3; // ordre du CIC
 
 // BBFB
 const double G=5000; // gain de l'intégrateur
-const double Gb=512; // gain du feedback
+const int G_bits=12;
+const double Gb=500; // gain du feedback
 const static int rtd=0; // retard de boucle (en pas de simulation)
 
 // DAC

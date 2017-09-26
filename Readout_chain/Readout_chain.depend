@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1506295535 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1506446537 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -76,8 +76,9 @@
 	<algorithm>
 	"ressources.h"
 	<CIC.h>
+	<DDS.h>
 
-1496758328 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
+1506430205 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
 1506169274 c:\users\paul\documents\github\readout\readout_chain\include\pixel.h
 	"BBFB.h"
@@ -85,12 +86,12 @@
 
 1506102163 c:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
 
-1506210272 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
+1506447082 source:c:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
 	"BBFB.h"
 	<math.h>
 	"ressources.h"
 
-1506167738 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1506432427 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
@@ -106,9 +107,10 @@
 	"DDS.h"
 	<random>
 
-1497998772 source:c:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
+1506432427 source:c:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
 	"DDS.h"
 	<math.h>
+	<ressources.h>
 
 1506169302 source:c:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
 	"Pixel.h"
@@ -134,12 +136,14 @@
 	"TES.h"
 	<math.h>
 
-1506177361 source:c:\users\paul\documents\github\readout\readout_chain\src\cic.cpp
+1506431712 source:c:\users\paul\documents\github\readout\readout_chain\src\cic.cpp
 	"CIC.h"
 	<math.h>
 	<ressources.h>
+	<iostream>
 
-1505478135 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
+1506430829 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
 
-1506298197 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+1506447563 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+	<math.h>
 
