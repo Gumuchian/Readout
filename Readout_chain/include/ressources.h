@@ -2,18 +2,18 @@
 #define RESSOURCES_H_INCLUDED
 #include <math.h>
 
-// paramètres de simulation
+// Paramètres de simulation
 const double fe=20000000; // fréquence d'échantillonnage
 const int N=2000000; // nombre de pas de la simulation
-const int Npix=1; // nombre de pixels
+const int Npix=3; // nombre de pixels
 const double PI=3.1415926535;
 
-// paramètres DDS
+// Paramètres DDS
 const int Npt=pow(2,9); // nombre de valeur du DDS
 const int Npr=pow(2,18); // nombre de bits pour coder une valeur
 const int interpolation=pow(2,20-9); // facteur d'interpolation
 
-// paramètres du bruit
+// Paramètres du bruit
 const double dsl=5.1*pow(10,-12); // densité spectrale linéaire d'un TES (A/sqrt(Hz)
 const double dsla=0.8*pow(10,-9); // densité spectrale linéaire du LNA (V/sqrt(Hz)
 const double Btes=1000; // bande de bruit du TES
@@ -30,7 +30,7 @@ const int ordre=3; // ordre du CIC
 
 // BBFB
 const double G=255; // gain de l'intégrateur
-const int G_bits=12;
+const int G_bits=8;
 const double Gb=500; // gain du feedback
 const static int rtd=0; // retard de boucle (en pas de simulation)
 

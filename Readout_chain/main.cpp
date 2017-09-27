@@ -18,7 +18,6 @@ using namespace std;
 
 int main()
 {
-    DDS dds;
     Channel ch0;
     CIC cic;
     int i,k,m,ip=0,l=0,n=0;
@@ -58,7 +57,7 @@ int main()
             // compute le feedback
             ch0.computeBBFB();
 
-            if (i==Np+100)
+            if (i==Np)
             {
                 maxi=ch0.getmod();
             }
@@ -67,6 +66,7 @@ int main()
                 a=cic.compute(maxi-ch0.getmod());
                 if (cic.getaccess())
                 {
+                    fichier << ch0.getmod() << endl;
                     module.push_back(a);
                     module.erase(module.begin());
                     if (l==0)
@@ -76,7 +76,7 @@ int main()
                         {
                             sum=(module[Np/decimation-k]*G_filtre*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
                         }
-                        E.push_back(12000*sum/(P*0.999153764893092));
+                        E.push_back(12000*sum/P);
                         n++;
                         if (n==4){m=1;}else{m=0;}
                         n=n%4;
