@@ -15,12 +15,12 @@ Pixel::Pixel(double frequence, double frequence_ideale, int phase_initiale):freq
     // les attributs compt(R_I,R_Q ...) sont les compteurs pour la table DDS
     comptR_I=phase_initiale%(Npt*interpolation);
     comptR_Q=(comptR_I+(Npt*interpolation)/4)%(Npt*interpolation);
-    comptD_I=((Npt*interpolation)-((int)((Npt*interpolation)*rtd*(frequence_ideale/fe))%(Npt*interpolation))+phase_initiale)%(Npt*interpolation);
+    comptD_I=((Npt*interpolation-((int)(Npt*interpolation*rtd*frequence_ideale/fs))%(Npt*interpolation))+phase_initiale)%(Npt*interpolation);
     comptD_Q=(comptD_I+(Npt*interpolation)/4)%(Npt*interpolation);
-    pas=(int)round((Npt*interpolation)*(frequence_ideale/fe));
+    pas=(int)round((Npt*interpolation)*(frequence_ideale/fs));
     feedback=new double[rtd+1];
     int i;
-    for (i=0;i<rtd;i++){
+    for (i=0;i<rtd+1;i++){
         feedback[i]=0;
     }
 }

@@ -22,6 +22,7 @@ class Channel
         DDS dds;
         double input;
         double fck;
+        double slope;
         std::mt19937 gen;
 };
 

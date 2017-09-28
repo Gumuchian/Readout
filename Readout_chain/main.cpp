@@ -54,19 +54,17 @@ int main()
             ch0.setI(pulse[0]-energie/12000.0*(pulse[0]-pulse[ip]));
             // compute LC_TES = sortie du LC-T ES
             ch0.computeLC_TES();
-            // compute le feedback
+            // compute feedback
             ch0.computeBBFB();
-
+            fichier << ch0.getfck() << endl;
             if (i==Np)
             {
                 maxi=ch0.getmod();
             }
-            fichier << ch0.getmod() << endl;
             if (i>Np){
                 a=cic.compute(maxi-ch0.getmod());
                 if (cic.getaccess())
                 {
-                    fichier << ch0.getmod() << endl;
                     module.push_back(a);
                     module.erase(module.begin());
                     if (l==0)
@@ -74,7 +72,7 @@ int main()
                         sum=0;
                         for (k=0;k<Np/decimation+1;k++)
                         {
-                            sum=(module[Np/decimation-k]*G_filtre*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
+                            sum=(module[Np/decimation-k]*G_filter*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
                         }
                         E.push_back(12000*sum/P);
                         n++;

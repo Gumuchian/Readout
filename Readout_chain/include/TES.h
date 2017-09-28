@@ -2,9 +2,6 @@
 #define TES_H
 #include <random>
 
-//typedef double (*ptrm) (double,double,double);
-
-
 class TES
 {
     public:
@@ -13,7 +10,6 @@ class TES
         void setbias(double biass);
         double getI();
         double getbiasm();
-        //void setPo(double P);
         void setI(double p);
     protected:
 

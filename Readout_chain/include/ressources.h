@@ -2,55 +2,55 @@
 #define RESSOURCES_H_INCLUDED
 #include <math.h>
 
-// Paramètres de simulation
-const double fe=20000000; // fréquence d'échantillonnage
-const int N=2000000; // nombre de pas de la simulation
-const int Npix=3; // nombre de pixels
-const double PI=3.1415926535;
+// Simulation parameters
+const double fs=20000000; // sampling frequency
+const int N=2000000; // simulation step
+const int Npix=2; // pixels number
+const double PI=3.1415926535; // don't touch !!
 
 // Paramètres DDS
-const int Npt=pow(2,9); // nombre de valeur du DDS
-const int Npr=pow(2,18); // nombre de bits pour coder une valeur
-const int interpolation=pow(2,20-9); // facteur d'interpolation
+const int Npt=pow(2,9); // DDS values
+const int Npr=pow(2,18); // DDS value accuracy
+const int interpolation=pow(2,20-9); // Interpolation factor
 
 // Paramètres du bruit
-const double dsl=5.1*pow(10,-12); // densité spectrale linéaire d'un TES (A/sqrt(Hz)
-const double dsla=0.8*pow(10,-9); // densité spectrale linéaire du LNA (V/sqrt(Hz)
-const double Btes=1000; // bande de bruit du TES
-const double Ba=20000000; // bande de bruit du LNA
-const double fc=1000; // frequence de coupure de la bande de bruit du TES
+const double dsl=105*pow(10,-12); // Spectral linear density of a TES (DC) (A/sqrt(Hz)
+const double dsla=0.8*pow(10,-7); // Spectral linear density of LNA (V/sqrt(Hz)
+const double Btes=560; // TES bandwidth noise
+const double Ba=20000000; // LNA bandwidth noise
+const double fc=2000; // but frequency of TES bandwitdh noise
 
 // Pulse fichier texte
-const int Np=140000; // nombre de points d'un pulse
-const double energie=5256; // énergie d'un pulse en eV
+const int Np=140000; // don't touch !!
+const double energie=5256; // energy of the injected X-rays (eV)
 
 // CIC
-const int decimation=128; // facteur de décimation
-const int ordre=3; // ordre du CIC
+const int decimation=128; // down sampling factor
+const int ordre=3; // CIC order
 
 // BBFB
-const double G=255; // gain de l'intégrateur
-const int G_bits=8;
-const double Gb=500; // gain du feedback
-const static int rtd=0; // retard de boucle (en pas de simulation)
+const double G=155; // Integrator gain
+const int G_bits=8; // number of bits used to encode integrator gain
+const double Gb=500; // feedback gain
+const static int rtd=10; // loop delay (simulation step)
 
 // DAC
-const double PE=0.02; // pleine échelle (A)
-const int DAC_bit=16; // nombre de bits du DAC
+const double PE=0.02; // full scale (A)
+const int DAC_bit=16; // number of bits of DAC
 
 // ADC
-const int ADC_bit=12; // nombre de bits de l'ADC
+const int ADC_bit=12; // number of bits of ADC
 
-// Filtre
-const double G_filtre=0.5; // gain du filtre de reconstruction et de l'anti-aliasing
+// Filter
+const double G_filter=0.5; // anti-aliasing/reconstruction filter gain
 
 // LNA
-const double G_LNA=80; // gain du LNA
+const double G_LNA=80; // LNA gain
 
 // SQUID
-const double G_SQUID=0.0017/(5.8*pow(10,-6)); // transimpédance du SQUID
+const double G_SQUID=0.0017/(5.8*pow(10,-6)); // SQUID transimpedance
 
-// Paramètres du LC-TES
+// LC-TES parameters
 const double R0=0.001;
 const double I0=51.5*pow(10,-6);
 const double TR=4.08;
