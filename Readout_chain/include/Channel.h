@@ -21,8 +21,7 @@ class Channel
         std::vector<Pixel> ch;
         DDS dds;
         double input;
-        double fck;
-        double slope;
+        double *feedback;
         std::mt19937 gen;
 };
 

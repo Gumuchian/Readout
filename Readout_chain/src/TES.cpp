@@ -25,7 +25,7 @@ double TES::computeLCTES(double freq)
     biasm[1]=biasm[2];
     bias[0]=bias[1];
     bias[1]=bias[2];
-    std::normal_distribution<double> bbg(0,dsl*sqrt(Btes));
+    std::normal_distribution<double> bbg(0,TES_dsl*sqrt(Btes));
     bbfi[1]=bbg(gen);
     bbfo[1]=(bbfi[1]+bbfi[0]+(fs/(PI*fc)-1)*bbfo[0])/(fs/(PI*fc)+1);
     bbfi[0]=bbfi[1];

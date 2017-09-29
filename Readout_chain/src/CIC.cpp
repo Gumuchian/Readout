@@ -6,15 +6,15 @@
 CIC::CIC()
 {
     int i;
-    indice = 0;
+    index = 0;
     access = false;
-    integ = new double*[ordre+1];
-    acc = new double*[ordre+1];
-    for (i=0;i<ordre+1;i++)
+    integ = new double*[order+1];
+    comb = new double*[order+1];
+    for (i=0;i<order+1;i++)
     {
         integ[i]=new double[2];
-        acc[i]=new double[2];
-        acc[i][0]=0;acc[i][1]=0;
+        comb[i]=new double[2];
+        comb[i][0]=0;comb[i][1]=0;
         integ[i][0]=0;integ[i][1]=0;
     }
 }
@@ -24,41 +24,31 @@ double CIC::compute(double input)
 {
     int i;
     integ[0][1]=input;
-    for (i=1;i<ordre+1;i++)
+    for (i=1;i<order+1;i++)
     {
-        integ[i][1]=integrateur(integ[i][0],integ[i-1][1]/decimation);
+        integ[i][1]=integ[i][0]+integ[i-1][1]/decimation;
     }
-    if (indice==0)
+    if (index==0)
     {
-        acc[0][1]=integ[ordre][1];
-        for (i=1;i<ordre+1;i++)
+        comb[0][1]=integ[order][1];
+        for (i=1;i<order+1;i++)
         {
-            acc[i][1]=accumulateur(acc[i-1][0],acc[i-1][1]);
+            comb[i][1]=comb[i-1][1]-comb[i-1][0];
         }
-        for (i=0;i<ordre+1;i++)
+        for (i=0;i<order+1;i++)
         {
-            acc[i][0]=acc[i][1];
+            comb[i][0]=comb[i][1];
         }
         access = true;
     }
     else {access = false;}
-    for (i=0;i<ordre+1;i++)
+    for (i=0;i<order+1;i++)
     {
         integ[i][0]=integ[i][1];
     }
-    indice++;
-    indice=indice%decimation;
-    return acc[ordre][1];
-}
-
-double CIC::integrateur(double x0, double y0)
-{
-    return x0+y0;
-}
-
-double CIC::accumulateur(double x0, double x1)
-{
-    return x1-x0;
+    index++;
+    index=index%decimation;
+    return comb[order][1];
 }
 
 bool CIC::getaccess()

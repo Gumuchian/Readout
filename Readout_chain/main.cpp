@@ -28,12 +28,12 @@ int main()
     double sum,Em=0,var=0,P=0,maxi,a;
     double pulse[Np];
     double pattern[Np/decimation+1];
-    ofstream fichier("test.txt", ios::out);
-    ifstream fichier1("Pulse.txt", ios::out);
-    if(fichier1)
+    ofstream file("test.txt", ios::out);
+    ifstream file1("Pulse.txt", ios::out);
+    if(file1)
     {
         for (i=0;i<Np;i++){
-            getline(fichier1,str);
+            getline(file1,str);
             pulse[i]=strtod(str.c_str(),&ptr);
         }
         maxi=pulse[0];
@@ -43,20 +43,20 @@ int main()
         pattern[i]=pulse[0]-pulse[Np/decimation*decimation-i*decimation];
         P=P+pow(pattern[i],2);
     }
-    fichier1.close();
-    if(fichier)
+    file1.close();
+    if(file)
     {
         for (i=0;i<N;i++)
         {
-            // sumPolar = somme des bias de chaque pixel
+            // sumPolar = bias sum of each pixel
             ch0.sumPolar();
-            // modulation du bias par pulse
-            ch0.setI(pulse[0]-energie/12000.0*(pulse[0]-pulse[ip]));
-            // compute LC_TES = sortie du LC-T ES
+            // bias modulation by pulse
+            ch0.setI(pulse[0]-energy/12000.0*(pulse[0]-pulse[ip]));
+            // compute LC_TES = output of LC-TES
             ch0.computeLC_TES();
             // compute feedback
             ch0.computeBBFB();
-            fichier << ch0.getfck() << endl;
+
             if (i==Np)
             {
                 maxi=ch0.getmod();
@@ -86,7 +86,7 @@ int main()
             ip++;
             ip=ip%Np;
         }
-        fichier.close();
+        file.close();
         for (i=3;i<(int)E.size();i++)
         {
             Em=abs(E[i])+Em;
@@ -96,8 +96,8 @@ int main()
         {
             var=pow(abs(E[i])-Em,2)+var;
         }
-        cout << "Energie inject\202e: " << energie << " eV" << endl << "Energie moyenne estim\202e: " << Em << " eV" << endl << "Erreur relative: " << abs(energie-Em)/energie << endl;
-        cout << "R\202solution: " << sqrt(var/(E.size()-3)) << " eV" << endl;
+        cout << "Input energy: " << energy << " eV" << endl << "Energy estimation: " << Em << " eV" << endl << "Relative error: " << abs(energy-Em)/energy << endl;
+        cout << "Resolution: " << sqrt(var/(E.size()-3)) << " eV" << endl;
     }
     return 0;
 }
