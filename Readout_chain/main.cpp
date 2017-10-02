@@ -27,9 +27,10 @@ int main()
     char* ptr;
     double sum,Em=0,var=0,P=0,maxi,a;
     double pulse[Np];
-    double pattern[Np/decimation+1];
+    double pattern[Np/decimation+1];//,pat[Np/decimation+1];
     ofstream file("test.txt", ios::out);
     ifstream file1("Pulse.txt", ios::out);
+    ifstream file2("OF.txt",ios::out);
     if(file1)
     {
         for (i=0;i<Np;i++){
@@ -38,12 +39,22 @@ int main()
         }
         maxi=pulse[0];
     }
+    file1.close();
+    /*if(file2)
+    {
+        for (i=0;i<Np/128+1;i++){
+            getline(file2,str);
+            pat[i]=strtod(str.c_str(),&ptr);
+            pattern[Np/128-i]=pat[i];
+            P=P+pow(pat[i],2);
+        }
+    }
+    file2.close();*/
     for (i=0;i<Np/decimation+1;i++)
     {
         pattern[i]=pulse[0]-pulse[Np/decimation*decimation-i*decimation];
         P=P+pow(pattern[i],2);
     }
-    file1.close();
     if(file)
     {
         for (i=0;i<N;i++)
