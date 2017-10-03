@@ -13,13 +13,15 @@
 #include "ressources.h"
 #include <CIC.h>
 #include <DDS.h>
+#include <Butterworth.h>
 
 using namespace std;
 
 int main()
 {
     Channel ch0;
-    CIC cic;
+    //CIC cic;
+    Butterworth Butter;
     int i,k,m,ip=0,l=0,n=0;
     vector<double> module(Np/decimation+1,0);
     vector<double> E;
@@ -73,9 +75,12 @@ int main()
                 maxi=ch0.getmod();
             }
             if (i>Np){
-                a=cic.compute(maxi-ch0.getmod());
-                if (cic.getaccess())
+                //a=cic.compute(maxi-ch0.getmod());
+                a=Butter.compute(maxi-ch0.getmod());
+                //if (cic.getaccess())
+                if(Butter.getaccess())
                 {
+                    //file << a << ";" << ch0.getmod() << endl;
                     module.push_back(a);
                     module.erase(module.begin());
                     if (l==0)

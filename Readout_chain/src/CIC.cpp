@@ -26,7 +26,7 @@ double CIC::compute(double input)
     integ[0][1]=input;
     for (i=1;i<order+1;i++)
     {
-        integ[i][1]=integ[i][0]+integ[i-1][1]/decimation;
+        integ[i][1]=integ[i][0]+integ[i-1][1];
     }
     if (index==0)
     {
@@ -48,7 +48,7 @@ double CIC::compute(double input)
     }
     index++;
     index=index%decimation;
-    return comb[order][1];
+    return comb[order][1]/pow(decimation,order);
 }
 
 bool CIC::getaccess()
