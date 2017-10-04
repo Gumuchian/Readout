@@ -60,14 +60,17 @@ double Channel::computeBBFB()
 {
     int i;
     double adc;
-    std::normal_distribution<double> bbg(0.0,LNA_dsl*sqrt(Ba));
+    std::normal_distribution<double> lna_noise(0.0,LNA_dsl*sqrt(Ba));
+    std::normal_distribution<double> SQUID_noise(0.0,SQUID_dsl*sqrt(B_SQUID));
+    std::normal_distribution<double> dac_f_noise(0.0,DAC_dsl*sqrt(B_DAC));
+    std::normal_distribution<double> adc_noise(0.0,ADC_dsl*sqrt(B_ADC));
     feedback[0]=0;
     for (i=0;i<Npix;i++)
     {
         feedback[0]=feedback[0]+ch[i].getfeedback();
     }
     feedback[0]=G_filter*PE/pow(2,DAC_bit)*trunc(Gb*feedback[0]/Npr);
-    adc=G_filter*(G_LNA*G_SQUID*(input-0.1*feedback[delay])+bbg(gen));
+    adc=G_filter*(G_LNA*G_SQUID*(input+SQUID_noise(gen)-0.1*(feedback[delay]+dac_f_noise(gen)))+lna_noise(gen))+adc_noise(gen);
     for (i=0;i<Npix;i++)
     {
         ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,ADC_bit)*adc));
