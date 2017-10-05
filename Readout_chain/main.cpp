@@ -113,7 +113,7 @@ int main()
             var=pow(abs(E[i])-Em,2)+var;
         }
         cout << "Input energy: " << energy << " eV" << endl << "Energy estimation: " << Em << " eV" << endl << "Relative error: " << abs(energy-Em)/energy << endl;
-        cout << "Resolution: " << sqrt(var/(E.size()-3)) << " eV" << endl;
+        cout << "Resolution: " << 2.35*sqrt(var/(E.size()-3)) << " eV" << endl;
     }
     return 0;
 }
