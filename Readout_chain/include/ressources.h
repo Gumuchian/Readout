@@ -16,7 +16,7 @@ const int interpolation=pow(2,20-9); // Interpolation factor
 // Noise parameters
 const double TES_dsl=105*pow(10,-12); // Spectral linear density of a TES (DC) (A/sqrt(Hz)
 const double LNA_dsl=0.8*pow(10,-9); // Spectral linear density of LNA (V/sqrt(Hz)
-const double Btes=560; // TES noise bandwidth
+const double Btes=20000000; // TES noise bandwidth
 const double Ba=20000000; // LNA noise bandwidth
 const double fc=2000; // cut frequency of TES noise bandwidth
 

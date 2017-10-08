@@ -152,3 +152,88 @@
 
 1507041617 c:\users\paul\documents\github\readout\readout_chain\include\butterworth.h
 
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\main.cpp
+	<iostream>
+	<math.h>
+	<Channel.h>
+	<fstream>
+	<string>
+	<Pixel.h>
+	<Channel.h>
+	<stdlib.h>
+	<random>
+	<cmath>
+	<vector>
+	<algorithm>
+	"ressources.h"
+	<CIC.h>
+	<DDS.h>
+	<Butterworth.h>
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\channel.h
+	<vector>
+	"Pixel.h"
+	"DDS.h"
+	<random>
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\pixel.h
+	"BBFB.h"
+	"TES.h"
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\bbfb.h
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\tes.h
+	<random>
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\dds.h
+
+1507500957 f:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+	<math.h>
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\cic.h
+
+1507489659 f:\users\paul\documents\github\readout\readout_chain\include\butterworth.h
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\bbfb.cpp
+	"BBFB.h"
+	<math.h>
+	"ressources.h"
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\butterworth.cpp
+	"Butterworth.h"
+	<ressources.h>
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+	"Channel.h"
+	"DDS.h"
+	<math.h>
+	<fstream>
+	<string>
+	<random>
+	"ressources.h"
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\cic.cpp
+	"CIC.h"
+	<math.h>
+	<ressources.h>
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
+	"DDS.h"
+	<math.h>
+	<ressources.h>
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\pixel.cpp
+	"Pixel.h"
+	"BBFB.h"
+	"TES.h"
+	<math.h>
+	<random>
+	"ressources.h"
+
+1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
+	"TES.h"
+	<math.h>
+	<fstream>
+	<random>
+	"ressources.h"
+
