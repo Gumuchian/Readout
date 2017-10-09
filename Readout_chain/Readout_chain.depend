@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1507111384 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1507561305 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -92,7 +92,7 @@
 	<math.h>
 	"ressources.h"
 
-1507111929 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1507561306 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
@@ -143,7 +143,7 @@
 
 1506688185 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
 
-1507207926 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+1507567310 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
 	<math.h>
 
 1507045044 source:c:\users\paul\documents\github\readout\readout_chain\src\butterworth.cpp
