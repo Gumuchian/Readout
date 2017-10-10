@@ -9,8 +9,8 @@ const int Npix=1; // pixels number
 const double PI=3.1415926535; // don't touch !!
 
 // DDS parameters
-const int Npt=pow(2,9); // DDS values
-const int Npr=pow(2,18); // DDS value accuracy
+const int Npt=pow(2,7); // DDS values
+const int Npr=pow(2,16); // DDS value accuracy
 const int interpolation=pow(2,20-9); // Interpolation factor
 
 // Noise parameters
@@ -22,7 +22,7 @@ const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
 const int Np=140000; // don't touch !!
-const double energy=5256; // energy of the injected X-rays (eV)
+const double energy=11457; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor

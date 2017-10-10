@@ -23,7 +23,7 @@ Channel::Channel():dds(Npt,Npr,interpolation)
         }
     }
     for (i=0;i<Npix;i++){
-        ch.push_back(Pixel(1000000.0+i*100000.0,frequency[i],trunc(pow(i,2)*(Npt*interpolation)/(2*Npix))));
+        ch.push_back(Pixel(1000000.0+i*100000.0,frequency[i],(Npt*interpolation)-trunc(pow(i,2)*(Npt*interpolation)/(2*Npix))));
     }
     feedback = new double[delay+1];
     for (i=0;i<delay+1;i++)
