@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=20000000; // simulation step
+const int N=200000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.1415926535; // don't touch !!
 
