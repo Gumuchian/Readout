@@ -4,13 +4,13 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=200000000; // simulation step
+const int N=20000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.1415926535; // don't touch !!
 
 // DDS parameters
-const int Npt=pow(2,7); // DDS values
-const int Npr=pow(2,16); // DDS value accuracy
+const int Npt=pow(2,9); // DDS values
+const int Npr=pow(2,18); // DDS value accuracy
 const int interpolation=pow(2,20-9); // Interpolation factor
 
 // Noise parameters

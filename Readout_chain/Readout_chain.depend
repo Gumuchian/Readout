@@ -187,7 +187,7 @@
 
 1507489659 f:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
-1507500957 f:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+1507836747 f:\users\paul\documents\github\readout\readout_chain\include\ressources.h
 	<math.h>
 
 1507489659 f:\users\paul\documents\github\readout\readout_chain\include\cic.h
@@ -203,7 +203,7 @@
 	"Butterworth.h"
 	<ressources.h>
 
-1507489659 source:f:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1507673773 source:f:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
