@@ -30,7 +30,6 @@ double TES::computeLCTES(double freq)
     bbfo[1]=(bbfi[1]+bbfi[0]+(fs/(PI*fc)-1)*bbfo[0])/(fs/(PI*fc)+1);
     bbfi[0]=bbfi[1];
     bbfo[0]=bbfo[1];
-    //biasm est normalise pour que le transitoire soit à 1 en amplitude (facteur de normalisation 0.5941)
     return biasm[2]/0.594528739972466*(I*sqrt(2)+bbfo[1])/TR;
 }
 
