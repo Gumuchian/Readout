@@ -108,9 +108,10 @@ int main()
                             sum=(module[Np/decimation-k]*G_filter*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k]+sum;
                         }
                         E.push_back(energy*sum/P);
+                        file << sum << endl;
                         n++;
-                        if (n==4){m=1;}else{m=0;}
-                        n=n%4;
+                        if (n==6){m=2;}else{m=0;}
+                        n=n%6;
                     }
                     l++;
                     l=l%(Np/decimation+1-m);
