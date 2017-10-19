@@ -22,7 +22,7 @@ const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
 const int Np=140000; // don't touch !!
-const double energy=11457; // energy of the injected X-rays (eV)
+const double energy=6857; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor
@@ -58,6 +58,14 @@ const double B_SQUID=20000000; // SQUID noise bandwidth
 
 // LC-TES parameters
 const double R0=0.001;
+const double T0=0.09;
+const double Vp=51.5*pow(10,-9);
+const double alpha=75;
+const double beta=1.25;
+const double Gtes=115.0*pow(10,-12);
+const double Rl=60*pow(10,-6);
+const double C_therm=0.8*pow(10,-12);
+const double Tbath=0.055;
 const double I0=51.5*pow(10,-6);
 const double TR=4.08;
 const double L=2*pow(10,-6);

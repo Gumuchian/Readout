@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1507816435 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1508424309 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -78,6 +78,7 @@
 	<CIC.h>
 	<DDS.h>
 	<Butterworth.h>
+	<Pulse_generator.h>
 
 1506430205 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
@@ -107,7 +108,7 @@
 	"DDS.h"
 	<random>
 
-1506432427 source:c:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
+1507892637 source:c:\users\paul\documents\github\readout\readout_chain\src\dds.cpp
 	"DDS.h"
 	<math.h>
 	<ressources.h>
@@ -120,7 +121,7 @@
 	<random>
 	"ressources.h"
 
-1507208342 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
+1507892658 source:c:\users\paul\documents\github\readout\readout_chain\src\tes.cpp
 	"TES.h"
 	<math.h>
 	<fstream>
@@ -143,7 +144,7 @@
 
 1506688185 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
 
-1507819306 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+1508428262 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
 	<math.h>
 
 1507045044 source:c:\users\paul\documents\github\readout\readout_chain\src\butterworth.cpp
@@ -236,4 +237,10 @@
 	<fstream>
 	<random>
 	"ressources.h"
+
+1508419736 source:c:\users\paul\documents\github\readout\readout_chain\src\pulse_generator.cpp
+	"Pulse_generator.h"
+	"ressources.h"
+
+1508415647 c:\users\paul\documents\github\readout\readout_chain\include\pulse_generator.h
 
