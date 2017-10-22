@@ -21,9 +21,9 @@ const double Ba=20000000; // LNA noise bandwidth
 const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
-const int Npat=4096;
+const int Npat=1024;
 const int Npul=200000;
-const double energy=6857; // energy of the injected X-rays (eV)
+const double energy=10723; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor
@@ -31,9 +31,9 @@ const int order=2; // CIC/Butterworth order, if Butterworth order must be equal 
 const int Np=Npat*decimation; // don't touch !!
 
 // BBFB
-const double G=105; // Integrator gain
+const double G=155; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
-const double Gb=200; // feedback gain
+const double Gb=100; // feedback gain
 const int delay=1; // loop delay (simulation step)
 
 // DAC

@@ -24,13 +24,13 @@ int main()
     //CIC cic;
     Butterworth Butter;
     Pulse_generator pulse_generator;
-    int i,j,k,m,ip=0,l=0,n=0,ind=1;
+    int i,j,k,m,ip=0,l=0,n=0;
     vector<double> module(Npat,0);
     vector<double> E;
     string str;
     //char* ptr;
-    double sum,Em=0,var=0,P=0,maxi,a,P1=0,P2=0,P3=0,Energ;
-    double pulse[Npul],puls,sum_I=0;
+    double sum,Em[3],var[3],P[3],maxi,a,En[3];
+    double pulse[Npul],puls,sum_I;
     double pattern[8192][3];
     ofstream file1("test.txt", ios::out);
     ifstream file("Pattern.txt", ios::out);
@@ -58,14 +58,18 @@ int main()
         }
     }
 
-    for (i=0;i<Npat;i++)
+    P[0]=0;P[1]=0;P[2]=0;
+    for (j=0;j<3;j++)
     {
-        pattern[i][ind]=pattern[0][0]-pattern[i][ind];
-        P=P+pow(pattern[i][ind],2);
-        sum_I=sum_I+pattern[i][ind];
+        sum_I=0;
+        for (i=0;i<Npat;i++)
+        {
+            pattern[i][j]=pulse[0]-pattern[i][j];
+            P[j]=P[j]+pow(pattern[i][j],2);
+            sum_I=sum_I+pattern[i][j];
+        }
+        En[j]=sum_I*Vp*decimation/(1.6*pow(10,-19)*fs);
     }
-
-    Energ=sum_I*Vp*decimation/(1.6*pow(10,-19)*fs);
 
     for (i=0;i<N;i++)
     {
@@ -97,11 +101,15 @@ int main()
                 if (l==0)
                 {
                     sum=0;
-                    for (k=0;k<Npat;k++)
+                    for (j=0;j<3;j++)
                     {
-                        sum=(module[k]*G_filter*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k][ind]+sum;
+                        sum=0;
+                        for (k=0;k<Npat;k++)
+                        {
+                            sum=(module[k]*G_filter*PE/pow(2,DAC_bit)*Gb/Npr*0.1*TR/sqrt(2))*pattern[k][j]+sum;
+                        }
+                        E.push_back(En[j]*sum/P[j]);
                     }
-                    E.push_back(Energ*sum/P);
                 }
                 l++;
                 l=l%Npat;
@@ -110,22 +118,29 @@ int main()
         ip++;
         ip=ip%(Npat*decimation);
     }
-
-    for (i=3;i<(int)E.size();i++)
+    for (j=0;j<3;j++)
     {
-        Em=abs(E[i])+Em;
-    }
-    Em=Em/(E.size()-3);
+        Em[j]=0;
+        var[j]=0;
+        for (i=3;i<(int)E.size()/3;i++)
+        {
+            Em[j]=abs(E[i*3+j])+Em[j];
+        }
+        Em[j]=Em[j]*3/(E.size()-9);
 
-    for (i=3;i<(int)E.size();i++)
-    {
-        var=pow(abs(E[i])-Em,2)+var;
+        for (i=3;i<(int)E.size()/3;i++)
+        {
+            var[j]=pow(abs(E[i*3+j])-Em[j],2)+var[j];
+        }
     }
-
     cout << "Input energy: " << energy << " eV" << endl;
-    cout << "Energy estimation: " << Em << " eV" << endl;
-    cout << "Relative error: " << abs(energy-Em)/energy << endl;
-    cout << "Resolution: " << 2.35*sqrt(var/(E.size()-3)) << " eV" << endl;
-    cout << "Number of estimations: " << E.size()-3 << endl;
+    cout << "Number of estimations: " << (E.size()-9)/3 << endl;
+    for (i=0;i<3;i++)
+    {
+        cout << "E" << i << ":" << endl;
+        cout << "\t" << "Energy estimation: " << Em[i] << " eV" << endl;
+        cout << "\t" << "Relative error: " << abs(energy-Em[i])/energy << endl;
+        cout << "\t" << "Resolution: " << 2.35*sqrt(var[i]*3/(E.size()-9)) << " eV" << endl;
+    }
     return 0;
 }
