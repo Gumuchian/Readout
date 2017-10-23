@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=20000000; // simulation step
+const int N=30000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.1415926535; // don't touch !!
 
@@ -21,17 +21,17 @@ const double Ba=20000000; // LNA noise bandwidth
 const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
-const int Npat=1024;
+const int Npat=2048;
 const int Npul=200000;
-const double energy=10723; // energy of the injected X-rays (eV)
+const double energy=1278; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor
-const int order=2; // CIC/Butterworth order, if Butterworth order must be equal to 2
+const int order=4; // CIC/Butterworth order, if Butterworth order must be equal to 2
 const int Np=Npat*decimation; // don't touch !!
 
 // BBFB
-const double G=155; // Integrator gain
+const double G=255; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
 const double Gb=100; // feedback gain
 const int delay=1; // loop delay (simulation step)
@@ -54,7 +54,7 @@ const double G_filter=0.5; // anti-aliasing/reconstruction filter gain
 const double G_LNA=80; // LNA gain
 
 // SQUID
-const double G_SQUID=0.0017/(5.8*pow(10,-6)); // SQUID transimpedance
+const double G_SQUID=0.017/(5.8*pow(10,-6)); // SQUID transimpedance
 const double SQUID_dsl=2.2*pow(10,-12); // SQUID noise
 const double B_SQUID=20000000; // SQUID noise bandwidth
 

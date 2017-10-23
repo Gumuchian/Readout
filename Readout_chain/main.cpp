@@ -24,7 +24,7 @@ int main()
     //CIC cic;
     Butterworth Butter;
     Pulse_generator pulse_generator;
-    int i,j,k,m,ip=0,l=0,n=0;
+    int i,j,k,ip=0,l=0;
     vector<double> module(Npat,0);
     vector<double> E;
     string str;
@@ -32,6 +32,7 @@ int main()
     double sum,Em[3],var[3],P[3],maxi,a,En[3];
     double pulse[Npul],puls,sum_I;
     double pattern[8192][3];
+    double p[3];p[0]=12000;p[1]=6000;p[2]=0.2;
     ofstream file1("test.txt", ios::out);
     ifstream file("Pattern.txt", ios::out);
 
@@ -116,7 +117,7 @@ int main()
             }
         }
         ip++;
-        ip=ip%(Npat*decimation);
+        ip=ip%Np;
     }
     for (j=0;j<3;j++)
     {
@@ -137,10 +138,10 @@ int main()
     cout << "Number of estimations: " << (E.size()-9)/3 << endl;
     for (i=0;i<3;i++)
     {
-        cout << "E" << i << ":" << endl;
-        cout << "\t" << "Energy estimation: " << Em[i] << " eV" << endl;
-        cout << "\t" << "Relative error: " << abs(energy-Em[i])/energy << endl;
-        cout << "\t" << "Resolution: " << 2.35*sqrt(var[i]*3/(E.size()-9)) << " eV" << endl;
+        cout << "E" << i << ":  pattern @ " << p[i] << " keV" << endl;
+        cout << "\tEnergy estimation: " << Em[i] << " eV" << endl;
+        cout << "\tRelative error: " << abs(energy-Em[i])/energy << endl;
+        cout << "\tResolution: " << 2.35*sqrt(var[i]*3/(E.size()-9)) << " eV" << endl;
     }
     return 0;
 }

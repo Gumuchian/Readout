@@ -13,6 +13,8 @@ class CIC
         int index;
         double **integ;
         double **comb;
+        double *coeff_i;
+        double *coeff_c;
         bool access;
 };
 
