@@ -27,7 +27,7 @@ const double energy=1278; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor
-const int order=4; // CIC/Butterworth order, if Butterworth order must be equal to 2
+const int order=2; // CIC/Butterworth order, if Butterworth order must be equal to 2
 const int Np=Npat*decimation; // don't touch !!
 
 // BBFB
