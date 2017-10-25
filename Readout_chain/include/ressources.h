@@ -10,12 +10,13 @@ const double PI=3.1415926535; // don't touch !!
 
 // DDS parameters
 const int Npt=pow(2,9); // DDS values
-const int Npr=pow(2,18); // DDS value accuracy
+const int Npr=pow(2,19); // DDS value accuracy
 const int interpolation=pow(2,20-9); // Interpolation factor
 
 // Noise parameters
 const double TES_dsl=105*pow(10,-12); // Spectral linear density of a TES (DC) (A/sqrt(Hz)
-//const double LNA_dsl=0.8*pow(10,-9); // Spectral linear density of LNA (V/sqrt(Hz)
+//const double TES_dsl=0;
+//const double LNA_dsl=258*pow(10,-9); // Spectral linear density of LNA (V/sqrt(Hz)
 const double LNA_dsl=0;
 const double Btes=20000000; // TES noise bandwidth
 const double Ba=20000000; // LNA noise bandwidth
@@ -24,7 +25,7 @@ const double fc=2000; // cut frequency of TES noise bandwidth
 // Pulse text file
 const int Npat=2048;
 const int Npul=200000;
-const double energy=200; // energy of the injected X-rays (eV)
+const double energy=6000; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor
@@ -39,7 +40,7 @@ const int delay=1; // loop delay (simulation step)
 
 // DAC
 const double PE=0.02; // full scale (A)
-const int DAC_bit=16; // number of bits of DAC
+const int DAC_bit=18; // number of bits of DAC
 const double B_DAC=20000000; // DAC feedback noise bandwidth
 //const double DAC_dsl=28*pow(10,-12); // Spectral linear density of DAC feedback
 const double DAC_dsl=0;
