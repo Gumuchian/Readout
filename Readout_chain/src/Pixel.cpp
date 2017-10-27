@@ -30,12 +30,16 @@ double Pixel::getmodule()
     return bbfb.module();
 }
 
-double Pixel::computeLC()
+void Pixel::computeLC()
 {
-    return tes.computeLCTES(frequency);
+    I=tes.computeLCTES(frequency);
 }
 
-//computeBBFB prend en parametre les signaux de modulation/demodulation, l'entrée du SQUID et le nombre de point de la table DDS
+double Pixel::getI()
+{
+    return I;
+}
+
 void Pixel::computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input)
 {
     bbfb.compute_feedback(demoduI,remoduI,demoduQ,remoduQ,input);

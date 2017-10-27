@@ -11,13 +11,14 @@ class Pixel
         double getfeedback();
         double getmodule();
         void setinputLC(double input);
-        double computeLC();
+        void computeLC();
         void computeBBFB(double demoduI, double remoduI, double demoduQ, double remoduQ, double input);
         int getcomptR_I();
         int getcomptR_Q();
         int getcomptD_I();
         int getcomptD_Q();
         double getbiasm();
+        double getI();
         void setI(double p);
 
     protected:

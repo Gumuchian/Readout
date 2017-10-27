@@ -1,10 +1,13 @@
 #include "Channel.h"
 #include "DDS.h"
 #include <math.h>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <random>
 #include "ressources.h"
+#include <thread>
+#include <system_error>
 
 Channel::Channel():dds(Npt,Npr,interpolation)
 {
@@ -23,7 +26,7 @@ Channel::Channel():dds(Npt,Npr,interpolation)
         }
     }
     for (i=0;i<Npix;i++){
-        ch.push_back(Pixel(1000000.0+i*100000.0,frequency[i],(Npt*interpolation)-trunc(pow(i,2)*(Npt*interpolation)/(2*Npix))));
+        ch.push_back(Pixel(1000000.0+i*100000.0,frequency[i],(Npt*interpolation)-((int)trunc(pow(i,2)*(Npt*interpolation)/(2*Npix)))%(Npt*interpolation)));
     }
     feedback = new double[delay+1];
     for (i=0;i<delay+1;i++)
@@ -36,10 +39,12 @@ double Channel::sumPolar()
 {
     int i;
     double sum=0;
-    for (i=0;i<Npix;i++){
+    for (i=0;i<Npix;i++)
+    {
         sum=sum+dds.getvalue(ch[i].getcomptR_I());
     }
-    for (i=0;i<Npix;i++){
+    for (i=0;i<Npix;i++)
+    {
         ch[i].setinputLC(sum);
     }
     return sum;
@@ -51,7 +56,8 @@ void Channel::computeLC_TES()
     double sum=0;
     for (i=0;i<Npix;i++)
     {
-        sum=sum+ch[i].computeLC();
+        ch[i].computeLC();
+        sum=sum+ch[i].getI();
     }
     input=sum;
 }
@@ -71,10 +77,12 @@ double Channel::computeBBFB()
     }
     feedback[0]=G_filter*PE/pow(2,DAC_bit)*trunc(Gb*feedback[0]/Npr);
     adc=G_filter*(G_LNA*G_SQUID*(input+SQUID_noise(gen)-0.1*(feedback[delay]+dac_f_noise(gen)))+lna_noise(gen))+adc_noise(gen);
+
     for (i=0;i<Npix;i++)
     {
         ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,ADC_bit)*adc));
     }
+
     for (i=delay;i>0;i--)
     {
         feedback[i]=feedback[i-1];
