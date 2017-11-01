@@ -33,14 +33,14 @@ const int order=2; // CIC/Butterworth order, if Butterworth order must be equal 
 const int Np=Npat*decimation; // don't touch !!
 
 // BBFB
-const double G=155; // Integrator gain
+const double G=1.2; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
 const double Gb=100; // feedback gain
 const int delay=1; // loop delay (simulation step)
 
 // DAC
 const double PE=0.02; // full scale (A)
-const int DAC_bit=18; // number of bits of DAC
+const int DAC_bit=16; // number of bits of DAC
 const double B_DAC=20000000; // DAC feedback noise bandwidth
 //const double DAC_dsl=28*pow(10,-12); // Spectral linear density of DAC feedback
 const double DAC_dsl=0;
