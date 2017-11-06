@@ -10,7 +10,7 @@ const double PI=3.1415926535; // don't touch !!
 
 // DDS parameters
 const int Npt=pow(2,9); // DDS values
-const int Npr=pow(2,19); // DDS value accuracy
+const int Npr=pow(2,18); // DDS value accuracy
 const int interpolation=pow(2,20-9); // Interpolation factor
 
 // Noise parameters
@@ -33,7 +33,7 @@ const int order=2; // CIC/Butterworth order, if Butterworth order must be equal 
 const int Np=Npat*decimation; // don't touch !!
 
 // BBFB
-const double G=1.2; // Integrator gain
+const double G=10; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
 const double Gb=100; // feedback gain
 const int delay=1; // loop delay (simulation step)

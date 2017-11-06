@@ -13,7 +13,7 @@ void BBFB::compute_feedback(double demoduI, double remoduI, double demoduQ, doub
 {
     I+=G*trunc(demoduI*input/Npr);
     Q+=G*trunc(demoduQ*input/Npr);
-    feedback = pow(2,DAC_bit-ADC_bit)*trunc((remoduI*I+remoduQ*Q)/Npr);
+    feedback = trunc((remoduI*I+remoduQ*Q)/Npr);
 }
 
 double BBFB::getfeedback()
