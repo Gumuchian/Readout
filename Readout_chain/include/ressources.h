@@ -25,7 +25,7 @@ const double fc=2000; // cut frequency of TES noise bandwidth
 // Pulse text file
 const int Npat=2048;
 const int Npul=200000;
-const double energy=6000; // energy of the injected X-rays (eV)
+const double energy=1500; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor
@@ -35,7 +35,7 @@ const int Np=Npat*decimation; // don't touch !!
 // BBFB
 const double G=10; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
-const double Gb=100; // feedback gain
+const double Gb=0.001; // feedback gain
 const int delay=1; // loop delay (simulation step)
 
 // DAC
