@@ -23,9 +23,9 @@ const double Ba=20000000; // LNA noise bandwidth
 const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
-const int Npat=2048;
+const int Npat=1024;
 const int Npul=200000;
-const double energy=1500; // energy of the injected X-rays (eV)
+const double energy=387; // energy of the injected X-rays (eV)
 
 // CIC or Butterworth
 const int decimation=128; // down sampling factor

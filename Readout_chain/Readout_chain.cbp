@@ -24,27 +24,16 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include" />
-					<Add directory="C:/Users/Paul/Desktop/fftw" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add directory="C:/Users/Paul/Desktop/fftw" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add directory="C:/Users/Paul/Desktop/fftw" />
 		</Compiler>
-		<Linker>
-			<Add library="C:/Users/Paul/Desktop/fftw/fftw3-3.a" />
-			<Add library="C:/Users/Paul/Desktop/fftw/fftw3-3.lib" />
-			<Add library="C:/Users/Paul/Desktop/fftw/fftw3f-3.a" />
-			<Add library="C:/Users/Paul/Desktop/fftw/fftw3f-3.lib" />
-			<Add library="C:/Users/Paul/Desktop/fftw/fftw3l-3.a" />
-			<Add library="C:/Users/Paul/Desktop/fftw/fftw3l-3.lib" />
-		</Linker>
 		<Unit filename="include/BBFB.h" />
 		<Unit filename="include/Butterworth.h" />
 		<Unit filename="include/CIC.h" />

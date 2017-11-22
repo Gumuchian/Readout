@@ -36,16 +36,16 @@ void fft(CArray& x)
 
     for (size_t k = 0; k < N/2; ++k)
     {
-        Complex t = std::polar(1.0, -2 * PI * k / N) * odd[k];
-        x[k] = even[k] + t;
-        x[k+N/2] = even[k] - t;
+        Complex t = std::polar(1.0,-2*PI*k/N)*odd[k];
+        x[k] = even[k]+t;
+        x[k+N/2] = even[k]-t;
     }
 }
 
 void ifft(CArray& x)
 {
     x = x.apply(std::conj);
-    fft( x );
+    fft(x);
     x = x.apply(std::conj);
     x /= x.size();
 }
@@ -62,10 +62,10 @@ int main()
     vector<double> E;
     string str;
     double sum,Em=0,var=0,P=0,maxi,a,energy_mode;
-    double pulse[Npul],puls;
+    double pulse[Npul],puls,puls_inter[Npat];
     double pattern[8192];
-    ofstream file("test.txt", ios::out);
-    fstream file1("Pattern.txt", ios::out | ios::in);
+    fstream file2;
+    fstream file1;
     CArray sig_fft (Npat);
     CArray sig_ph (Npat);
     CArray noise_fft (Npat);
@@ -80,14 +80,20 @@ int main()
 
     cout << "Select mode:" << endl << "\t1: Calibration" << endl << "\t2: Resolution estimation" << endl;
     cin >> mode;
+    cout << "Processing..." << endl;
 
     if (mode==1)
     {
+        file1.open("Pattern.txt",ios::out);
+        file2.open("Facteur.txt",ios::out);
         energy_mode=1000;
     }
     else
     {
+        file1.open("Pattern.txt",ios::in);
+        file2.open("Facteur.txt",ios::in);
         energy_mode=energy;
+        file2 >> P;
     }
 
     for (i=0;i<3000000;i++)
@@ -107,13 +113,9 @@ int main()
 
     if (mode==2)
     {
-        for (i=0;i<8192;i++)
-        {
-            file1 >> pattern[i];
-        }
         for (i=0;i<Npat;i++)
         {
-            P=P+pow(pattern[i],2);
+            file1 >> pattern[i];
         }
     }
 
@@ -170,6 +172,7 @@ int main()
                             for (m=0;m<Npat;m++)
                             {
                                 sig_ph[m]=arg(mod[m]);
+                                puls_inter[m]=module[m];
                             }
                         }
                         else
@@ -206,7 +209,9 @@ int main()
         for (i=0;i<Npat;i++)
         {
             file1 << real(div_fft[i]) << endl;
+            P+=puls_inter[i]*real(div_fft[i]);
         }
+        file2 << P;
         cout << "done" << endl;
     }
     else
@@ -230,5 +235,7 @@ int main()
         cout << "\tRelative error: " << abs(energy-Em)/energy << endl;
         cout << "\tResolution: " << var << " eV" << endl;
     }
+    file1.close();
+    file2.close();
     return 0;
 }
