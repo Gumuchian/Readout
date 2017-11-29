@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=20000000; // simulation step
+const int N=200000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.1415926535; // don't touch !!
 
@@ -14,8 +14,8 @@ const int Npr=pow(2,18); // DDS value accuracy
 const int interpolation=pow(2,20-9); // Interpolation factor
 
 // Noise parameters
-const double TES_dsl=105*pow(10,-12); // Spectral linear density of a TES (DC) (A/sqrt(Hz)
-//const double TES_dsl=0;
+//const double TES_dsl=105*pow(10,-12); // Spectral linear density of a TES (DC) (A/sqrt(Hz)
+const double TES_dsl=0;
 //const double LNA_dsl=258*pow(10,-9); // Spectral linear density of LNA (V/sqrt(Hz)
 const double LNA_dsl=0;
 const double Btes=20000000; // TES noise bandwidth
@@ -23,7 +23,7 @@ const double Ba=20000000; // LNA noise bandwidth
 const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
-const int Npat=1024;
+const int Npat=4096;
 const int Npul=200000;
 const double energy=387; // energy of the injected X-rays (eV)
 

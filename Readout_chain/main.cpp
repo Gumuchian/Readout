@@ -57,7 +57,7 @@ int main()
     //CIC cic;
     Butterworth Butter;
     Pulse_generator pulse_generator;
-    int i,k,ip=0,l=0,m;
+    int i,k,ip=0,l=0,m,n_alea=0;
     vector<double> module(Npat,0);
     vector<double> E;
     string str;
@@ -126,9 +126,12 @@ int main()
         // bias modulation by pulse
         if (mode==2)
         {
-            if (ip<Npul)
+            if (ip<Npul+n_alea)
             {
-                ch0.setI(pulse[ip]);
+                if (ip>=n_alea)
+                {
+                    ch0.setI(pulse[ip-n_alea]);
+                }
             }
         }
         else
@@ -158,6 +161,7 @@ int main()
                 module.erase(module.begin());
                 if (l==0)
                 {
+                    n_alea=rand()%decimation;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
