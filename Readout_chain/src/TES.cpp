@@ -19,7 +19,6 @@ double TES::computeLCTES(double freq)
     A=Ccp,
     B=pow(TR,2)*R0*(Ccar+Ccp),
     C=L*(Ccar+Ccp);
-    bias[2]=bias[2]/Npr;
     biasm[2]=(-(2-8*C*pow(fs,2))*biasm[1]-(1-2*fs*B+4*pow(fs,2)*C)*biasm[0]+2*fs*A*(bias[2]-bias[0]))/(2*fs*B+1+4*C*pow(fs,2));
     biasm[0]=biasm[1];
     biasm[1]=biasm[2];

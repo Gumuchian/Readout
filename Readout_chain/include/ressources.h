@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=200000000; // simulation step
+const int N=20000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.1415926535; // don't touch !!
 
@@ -23,7 +23,7 @@ const double Ba=20000000; // LNA noise bandwidth
 const double fc=2000; // cut frequency of TES noise bandwidth
 
 // Pulse text file
-const int Npat=4096;
+const int Npat=1024;
 const int Npul=200000;
 const double energy=387; // energy of the injected X-rays (eV)
 
@@ -33,7 +33,7 @@ const int order=2; // CIC/Butterworth order, if Butterworth order must be equal 
 const int Np=Npat*decimation; // don't touch !!
 
 // BBFB
-const double G=10; // Integrator gain
+const double G=12; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
 const double Gb=0.001; // feedback gain
 const int delay=1; // loop delay (simulation step)
@@ -44,6 +44,8 @@ const int DAC_bit=16; // number of bits of DAC
 const double B_DAC=20000000; // DAC feedback noise bandwidth
 //const double DAC_dsl=28*pow(10,-12); // Spectral linear density of DAC feedback
 const double DAC_dsl=0;
+//const double DAC_dsl_b=pow(10,-140/20);
+const double DAC_dsl_b=0;
 
 // ADC
 const int ADC_bit=12; // number of bits of ADC

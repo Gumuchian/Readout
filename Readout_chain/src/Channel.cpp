@@ -39,13 +39,14 @@ double Channel::sumPolar()
 {
     int i;
     double sum=0;
+    std::normal_distribution<double> dac_b_noise(0.0,DAC_dsl_b*sqrt(B_DAC));
     for (i=0;i<Npix;i++)
     {
         sum=sum+dds.getvalue(ch[i].getcomptR_I());
     }
     for (i=0;i<Npix;i++)
     {
-        ch[i].setinputLC(sum);
+        ch[i].setinputLC(sum/Npr+dac_b_noise(gen));
     }
     return sum;
 }

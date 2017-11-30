@@ -161,7 +161,7 @@ int main()
                 module.erase(module.begin());
                 if (l==0)
                 {
-                    n_alea=rand()%decimation;
+                    //n_alea=rand()%5;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
