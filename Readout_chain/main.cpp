@@ -28,17 +28,17 @@ void fft(CArray& x)
     const size_t N = x.size();
     if (N <= 1) return;
 
-    CArray even = x[std::slice(0, N/2, 2)];
-    CArray  odd = x[std::slice(1, N/2, 2)];
+    CArray even = x[std::slice(0,N/2,2)];
+    CArray  odd = x[std::slice(1,N/2,2)];
 
     fft(even);
     fft(odd);
 
-    for (size_t k = 0; k < N/2; ++k)
+    for (size_t k=0;k<N/2;++k)
     {
         Complex t = std::polar(1.0,-2*PI*k/N)*odd[k];
-        x[k] = even[k]+t;
-        x[k+N/2] = even[k]-t;
+        x[k]=even[k]+t;
+        x[k+N/2]=even[k]-t;
     }
 }
 
@@ -61,11 +61,11 @@ int main()
     vector<double> module(Npat,0);
     vector<double> E;
     string str;
-    double sum,Em=0,var=0,P=0,maxi,a,energy_mode;
+    double sum,Em=0,var=0,P=0,maxi,a=0,energy_mode;
     double pulse[Npul],puls,puls_inter[Npat];
     double pattern[8192];
-    fstream file2;
-    fstream file1;
+    fstream file1,file2,file3;
+    file3.open("test.txt",ios::out);
     CArray sig_fft (Npat);
     CArray sig_ph (Npat);
     CArray noise_fft (Npat);
@@ -241,5 +241,6 @@ int main()
     }
     file1.close();
     file2.close();
+    file3.close();
     return 0;
 }

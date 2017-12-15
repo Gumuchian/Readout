@@ -48,7 +48,7 @@ double Channel::sumPolar()
     {
         ch[i].setinputLC(sum/Npr+dac_b_noise(gen));
     }
-    return sum;
+    return sum/Npr+dac_b_noise(gen);
 }
 
 void Channel::computeLC_TES()
@@ -67,7 +67,7 @@ double Channel::computeBBFB()
 {
     int i;
     double adc;
-    std::normal_distribution<double> lna_noise(0.0,LNA_dsl*sqrt(Ba));
+    std::normal_distribution<double> lna_noise(0.0,LNA_dsl*sqrt(B_LNA));
     std::normal_distribution<double> SQUID_noise(0.0,SQUID_dsl*sqrt(B_SQUID));
     std::normal_distribution<double> dac_f_noise(0.0,DAC_dsl*sqrt(B_DAC));
     std::normal_distribution<double> adc_noise(0.0,ADC_dsl*sqrt(B_ADC));
