@@ -11,9 +11,12 @@ BBFB::BBFB()
 
 void BBFB::compute_feedback(double demoduI, double remoduI, double demoduQ, double remoduQ, double input)
 {
-    I+=G*trunc(demoduI*input/Npr);
+    /*I+=G*trunc(demoduI*input/Npr);
     Q+=G*trunc(demoduQ*input/Npr);
-    feedback = trunc((remoduI*I+remoduQ*Q)/Npr);
+    feedback = trunc((remoduI*I+remoduQ*Q)/Npr);*/
+    I+=G*(demoduI*input/Npr);
+    Q+=G*(demoduQ*input/Npr);
+    feedback = ((remoduI*I+remoduQ*Q)/Npr);
 }
 
 double BBFB::getfeedback()
@@ -23,5 +26,6 @@ double BBFB::getfeedback()
 
 double BBFB::module()
 {
-    return trunc(sqrt(pow(I,2)+pow(Q,2)));
+    //return trunc(sqrt(pow(I,2)+pow(Q,2)));
+    return (sqrt(pow(I,2)+pow(Q,2)));
 }

@@ -78,7 +78,7 @@ int main()
     Complex c[Npat];
     const Complex const_i(0,1);
 
-    cout << "Select mode:" << endl << "\t1: Calibration" << endl << "\t2: Resolution estimation" << endl;
+    cout << "Select mode:" << endl << "\t1: Calibration" << endl << "\t2: Resolution estimation" << endl << "(1 or 2)" << endl;
     cin >> mode;
     cout << "Processing..." << endl;
 
@@ -130,7 +130,7 @@ int main()
             {
                 if (ip>=n_alea)
                 {
-                    ch0.setI(pulse[ip-n_alea]);
+                    //ch0.setI(pulse[ip-n_alea]);
                 }
             }
         }
@@ -152,6 +152,7 @@ int main()
         }
         if (i>Np)
         {
+            file3 << ch0.getmod() << endl;
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
             //if (cic.getaccess())

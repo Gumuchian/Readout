@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=20000000; // simulation step
+const int N=2000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.14159265358979; // don't touch !!
 
@@ -28,7 +28,7 @@ const double fc=2000; // cut frequency of TES noise bandwidth
 // Pulse and pattern parameters
 const int Npat=1024;
 const int Npul=200000;
-const double energy=500; // energy of the injected X-rays (eV)
+const double energy=3400; // energy of the injected X-rays (eV)
 
 
 
@@ -40,7 +40,7 @@ const int Np=Npat*decimation; // don't touch !!
 
 
 // BBFB
-const double G=0.0001549644569; // Integrator gain
+const double G=5*0.0001549644569; // Integrator gain
 const int G_bits=8; // number of bits used to encode integrator gain
 const double Gb=1; // feedback gain
 const int delay=1; // loop delay (simulation step)
