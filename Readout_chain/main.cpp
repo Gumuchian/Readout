@@ -130,7 +130,7 @@ int main()
             {
                 if (ip>=n_alea)
                 {
-                    //ch0.setI(pulse[ip-n_alea]);
+                    ch0.setI(pulse[ip-n_alea]);
                 }
             }
         }
@@ -152,12 +152,12 @@ int main()
         }
         if (i>Np)
         {
-            file3 << ch0.getmod() << endl;
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
             //if (cic.getaccess())
             if(Butter.getaccess())
             {
+                file3 << a << endl;
                 module.push_back(a);
                 module.erase(module.begin());
                 if (l==0)

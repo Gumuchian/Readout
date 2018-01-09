@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=2000000; // simulation step
+const int N=400000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.14159265358979; // don't touch !!
 
@@ -21,14 +21,14 @@ const int interpolation=pow(2,20-9); // Interpolation factor
 const double TES_dsl=105*pow(10,-12); // Spectral linear density of a TES (DC) (A/sqrt(Hz))
 //const double TES_dsl=0;
 const double Btes=20000000; // TES noise bandwidth
-const double fc=2000; // cut frequency of TES noise bandwidth
+const double fc=560; // cut frequency of TES noise bandwidth
 
 
 
 // Pulse and pattern parameters
-const int Npat=1024;
+const int Npat=4096;
 const int Npul=200000;
-const double energy=3400; // energy of the injected X-rays (eV)
+const double energy=100; // energy of the injected X-rays (eV)
 
 
 
@@ -40,15 +40,13 @@ const int Np=Npat*decimation; // don't touch !!
 
 
 // BBFB
-const double G=5*0.0001549644569; // Integrator gain
-const int G_bits=8; // number of bits used to encode integrator gain
-const double Gb=1; // feedback gain
+const double G=0.0001549644569; // Integrator gain
 const int delay=1; // loop delay (simulation step)
 
 
 
 // DAC
-const double PE=0.02; // full scale (A)
+const double PE_DAC=0.02; // full scale (A)
 const int DAC_bit=16; // number of bits of DAC
 const double B_DAC=20000000; // DAC feedback noise bandwidth
 const double DAC_dsl=28*pow(10,-12); // Spectral linear density of DAC feedback
@@ -59,6 +57,7 @@ const double DAC_dsl_b=0.5*pow(10,-140/20);
 
 
 // ADC
+const double PE_ADC=1.0;
 const int ADC_bit=12; // number of bits of ADC
 const double ADC_dsl=6.448*pow(10,-9); // Spectral linear density of ADC
 //const double ADC_dsl=0;

@@ -76,12 +76,12 @@ double Channel::computeBBFB()
     {
         feedback[0]=feedback[0]+ch[i].getfeedback();
     }
-    feedback[0]=G_filter*PE/pow(2,DAC_bit)*trunc(Gb*feedback[0]);
+    feedback[0]=G_filter*PE_DAC/pow(2,DAC_bit)*feedback[0];
     adc=G_filter*(G_LNA*G_SQUID*(input+SQUID_noise(gen)-0.1*(feedback[delay]+dac_f_noise(gen)))+lna_noise(gen))+adc_noise(gen);
 
     for (i=0;i<Npix;i++)
     {
-        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),trunc(pow(2,ADC_bit)*adc));
+        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),round(pow(2,ADC_bit)/PE_ADC*adc));
     }
 
     for (i=delay;i>0;i--)
