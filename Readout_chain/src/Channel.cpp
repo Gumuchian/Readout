@@ -42,7 +42,7 @@ double Channel::sumPolar()
     std::normal_distribution<double> dac_b_noise(0.0,DAC_dsl_b*sqrt(B_DAC));
     for (i=0;i<Npix;i++)
     {
-        sum=sum+dds.getvalue(ch[i].getcomptR_I());
+        sum+=dds.getvalue(ch[i].getcomptR_I());
     }
     for (i=0;i<Npix;i++)
     {
@@ -58,7 +58,7 @@ void Channel::computeLC_TES()
     for (i=0;i<Npix;i++)
     {
         ch[i].computeLC();
-        sum=sum+ch[i].getI();
+        sum+=ch[i].getI();
     }
     input=sum;
 }
@@ -67,21 +67,25 @@ double Channel::computeBBFB()
 {
     int i;
     double adc;
-    std::normal_distribution<double> lna_noise(0.0,LNA_dsl*sqrt(B_LNA));
-    std::normal_distribution<double> SQUID_noise(0.0,SQUID_dsl*sqrt(B_SQUID));
-    std::normal_distribution<double> dac_f_noise(0.0,DAC_dsl*sqrt(B_DAC));
-    std::normal_distribution<double> adc_noise(0.0,ADC_dsl*sqrt(B_ADC));
+    std::normal_distribution<double> lna_noise  (0.0,LNA_dsl*sqrt(B_LNA)),
+                                     SQUID_noise(0.0,SQUID_dsl*sqrt(B_SQUID)),
+                                     dac_f_noise(0.0,DAC_dsl*sqrt(B_DAC)),
+                                     adc_noise  (0.0,ADC_dsl*sqrt(B_ADC));
     feedback[0]=0;
     for (i=0;i<Npix;i++)
     {
-        feedback[0]=feedback[0]+ch[i].getfeedback();
+        feedback[0]+=ch[i].getfeedback();
     }
-    feedback[0]=G_filter*PE_DAC/pow(2,DAC_bit)*feedback[0];
+    feedback[0]*=G_filter*PE_DAC/pow(2,DAC_bit);
     adc=G_filter*(G_LNA*G_SQUID*(input+SQUID_noise(gen)-0.1*(feedback[delay]+dac_f_noise(gen)))+lna_noise(gen))+adc_noise(gen);
 
     for (i=0;i<Npix;i++)
     {
-        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),dds.getvalue(ch[i].getcomptR_I()),dds.getvalue(ch[i].getcomptD_Q()),dds.getvalue(ch[i].getcomptR_Q()),round(pow(2,ADC_bit)/PE_ADC*adc));
+        ch[i].computeBBFB(dds.getvalue(ch[i].getcomptD_I()),
+                          dds.getvalue(ch[i].getcomptR_I()),
+                          dds.getvalue(ch[i].getcomptD_Q()),
+                          dds.getvalue(ch[i].getcomptR_Q()),
+                          round(pow(2,ADC_bit)/PE_ADC*adc));
     }
 
     for (i=delay;i>0;i--)
