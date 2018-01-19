@@ -17,26 +17,46 @@
 #include <Pulse_generator.h>
 #include <complex>
 #include <valarray>
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/lu.hpp>
+#include <boost/numeric/ublas/io.hpp>
 
 using namespace std;
+using namespace boost::numeric;
 
 typedef complex<double> Complex;
 typedef valarray<Complex> CArray;
+
+
+template<class T>
+bool InvertMatrix(const ublas::matrix<T>& input, ublas::matrix<T>& inverse)
+{
+	typedef ublas::permutation_matrix<std::size_t> pmatrix;
+	ublas::matrix<T> A(input);
+	pmatrix pm(A.size1());
+	int res = lu_factorize(A, pm);
+	if (res != 0)
+		return false;
+	inverse.assign(ublas::identity_matrix<T> (A.size1()));
+	lu_substitute(A, pm, inverse);
+	return true;
+}
+
 
 void fft(CArray& x)
 {
     const size_t N = x.size();
     if (N <= 1) return;
 
-    CArray even = x[std::slice(0,N/2,2)];
-    CArray  odd = x[std::slice(1,N/2,2)];
+    CArray even = x[slice(0,N/2,2)];
+    CArray  odd = x[slice(1,N/2,2)];
 
     fft(even);
     fft(odd);
 
     for (size_t k=0;k<N/2;++k)
     {
-        Complex t = std::polar(1.0,-2*PI*k/N)*odd[k];
+        Complex t = polar(1.0,-2*PI*k/N)*odd[k];
         x[k]=even[k]+t;
         x[k+N/2]=even[k]-t;
     }
@@ -44,9 +64,9 @@ void fft(CArray& x)
 
 void ifft(CArray& x)
 {
-    x = x.apply(std::conj);
+    x = x.apply(conj);
     fft(x);
-    x = x.apply(std::conj);
+    x = x.apply(conj);
     x /= x.size();
 }
 
@@ -57,13 +77,22 @@ int main()
     //CIC cic;
     Butterworth Butter;
     Pulse_generator pulse_generator;
-    int i,k,ip=0,l=0,m,n_alea=0;
+    int i,k,ip=0,l=0,n_alea=0,m;
     vector<double> module(Npat,0);
     vector<double> E;
     string str;
     double sum,Em=0,var=0,P=0,maxi,a=0,energy_mode;
     double pulse[Npul],puls,puls_inter[Npat];
     double pattern[8192];
+    ublas::matrix<double> X(3,3),Z(3,3);
+    for (i=0;i<3;i++)
+    {
+        for (int j=0;j<3;j++)
+        {
+            X(i,j)=pow(i,2-j);
+        }
+    }
+    ublas::vector<double> Y(3),poly_max(3);
     fstream file1,file2,file3;
     file3.open("test.txt",ios::out);
     CArray sig_fft (Npat);
@@ -150,19 +179,35 @@ int main()
         {
             maxi=ch0.getmod();
         }
-        if (i>Np)
+        if (i>Np-1)
         {
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
             //if (cic.getaccess())
             if(Butter.getaccess())
             {
-                file3 << a << endl;
+                //file3 << a << endl;
                 module.push_back(a);
                 module.erase(module.begin());
-                if (l==0)
+                if (l<3)
                 {
-                    //n_alea=rand()%5;
+                    sum=0;
+                    for (k=0;k<Npat;k++)
+                    {
+                        sum=module[k]*pattern[k]+sum;
+                    }
+                    Y(l)=sum;
+                }
+                if (l==3)
+                {
+                    n_alea=rand()%128-64;
+                    InvertMatrix(X,Z);
+                    poly_max=ublas::prod(Z,Y);
+                    E.push_back(1000.0*poly_max(2)/P);
+                }
+                /*if (l==0)
+                {
+                    n_alea=rand()%128-64;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
@@ -194,7 +239,7 @@ int main()
                         }
                         E.push_back(1000.0*sum/P);
                     }
-                }
+                }*/
                 l++;
                 l=l%Npat;
             }

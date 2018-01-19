@@ -4,7 +4,7 @@
 
 // Simulation parameters
 const double fs=20000000; // sampling frequency
-const int N=400000000; // simulation step
+const int N=20000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.14159265358979; // don't touch !!
 
@@ -26,9 +26,9 @@ const double fc=560; // cut frequency of TES noise bandwidth
 
 
 // Pulse and pattern parameters
-const int Npat=4096;
+const int Npat=2048;
 const int Npul=200000;
-const double energy=100; // energy of the injected X-rays (eV)
+const double energy=5600; // energy of the injected X-rays (eV)
 
 
 

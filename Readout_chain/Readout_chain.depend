@@ -61,7 +61,7 @@
 	"Pixel.h"
 	"DDS.h"
 
-1515492873 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
+1516376984 source:c:\users\paul\documents\github\readout\readout_chain\main.cpp
 	<iostream>
 	<math.h>
 	<Channel.h>
@@ -81,6 +81,9 @@
 	<Pulse_generator.h>
 	<complex>
 	<valarray>
+	<boost/numeric/ublas/matrix.hpp>
+	<boost/numeric/ublas/lu.hpp>
+	<boost/numeric/ublas/io.hpp>
 
 1506426605 c:\users\paul\documents\github\readout\readout_chain\include\dds.h
 
@@ -95,7 +98,7 @@
 	<math.h>
 	"ressources.h"
 
-1515266745 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
+1515766888 source:c:\users\paul\documents\github\readout\readout_chain\src\channel.cpp
 	"Channel.h"
 	"DDS.h"
 	<math.h>
@@ -149,7 +152,7 @@
 
 1508765476 c:\users\paul\documents\github\readout\readout_chain\include\cic.h
 
-1515415329 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
+1516376692 c:\users\paul\documents\github\readout\readout_chain\include\ressources.h
 	<math.h>
 
 1507041444 source:c:\users\paul\documents\github\readout\readout_chain\src\butterworth.cpp
