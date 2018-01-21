@@ -84,15 +84,15 @@ int main()
     double sum,Em=0,var=0,P=0,maxi,a=0,energy_mode;
     double pulse[Npul],puls,puls_inter[Npat];
     double pattern[8192];
-    ublas::matrix<double> X(3,3),Z(3,3);
-    for (i=0;i<3;i++)
+    ublas::matrix<double> X(Nfit,3),Z(3,3);
+    for (i=0;i<Nfit;i++)
     {
         for (int j=0;j<3;j++)
         {
             X(i,j)=pow(i,2-j);
         }
     }
-    ublas::vector<double> Y(3),poly_max(3);
+    ublas::vector<double> Y(Nfit),poly_max(3);
     fstream file1,file2,file3;
     file3.open("test.txt",ios::out);
     CArray sig_fft (Npat);
@@ -179,7 +179,7 @@ int main()
         {
             maxi=ch0.getmod();
         }
-        if (i>Np-1)
+        if (i>Np-Nfit/2)
         {
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
@@ -189,7 +189,7 @@ int main()
                 //file3 << a << endl;
                 module.push_back(a);
                 module.erase(module.begin());
-                if (l<3)
+                if (l<Nfit)
                 {
                     sum=0;
                     for (k=0;k<Npat;k++)
@@ -198,11 +198,11 @@ int main()
                     }
                     Y(l)=sum;
                 }
-                if (l==3)
+                if (l==Nfit)
                 {
                     n_alea=rand()%128-64;
-                    InvertMatrix(X,Z);
-                    poly_max=ublas::prod(Z,Y);
+                    InvertMatrix(ublas::matrix<double> (ublas::prod(ublas::trans(X),X)),Z);
+                    poly_max=ublas::prod(ublas::prod(Z,ublas::trans(X)),Y);
                     E.push_back(1000.0*poly_max(2)/P);
                 }
                 /*if (l==0)
