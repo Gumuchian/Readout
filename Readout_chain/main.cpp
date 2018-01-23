@@ -179,14 +179,14 @@ int main()
         {
             maxi=ch0.getmod();
         }
-        if (i>Np-Nfit/2)
+        //if (i>Np-Nfit*decimation/2)
+        if (i>Np)
         {
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
             //if (cic.getaccess())
             if(Butter.getaccess())
             {
-                //file3 << a << endl;
                 module.push_back(a);
                 module.erase(module.begin());
                 if (l<Nfit)
@@ -200,12 +200,12 @@ int main()
                 }
                 if (l==Nfit)
                 {
-                    n_alea=rand()%128-64;
+                    n_alea=rand()%64;
                     InvertMatrix(ublas::matrix<double> (ublas::prod(ublas::trans(X),X)),Z);
                     poly_max=ublas::prod(ublas::prod(Z,ublas::trans(X)),Y);
-                    E.push_back(1000.0*poly_max(2)/P);
+                    E.push_back(1000.0*(poly_max(2)-pow(poly_max(1),2)/(2*poly_max(0)))/P);
                 }
-                /*if (l==0)
+                if (l==0)
                 {
                     n_alea=rand()%128-64;
                     if (mode==1)
@@ -239,7 +239,7 @@ int main()
                         }
                         E.push_back(1000.0*sum/P);
                     }
-                }*/
+                }
                 l++;
                 l=l%Npat;
             }
