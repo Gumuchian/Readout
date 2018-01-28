@@ -70,6 +70,25 @@ void ifft(CArray& x)
     x /= x.size();
 }
 
+double gradient_descent(ublas::vector<double> coeff)
+{
+    double pas=Nfit/2;
+    double x[2]={-3,0};
+    ublas::vector<double> X0(order_fit+1),X1(order_fit+1);
+    for (int i=0;i<20;i++)
+    {
+        x[1]=x[0]+pas;
+        for (int j=0;j<order_fit+1;j++)
+        {
+            X0(j)=pow(x[0],order_fit-j);
+            X1(j)=pow(x[1],order_fit-j);
+        }
+        pas/= (ublas::inner_prod(X1,coeff)<ublas::inner_prod(X0,coeff) ? -2:2);
+        x[0]=x[1];
+    }
+    return (double) ublas::inner_prod(X1,coeff);
+}
+
 int main()
 {
     int mode;
@@ -81,18 +100,19 @@ int main()
     vector<double> module(Npat,0);
     vector<double> E;
     string str;
-    double sum,Em=0,var=0,P=0,maxi,a=0,energy_mode;
-    double pulse[Npul],puls,puls_inter[Npat];
+    double sum,Em=0,var=0,P=0,maxi,a=0,energy_mode,puls;
+    double *pulse = new double[Npul];
+    double *puls_inter = new double[Npat];
     double pattern[8192];
-    ublas::matrix<double> X(Nfit,3),Z(3,3);
+    ublas::matrix<double> X(Nfit,order_fit+1),Z(order_fit+1,order_fit+1);
     for (i=0;i<Nfit;i++)
     {
-        for (int j=0;j<3;j++)
+        for (int j=0;j<order_fit+1;j++)
         {
-            X(i,j)=pow(i,2-j);
+            X(i,j)=pow(i-Nfit/2,order_fit-j);
         }
     }
-    ublas::vector<double> Y(Nfit),poly_max(3);
+    ublas::vector<double> Y(Nfit),poly_max(order_fit+1);
     fstream file1,file2,file3;
     file3.open("test.txt",ios::out);
     CArray sig_fft (Npat);
@@ -179,8 +199,8 @@ int main()
         {
             maxi=ch0.getmod();
         }
-        //if (i>Np-Nfit*decimation/2)
-        if (i>Np)
+        if (i>Np-Nfit*decimation/2)
+        //if (i>Np)
         {
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
@@ -203,11 +223,11 @@ int main()
                     n_alea=rand()%64;
                     InvertMatrix(ublas::matrix<double> (ublas::prod(ublas::trans(X),X)),Z);
                     poly_max=ublas::prod(ublas::prod(Z,ublas::trans(X)),Y);
-                    E.push_back(1000.0*(poly_max(2)-pow(poly_max(1),2)/(2*poly_max(0)))/P);
+                    E.push_back(1000.0*gradient_descent(poly_max)/P);
                 }
-                if (l==0)
+                /*if (l==0)
                 {
-                    n_alea=rand()%128-64;
+                    n_alea=rand()%64;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
@@ -239,7 +259,7 @@ int main()
                         }
                         E.push_back(1000.0*sum/P);
                     }
-                }
+                }*/
                 l++;
                 l=l%Npat;
             }

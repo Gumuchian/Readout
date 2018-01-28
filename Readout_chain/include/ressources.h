@@ -7,7 +7,8 @@ const double fs=20000000; // sampling frequency
 const int N=20000000; // simulation step
 const int Npix=1; // pixels number
 const double PI=3.14159265358979; // don't touch !!
-const int Nfit=3;
+const int Nfit=20;
+const int order_fit=5;
 
 
 
