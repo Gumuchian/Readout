@@ -103,8 +103,8 @@ int main()
     double sum,Em=0,var=0,P=0,maxi,a=0,energy_mode,puls;
     double *pulse = new double[Npul];
     double *puls_inter = new double[Npat];
-    double pattern[8192];
-    ublas::matrix<double> X(Nfit,order_fit+1),Z(order_fit+1,order_fit+1);
+    double *pattern = new double[Npat];
+    ublas::matrix<double> X(Nfit,order_fit+1),Z(order_fit+1,order_fit+1),X2(Nfit,order_fit+1),Z2(order_fit+1,order_fit+1);
     for (i=0;i<Nfit;i++)
     {
         for (int j=0;j<order_fit+1;j++)
@@ -112,7 +112,7 @@ int main()
             X(i,j)=pow(i-Nfit/2,order_fit-j);
         }
     }
-    ublas::vector<double> Y(Nfit),poly_max(order_fit+1);
+    ublas::vector<double> Y(Nfit),poly_max(order_fit+1),poly_max2(order_fit+1);
     fstream file1,file2,file3;
     file3.open("test.txt",ios::out);
     CArray sig_fft (Npat);
@@ -124,7 +124,7 @@ int main()
         sig_fft[i]=0;
     }
     CArray div_fft (Npat);
-    Complex c[Npat];
+    Complex *c = new Complex[Npat];
     const Complex const_i(0,1);
 
     cout << "Select mode:" << endl << "\t1: Calibration" << endl << "\t2: Resolution estimation" << endl << "(1 or 2)" << endl;
@@ -175,12 +175,9 @@ int main()
         // bias modulation by pulse
         if (mode==2)
         {
-            if (ip<Npul+n_alea)
+            if (ip>=n_alea+decimation && ip<Npul+n_alea+decimation)
             {
-                if (ip>=n_alea)
-                {
-                    ch0.setI(pulse[ip-n_alea]);
-                }
+                ch0.setI(pulse[ip-n_alea-decimation]);
             }
         }
         else
@@ -199,8 +196,9 @@ int main()
         {
             maxi=ch0.getmod();
         }
-        if (i>Np-Nfit*decimation/2)
-        //if (i>Np)
+
+        if (i>Np-Nfit/2*decimation+decimation)
+        //if (i>Np+decimation)
         {
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
@@ -209,25 +207,33 @@ int main()
             {
                 module.push_back(a);
                 module.erase(module.begin());
-                if (l<Nfit)
+
+                /*if (l<Nfit)
                 {
                     sum=0;
                     for (k=0;k<Npat;k++)
                     {
-                        sum=module[k]*pattern[k]+sum;
+                        sum+=module[k]*pattern[k];
                     }
                     Y(l)=sum;
+                    //file3 << sum << endl;
                 }
                 if (l==Nfit)
                 {
-                    n_alea=rand()%64;
+                    n_alea=rand()%decimation-decimation/2;
+                    //n_alea=0;
                     InvertMatrix(ublas::matrix<double> (ublas::prod(ublas::trans(X),X)),Z);
                     poly_max=ublas::prod(ublas::prod(Z,ublas::trans(X)),Y);
-                    E.push_back(1000.0*gradient_descent(poly_max)/P);
-                }
+                    double ind=decimation*(-poly_max(1)/(2*poly_max(0)));
+                    double f=9.13269646113607*pow(10,-8)*pow(ind,2)+1.07254592757048*pow(10,-6)*ind+1.00000166983198;
+                    //E.push_back(1000.0*gradient_descent(poly_max)/P);
+                    //InvertMatrix(X,Z);
+                    //poly_max=ublas::prod(Z,Y);
+                    E.push_back(1000.0*(poly_max(2)-pow(poly_max(1),2)/(2*poly_max(0)))/P);
+                }*/
                 /*if (l==0)
                 {
-                    n_alea=rand()%64;
+                    n_alea=rand()%decimation-decimation/2;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
@@ -255,7 +261,7 @@ int main()
                         sum=0;
                         for (k=0;k<Npat;k++)
                         {
-                            sum=module[k]*pattern[k]+sum;
+                            sum+=module[k]*pattern[k];
                         }
                         E.push_back(1000.0*sum/P);
                     }
@@ -298,12 +304,12 @@ int main()
         }
         var=2.35*sqrt(var/(E.size()-3));
 
-        cout << "Input energy: " << energy << " eV" << endl;
-        cout << "Number of estimations: " << E.size()-3 << endl;
-        cout << "E:  pattern @ " << 1000 << " eV" << endl;
-        cout << "\tEnergy estimation: " << Em << " eV" << endl;
-        cout << "\tRelative error: " << abs(energy-Em)/energy << endl;
-        cout << "\tResolution: " << var << " eV" << endl;
+        cout << "Input energy: " << energy << " eV" << endl
+             << "Number of estimations: " << E.size()-3 << endl
+             << "E:  pattern @ " << 1000 << " eV" << endl
+             << "\tEnergy estimation: " << Em << " eV" << endl
+             << "\tRelative error: " << abs(energy-Em)/energy << endl
+             << "\tResolution: " << var << " eV" << endl;
     }
     file1.close();
     file2.close();
