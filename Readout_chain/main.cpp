@@ -208,32 +208,32 @@ int main()
                 module.push_back(a);
                 module.erase(module.begin());
 
-                /*if (l<Nfit)
+                if (l<Nfit)
                 {
+                    if (l==0)
+                    {
+                        n_alea=rand()%decimation-decimation/2;
+                    }
                     sum=0;
                     for (k=0;k<Npat;k++)
                     {
                         sum+=module[k]*pattern[k];
                     }
                     Y(l)=sum;
-                    //file3 << sum << endl;
+                    file3 << sum << endl;
                 }
                 if (l==Nfit)
                 {
-                    n_alea=rand()%decimation-decimation/2;
-                    //n_alea=0;
                     InvertMatrix(ublas::matrix<double> (ublas::prod(ublas::trans(X),X)),Z);
                     poly_max=ublas::prod(ublas::prod(Z,ublas::trans(X)),Y);
-                    double ind=decimation*(-poly_max(1)/(2*poly_max(0)));
-                    double f=9.13269646113607*pow(10,-8)*pow(ind,2)+1.07254592757048*pow(10,-6)*ind+1.00000166983198;
-                    //E.push_back(1000.0*gradient_descent(poly_max)/P);
-                    //InvertMatrix(X,Z);
-                    //poly_max=ublas::prod(Z,Y);
+                    //double ind=decimation*(-poly_max(1)/(2*poly_max(0)));
+                    //double f=9.13269646113607*pow(10,-8)*pow(ind,2)+1.07254592757048*pow(10,-6)*ind+1.00000166983198;
                     E.push_back(1000.0*(poly_max(2)-pow(poly_max(1),2)/(2*poly_max(0)))/P);
-                }*/
+                }
                 /*if (l==0)
                 {
-                    n_alea=rand()%decimation-decimation/2;
+                    //n_alea=rand()%decimation-decimation/2;
+                    n_alea=0;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
@@ -264,6 +264,7 @@ int main()
                             sum+=module[k]*pattern[k];
                         }
                         E.push_back(1000.0*sum/P);
+                        //file3 << sum << endl;
                     }
                 }*/
                 l++;
@@ -302,7 +303,7 @@ int main()
         {
             var=pow(abs(E[i]-Em),2)+var;
         }
-        var=2.35*sqrt(var/(E.size()-3));
+        var=energy/Em*2.35*sqrt(var/(E.size()-3));
 
         cout << "Input energy: " << energy << " eV" << endl
              << "Number of estimations: " << E.size()-3 << endl

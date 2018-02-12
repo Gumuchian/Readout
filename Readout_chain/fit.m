@@ -1,21 +1,31 @@
 
-Nfit=10;
+Nfit=3;
 X=zeros(Nfit,3);
 for i=1:Nfit
     for j=1:3
        X(i,j)=((i-1)-floor(Nfit/2))^(3-j);
     end
 end
-Y=VarName5(3*20+1:end);
+Y=data5(Nfit*20+1:end);
 Z=zeros(length(Y),1);
+T=zeros(length(Y),1);
+U=zeros(length(Y),1);
 for i=1:length(Y)/Nfit
     C=(X'*X)\X'*Y((i-1)*Nfit+1:i*Nfit);
     Z((i-1)*Nfit+1:i*Nfit)=(X*C);
+    T((i-1)*Nfit+1:i*Nfit)=Y(2+(i-1)*3)*ones(3,1);
+    U((i-1)*Nfit+1:i*Nfit)=(C(3)-C(2)/(2*C(1)))*ones(3,1);
 end
 figure;
 plot(Z(1:end-10))
 hold on
 plot(Y(1:end-10),'r')
+plot(T(1:end-10),'g')
+plot(U(1:end-10),'c')
+t=T(1:end-10);
+u=U(1:end-10);
+sqrt(mean((t-mean(t)).^2))
+sqrt(mean((u-mean(u)).^2))
 title('Output of the optimal filter /N_{fit} with fit')
 
 %%
