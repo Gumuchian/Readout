@@ -104,7 +104,7 @@ int main()
     double *pulse = new double[Npul];
     double *puls_inter = new double[Npat];
     double *pattern = new double[Npat];
-    ublas::matrix<double> X(Nfit,order_fit+1),Z(order_fit+1,order_fit+1),X2(Nfit,order_fit+1),Z2(order_fit+1,order_fit+1);
+    ublas::matrix<double> X(Nfit,order_fit+1),Z(order_fit+1,order_fit+1);
     for (i=0;i<Nfit;i++)
     {
         for (int j=0;j<order_fit+1;j++)
@@ -112,7 +112,7 @@ int main()
             X(i,j)=pow(i-Nfit/2,order_fit-j);
         }
     }
-    ublas::vector<double> Y(Nfit),poly_max(order_fit+1),poly_max2(order_fit+1);
+    ublas::vector<double> Y(Nfit),poly_max(order_fit+1);
     fstream file1,file2,file3;
     file3.open("test.txt",ios::out);
     CArray sig_fft (Npat);
@@ -190,25 +190,28 @@ int main()
         // compute LC_TES = output of LC-TES
         ch0.computeLC_TES();
         // compute feedback
-        ch0.computeBBFB();
+        file3 << ch0.computeBBFB() << endl;
 
         if (i==Np)
         {
             maxi=ch0.getmod();
         }
 
-        if (i>Np-Nfit/2*decimation+decimation)
-        //if (i>Np+decimation)
+        //file3 << ch0.getI() << "\t" << ch0.getQ() << endl;
+
+        //if (i>Np-Nfit/2*decimation+decimation)
+        if (i>Np+decimation)
         {
             //a=cic.compute(maxi-ch0.getmod());
             a=Butter.compute(maxi-ch0.getmod());
             //if (cic.getaccess())
             if(Butter.getaccess())
             {
+
                 module.push_back(a);
                 module.erase(module.begin());
-
-                if (l<Nfit)
+                file3 << ch0.getmod() << endl;
+                /*if (l<Nfit)
                 {
                     if (l==0)
                     {
@@ -220,7 +223,6 @@ int main()
                         sum+=module[k]*pattern[k];
                     }
                     Y(l)=sum;
-                    file3 << sum << endl;
                 }
                 if (l==Nfit)
                 {
@@ -229,11 +231,11 @@ int main()
                     //double ind=decimation*(-poly_max(1)/(2*poly_max(0)));
                     //double f=9.13269646113607*pow(10,-8)*pow(ind,2)+1.07254592757048*pow(10,-6)*ind+1.00000166983198;
                     E.push_back(1000.0*(poly_max(2)-pow(poly_max(1),2)/(2*poly_max(0)))/P);
-                }
-                /*if (l==0)
+                }*/
+                if (l==0)
                 {
-                    //n_alea=rand()%decimation-decimation/2;
-                    n_alea=0;
+                    n_alea=rand()%decimation-decimation/2;
+                    //n_alea=0;
                     if (mode==1)
                     {
                         for (k=0;k<Npat;k++)
@@ -264,9 +266,8 @@ int main()
                             sum+=module[k]*pattern[k];
                         }
                         E.push_back(1000.0*sum/P);
-                        //file3 << sum << endl;
                     }
-                }*/
+                }
                 l++;
                 l=l%Npat;
             }

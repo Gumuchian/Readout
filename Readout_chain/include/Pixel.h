@@ -19,6 +19,8 @@ class Pixel
         int getcomptD_Q();
         double getbiasm();
         double getI();
+        double getI_bbfb();
+        double getQ_bbfb();
         void setI(double p);
 
     protected:

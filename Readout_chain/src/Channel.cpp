@@ -92,25 +92,35 @@ double Channel::computeBBFB()
     {
         feedback[i]=feedback[i-1];
     }
+    return adc;
+}
+
+double Channel::getinput()
+{
     return input;
 }
 
- double Channel::getinput()
- {
-     return input;
- }
+double Channel::getfck()
+{
+    return feedback[delay];
+}
 
- double Channel::getfck()
- {
-     return feedback[delay];
- }
+double Channel::getmod()
+{
+    return ch[0].getmodule();
+}
 
- double Channel::getmod()
- {
-     return ch[0].getmodule();
- }
+void Channel::setI(double p)
+{
+    ch[0].setI(p);
+}
 
- void Channel::setI(double p)
- {
-     ch[0].setI(p);
- }
+double Channel::getI()
+{
+    return ch[0].getI_bbfb();
+}
+
+double Channel::getQ()
+{
+    return ch[0].getQ_bbfb();
+}

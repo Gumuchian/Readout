@@ -29,3 +29,13 @@ double BBFB::module()
     //return trunc(sqrt(pow(I,2)+pow(Q,2)));
     return (sqrt(pow(I,2)+pow(Q,2)));
 }
+
+double BBFB::getI()
+{
+    return I;
+}
+
+double BBFB::getQ()
+{
+    return Q;
+}

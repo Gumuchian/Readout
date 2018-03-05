@@ -84,3 +84,13 @@ void Pixel::setI(double p)
 {
     tes.setI(p);
 }
+
+double Pixel::getI_bbfb()
+{
+    return bbfb.getI();
+}
+
+double Pixel::getQ_bbfb()
+{
+    return bbfb.getQ();
+}

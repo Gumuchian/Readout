@@ -9,6 +9,8 @@ class BBFB
         void compute_feedback(double demoduI, double remoduI, double demoduQ, double remoduQ, double input);
         double getfeedback();
         double module();
+        double getI();
+        double getQ();
 
     protected:
 

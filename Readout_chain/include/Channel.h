@@ -15,6 +15,8 @@ class Channel
         double getinput();
         double getfck();
         double getmod();
+        double getI();
+        double getQ();
         void setI(double p);
     protected:
     private:
