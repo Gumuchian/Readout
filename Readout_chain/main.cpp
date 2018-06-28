@@ -190,7 +190,7 @@ int main()
         // compute LC_TES = output of LC-TES
         ch0.computeLC_TES();
         // compute feedback
-        file3 << ch0.computeBBFB() << endl;
+        ch0.computeBBFB();
 
         if (i==Np)
         {
@@ -210,7 +210,7 @@ int main()
 
                 module.push_back(a);
                 module.erase(module.begin());
-                file3 << ch0.getmod() << endl;
+                file3 << ch0.getmod() << "\n";
                 /*if (l<Nfit)
                 {
                     if (l==0)
@@ -234,7 +234,7 @@ int main()
                 }*/
                 if (l==0)
                 {
-                    n_alea=rand()%decimation-decimation/2;
+                    //n_alea=rand()%decimation-decimation/2;
                     //n_alea=0;
                     if (mode==1)
                     {
